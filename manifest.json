@@ -1,0 +1,29 @@
+{
+	"manifest_version":2,
+	"name":"Anonymous Extension",
+	"description":"A program to block risky websites and trackers.",
+	"version":"1",
+	"content_scripts":[
+	{
+		"matches":["<all_urls>"],
+		"js":["jquery321.js"]
+	}
+	],
+	"browser_action":{
+		"default_icon":"icon.png",
+		"default_popup":"base_anon_home.html"
+	},
+	"icons":{
+		"128":"icon.png"
+	},
+	"permissions":[
+		"webNavigation",
+		"webRequest",
+		"webRequestBlocking",
+		"tabs",
+		"<all_urls>"
+	],
+	"background":{
+		"scripts":["background.js"]
+	}
+}
