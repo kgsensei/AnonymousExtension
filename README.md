@@ -4,7 +4,11 @@
 
 ## Overview:
 
-AnonymousExtension is a Edge and Chrome browser extension designed to make the internet a safer place for you. I was browsing the internet recently and looking at the crazy amount of trackers in some websites, there are like 20 in some websites alone... Like why? So I decided to build this web extension to block trackers, ip grabbers and some dangerous websites I know about. Here are just some of the things it blocks:
+AnonymousExtension is a Edge and Chrome browser extension designed to make the internet a safer place for you. I was browsing the internet recently and looking at the crazy amount of trackers in some websites, there are like 20 in some websites alone... Like why? So I decided to build this web extension to block trackers, ip grabbers and some dangerous websites I know about.
+
+Get it today on the Edge Store: [HERE](https://microsoftedge.microsoft.com/addons/detail/anonymous-extension/cdiiogmchafjebbdjgbchpdeoghfbocp)
+
+Here are just some of the things it blocks:
 
 #### Top 5 Trackers
 
