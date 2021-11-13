@@ -88,7 +88,6 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 	"*://*.googletagmanager.com/*",
 	"*://*.ably.io/*",
 	"*://graph.instagram.com/*",
-	"*://*.facebook.com/*",
 	"*://*.instagram.com/logging/*",
 	"*://*.instagram.com/ajax/bz",
 	"*://*.fburl.com/*",
