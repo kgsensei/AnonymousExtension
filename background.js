@@ -1,10 +1,40 @@
+chrome.webNavigation.onCommitted.addListener(function(details){
+	if(details.tabId!=-1&&details.frameId==0&&details.url.indexOf('devtools')==-1){
+		localStorage.setItem('tb-'+details.tabId,'0')
+	}
+})
+
+chrome.tabs.onUpdated.addListener(function(tabID,changeInfo,tabInfo){
+	if(tabInfo.url.indexOf('devtools')==-1){
+		localStorage.setItem('lastTabID',tabID)
+		localStorage.setItem('lastTabUR',tabInfo.url)
+	}
+})
+
+chrome.tabs.onSelectionChanged.addListener(function(tabID){
+	chrome.tabs.query({currentWindow:true,active:true},function(tabs){
+		if(tabs[0].url.indexOf('devtools')==-1){
+			localStorage.setItem('lastTabID',tabs[0].id)
+			localStorage.setItem('lastTabUR',tabs[0].url)
+		}
+	})
+})
+
 chrome.webRequest.onBeforeRequest.addListener(function(details){
 	enabled=localStorage.getItem('enabled')
 	if(enabled==null||enabled==undefined){
 		localStorage.setItem('enabled','yes')
 		enabled='yes'
 	}
-	if(enabled=='yes'){return{cancel:true};}
+	if(enabled=='yes'){
+		if(details.tabId!=-1){
+			cnumbertb=localStorage.getItem('tb-'+details.tabId)
+			localStorage.setItem('tb-'+details.tabId,cnumbertb*1+1)
+		}
+		return{
+			cancel:true
+		}
+	}
 },{urls:[
 	"*://*.raygun.io/*",
 	"*://*.google-analytics.com/*",
@@ -144,5 +174,17 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 	"*://*.tiktok.com/*",
 	"*://*.ibytedtos.com/*",
 	"*://*.tiktokcdn.com/*",
-	"*://*.byteoversea.com/*"
+	"*://*.byteoversea.com/*",
+	"*://*.pinterest.com/resource/StatsLogResource/*",
+	"*://*.pinterest.com/resource/UserRegisterTrackActionResource/*",
+	"*://*.pinterest.com/resource/ActivateExperimentResource/*",
+	"*://*.pinterest.com/resource/ContextLogResource/*",
+	"*://*.pinterest.com/v3/spam/fingerprints/*",
+	"*://*.pinterest.com/resource/ApiResource/*",
+	"*://*.tvpixel.com/*",
+	"*://*.pinterest.com/_/_/*",
+	"*://*.pinterest.com/resource/UserExperienceResource/*",
+	"*://*.pinterest.com/resource/UnauthUserDataResource/*",
+	"*://*.pinimg.com/webapp/facebook*",
+	"*://*.pinimg.com/webapp/fb*"
 ]},["blocking"])
