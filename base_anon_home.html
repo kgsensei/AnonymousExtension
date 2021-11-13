@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Anon. Extension Home</title>
+		<title>__MSG_ext_title__</title>
 		<script src="jquery321.js"></script>
 		<style>
 			body{
@@ -16,37 +16,36 @@
 		</style>
 	</head>
 	<body>
-		<h1>Anon. Extension Home</h1>
+		<h1 id="ext_title">__MSG_ext_title__</h1>
 		<div class="paddingleft">
-			<h2>Settings:</h2>
+			<h2>__MSG_settings_title__</h2>
 			<div class="paddingleft">
-				<div style="font-size:15px;">Enabled? <input type="checkbox" id="enabled_checkbox"> <span id="fs_0" style="display:none;color:aqua;"></span></div>
-				<div style="font-size:15px;">Clear Data? <input type="button" id="clear_data_now" value="Clear"> <span id="fs_1" style="display:none;color:aqua;"></span></div>
+				<div style="font-size:15px;" id="enabled_settings">
+					__MSG_enabled_settings__<input type="checkbox" id="enabled_checkbox" title="__MSG_enabled_settings__"> <span id="fs_0" style="display:none;color:aqua;"></span>
+				</div>
+				<div style="font-size:15px;" id="clearda_settings">
+					__MSG_clearda_settings__<input type="button" id="clear_data_now_btn" value="__MSG_clear_data_now_btn__"> <span id="fs_1" style="display:none;color:aqua;"></span>
+				</div>
 			</div>
-			<h2>Trackers Blocked:</h2>
+			<h2>__MSG_trackers_title__</h2>
 			<div class="paddingleft" style="font-size:15px;">
-				In <b><span id="url_place">{Website}</span></b> we blocked <b><span id="trackers_place">1</span></b> trackers.
+				__MSG_in_text__<b><span id="url_place">{Website}</span></b>__MSG_we_blocked_text__<b><span id="trackers_place">1</span></b>__MSG_trackers_text__
 			</div>
-			<h2>What we Block:</h2>
+			<h2>__MSG_block_list_title__</h2>
 			<div class="paddingleft" style="font-size:15px;">
-				<ui>
-					<li>Common Trackers</li>
-					<li>Public IP Grabbers</li>
-					<li>Common Dangerous Sites</li>
-				</ui>
+				<ul>
+					<li>__MSG_list_common_trackers__</li>
+					<li>__MSG_list_ip_grabbers__</li>
+					<li>__MSG_list_dangerous_sites__</li>
+				</ul>
 			</div>
-			<h2>Our Goal:</h2>
+			<h2>__MSG_goal_title__</h2>
 			<div class="paddingleft" style="font-size:15px;">
-				<p>
-					This isn't exactly meant to make you invisible online, and it can't. There will always be
-					new trackers, but we can still try. We block common trackers accross all websites with hopes
-					that we can make your internet experience a better one. PS: If you want to turn it off but not
-					uninstall the extension you can do that with the settings.
-				</p>
+				<p></p>
 			</div>
-			<h2>Legal Information:</h2>
+			<h2>__MSG_legal_title__</h2>
 			<div class="paddingleft">
-				<div style="font-size:15px;">Copyright &copy; 2021 <a href="kgsensei.dev" style="color:aqua">kgsensei</a>.</div>
+				<div style="font-size:15px;">__MSG_copyright_text__<a href="kgsensei.dev" style="color:aqua">__MSG_kgsensei_text__</a>.</div>
 			</div>
 		</div>
 		<script src="homepage.js"></script>

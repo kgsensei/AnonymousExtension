@@ -4,6 +4,7 @@
 	"author":"kgsensei",
 	"description":"A program to block risky websites and trackers.",
 	"update_url":"https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+	"default_locale":"en",
 	"version":"1.1",
 	"content_scripts":[
 	{

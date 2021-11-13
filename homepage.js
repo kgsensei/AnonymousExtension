@@ -23,7 +23,7 @@ $("#enabled_checkbox").click(function(){
 	}
 })
 
-$("#clear_data_now").click(function(){
+$("#clear_data_now_btn").click(function(){
     var archive=[],keys=Object.keys(localStorage),i=0,key
     for(;key=keys[i];i++){if(key.substr(0,3)=='tb-'){
 		archive.push(key)
@@ -49,4 +49,17 @@ function checkTrackersBlocked(){
 	setTimeout(function(){checkTrackersBlocked()},500)
 }
 
+function localizeHtmlPage(){
+    var objects=document.getElementsByTagName('html')
+    for(var j=0;j<objects.length;j++){
+        var obj=objects[j]
+        var valStrH=obj.innerHTML.toString()
+        var valNewH=valStrH.replace(/__MSG_(\w+)__/g,function(match,v1){
+            return v1?chrome.i18n.getMessage(v1):""
+        })
+        if(valNewH!=valStrH){obj.innerHTML=valNewH}
+    }
+}
+
+localizeHtmlPage()
 checkTrackersBlocked()

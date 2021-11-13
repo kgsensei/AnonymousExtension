@@ -185,5 +185,18 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 	"*://*.pinterest.com/resource/UserExperienceResource/*",
 	"*://*.pinterest.com/resource/UnauthUserDataResource/*",
 	"*://*.pinimg.com/webapp/facebook*",
-	"*://*.pinimg.com/webapp/fb*"
+	"*://*.pinimg.com/webapp/fb*",
+	"*://web.vortex.data.microsoft.com/collect/*",
+	"*://*.visualstudio.com/v2/track/*",
+	"*://browser.events.data.microsoft.com/OneCollector/*",
+	"*://browser.pipe.aria.microsoft.com/Collector/*",
+	"*://*.monitor.azure.com/*",
+	"*://metrics.roblox.com/*",
+	"*://*.evidon.com/*",
+	"*://*.veriff.me/*",
+	"*://ecsv2.roblox.com/*",
+	"*://abtesting.roblox.com/*",
+	"*://*.roblox.com/user-sponsorship/*",
+	"*://ads.roblox.com/*",
+	"*://presence.roblox.com/*"
 ]},["blocking"])
