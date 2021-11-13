@@ -165,7 +165,6 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 	"*://*.discord.com/api/v9/auth/location-metadata",
 	"*://*.sentry.io/*",
 	"*://*.spotify.com/api/growth-events/*",
-	"*://guc3-spclient.spotify.com/*",
 	"*://*.scorecardresearch.com/*",
 	"*://*.krxd.net/*",
 	"*://*.branch.io/*",
