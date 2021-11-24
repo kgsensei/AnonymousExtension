@@ -30,10 +30,7 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 		if(details.tabId!=-1){
 			cnumbertb=localStorage.getItem('tb-'+details.tabId)
 			localStorage.setItem('tb-'+details.tabId,cnumbertb*1+1)
-		}
-		return{
-			cancel:true
-		}
+		}return{cancel:true}
 	}
 },{urls:[
 	"*://*.raygun.io/*",
