@@ -44,4 +44,4 @@ Here are just some of the things it blocks:
 
 ## Legal:
 
-Copyright &copy; 2021 kgsensei.
+Copyright &copy; kgsensei 2022.
