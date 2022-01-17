@@ -1,39 +1,40 @@
-fadeAnimationTime=1000
-checkedvar=localStorage.getItem('enabled')
-if(checkedvar==null||checkedvar==undefined){
-	localStorage.setItem('enabled','yes')
-	document.getElementById("enabled_checkbox").checked=1
-}
-
 $(document).ready(function(){
+	fadeAnimationTime=1000
+	checkedvar=localStorage.getItem('enabled')
+
+	if(checkedvar==null||checkedvar==undefined){
+		localStorage.setItem('enabled','yes')
+		document.getElementById("enabled_checkbox").checked=1
+	}
+
 	if(checkedvar=='yes'){document.getElementById("enabled_checkbox").checked=1}
 	if(checkedvar=='no'){document.getElementById("enabled_checkbox").checked=0}
-})
 
-$("#enabled_checkbox").click(function(){
-	element=document.getElementById("enabled_checkbox")
-	if(element.checked){
-		localStorage.setItem('enabled','yes')
-		$('#fs_0').fadeIn(fadeAnimationTime)
-		document.getElementById('fs_0').innerHTML='Enabled'
-		$('#fs_0').fadeOut(fadeAnimationTime)
-	}else{
-		localStorage.setItem('enabled','no')
-		$('#fs_0').fadeIn(fadeAnimationTime)
-		document.getElementById('fs_0').innerHTML='Disabled'
-		$('#fs_0').fadeOut(fadeAnimationTime)
-	}
-})
+	$("#enabled_checkbox").click(function(){
+		element=document.getElementById("enabled_checkbox")
+		if(element.checked){
+			localStorage.setItem('enabled','yes')
+			$('#fs_0').fadeIn(fadeAnimationTime)
+			document.getElementById('fs_0').innerHTML='Enabled'
+			$('#fs_0').fadeOut(fadeAnimationTime)
+		}else{
+			localStorage.setItem('enabled','no')
+			$('#fs_0').fadeIn(fadeAnimationTime)
+			document.getElementById('fs_0').innerHTML='Disabled'
+			$('#fs_0').fadeOut(fadeAnimationTime)
+		}
+	})
 
-$("#clear_data_now_btn").click(function(){
-    var archive=[],keys=Object.keys(localStorage),i=0,key
-    for(;key=keys[i];i++){if(key.substr(0,3)=='tb-'){
-		archive.push(key)
-		localStorage.removeItem(key)
-	}}
-	$('#fs_1').fadeIn(fadeAnimationTime)
-	document.getElementById('fs_1').innerHTML='Removed '+archive.length+' Items'
-	$('#fs_1').fadeOut(fadeAnimationTime)
+	$("#clear_data_now_btn").click(function(){
+		var archive=[],keys=Object.keys(localStorage),i=0,key
+		for(;key=keys[i];i++){if(key.substr(0,3)=='tb-'){
+			archive.push(key)
+			localStorage.removeItem(key)
+		}}
+		$('#fs_1').fadeIn(fadeAnimationTime)
+		document.getElementById('fs_1').innerHTML='Removed '+archive.length+' Items'
+		$('#fs_1').fadeOut(fadeAnimationTime)
+	})
 })
 
 String.prototype.toLocation=function(){

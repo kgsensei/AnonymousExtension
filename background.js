@@ -33,6 +33,10 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 		}return{cancel:true}
 	}
 },{urls:[
+	"*://*.optimizely.com/*",
+	"*://*.px-cloud.net/*",
+	"*://*.change.org/api-proxy/-/event*",
+	"*://*.withgoogle.com/csp*",
 	"*://*.raygun.io/*",
 	"*://*.google-analytics.com/*",
 	"*://*.grabify.link/*",
@@ -85,7 +89,7 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 	"*://*.googletagmanager.com/*",
 	"*://*.ably.io/*",
 	"*://graph.instagram.com/*",
-	"*://*.instagram.com/logging/*",
+	"*://*.instagram.com/logging*",
 	"*://*.instagram.com/ajax/bz",
 	"*://*.fburl.com/*",
 	"*://*.google.com/log*",
@@ -154,7 +158,7 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 	"*://*.samplicio.us/*",
 	"*://analytics.twitter.com/*",
 	"*://*.rubiconproject.com/*",
-	"*://*.amazon.com/gp/sponsored-products/logging/*",
+	"*://*.amazon.com/gp/sponsored-products/logging*",
 	"*://*.onetrust.com/*",
 	"*://*.discord.com/assets/oneTrust/*",
 	"*://*.discord.com/api/v9/science",
