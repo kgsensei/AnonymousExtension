@@ -1,36 +1,43 @@
-chrome.webNavigation.onCommitted.addListener(function(details){
-	if(details.tabId!=-1&&details.frameId==0&&details.url.indexOf('devtools')==-1){
+chrome.webNavigation.onCommitted.addListener(function(details) {
+	if(details.tabId != -1 && details.frameId == 0 && details.url.indexOf('devtools') == -1) {
 		localStorage.setItem('tb-'+details.tabId,'0')
 	}
 })
 
-chrome.tabs.onUpdated.addListener(function(tabID,changeInfo,tabInfo){
-	if(tabInfo.url.indexOf('devtools')==-1){
-		localStorage.setItem('lastTabID',tabID)
-		localStorage.setItem('lastTabUR',tabInfo.url)
+chrome.tabs.onUpdated.addListener(function(tabID, changeInfo, tabInfo) {
+	if(tabInfo.url.indexOf('devtools') == -1) {
+		localStorage.setItem('lastTabID', tabID)
+		localStorage.setItem('lastTabUR', tabInfo.url)
 	}
 })
 
-chrome.tabs.onSelectionChanged.addListener(function(tabID){
-	chrome.tabs.query({currentWindow:true,active:true},function(tabs){
-		if(tabs[0].url.indexOf('devtools')==-1){
-			localStorage.setItem('lastTabID',tabs[0].id)
-			localStorage.setItem('lastTabUR',tabs[0].url)
+chrome.tabs.onSelectionChanged.addListener(function(tabID) {
+	chrome.tabs.query(
+		{
+			currentWindow: true,
+			active: true
+		}, function(tabs) {
+			if(tabs[0].url.indexOf('devtools') == -1) {
+				localStorage.setItem('lastTabID', tabs[0].id)
+				localStorage.setItem('lastTabUR', tabs[0].url)
+			}
 		}
-	})
+	)
 })
 
-chrome.webRequest.onBeforeRequest.addListener(function(details){
-	enabled=localStorage.getItem('enabled')
-	if(enabled==null||enabled==undefined){
-		localStorage.setItem('enabled','yes')
-		enabled='yes'
+chrome.webRequest.onBeforeRequest.addListener(function(details) {
+	enabled = localStorage.getItem('enabled')
+	if(enabled == null || enabled == undefined) {
+		localStorage.setItem('enabled', 'yes')
+		enabled = 'yes'
 	}
-	if(enabled=='yes'){
-		if(details.tabId!=-1){
-			cnumbertb=localStorage.getItem('tb-'+details.tabId)
-			localStorage.setItem('tb-'+details.tabId,cnumbertb*1+1)
-		}return{cancel:true}
+	if(enabled == 'yes') {
+		if(details.tabId != -1) {
+			cnumbertb = localStorage.getItem('tb-' + details.tabId)
+			localStorage.setItem('tb-' + details.tabId,cnumbertb * 1 + 1)
+		} return {
+			cancel: true
+		}
 	}
 },{urls:[
 	"*://*.optimizely.com/*",
@@ -113,7 +120,6 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 	"*://*.ebay.com/rec/plmt/*",
 	"*://*.ebay.com/gh/*",
 	"*://*.securedtouch.com/*",
-	"*://*.licdn.com/*",
 	"*://*.ads.linkedin.com/*",
 	"*://*.facebook.net/*",
 	"*://*.wish.com/api/analytics/*",
@@ -515,5 +521,29 @@ chrome.webRequest.onBeforeRequest.addListener(function(details){
 	"*://*/*/greenoaks.gif*",
 	"*://*/*/imp.gif*",
 	"*://*.visualwebsiteoptimizer.com/*",
-	"*://*.vwo.com/*"
+	"*://*.vwo.com/*",
+	"*://*.adsrvr.org/*",
+	"*://*.3lift.com/*",
+	"*://*.triplelift.com/*",
+	"*://*.lngtd.com/*",
+	"*://*.btloader.com/*",
+	"*://*.s-onetag.com/*",
+	"*://*.bounceads.net/*",
+	"*://*.gritbravedownload.com/*",
+	"*://*.instagram.com/ajax/bz?__d=dis",
+	"*://*.privacymanager.io/*",
+	"*://*.tm-awx.com/*",
+	"*://*.viafoura.co/*",
+	"*://*.outbrain.com/*",
+	"*://*.smartadserver.com/*",
+	"*://*.richaudience.com/*",
+	"*://*.justpremium.com/*",
+	"*://*.notix.io/*",
+	"*://*/statics/ads.min.js",
+	"*://*.hetaruvg.com/*",
+	"*://*.dibsemey.com/*",
+	"*://*.rtmark.net/*",
+	"*://*.betgorebysson.club/*",
+	"*://*.rastconvy.xyz/*",
+	"*://*.rationpecial.xyz/*"
 ]},["blocking"])
