@@ -545,5 +545,16 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
 	"*://*.rtmark.net/*",
 	"*://*.betgorebysson.club/*",
 	"*://*.rastconvy.xyz/*",
-	"*://*.rationpecial.xyz/*"
+	"*://*.rationpecial.xyz/*",
+	"*://*.lagged.com/*",
+	"*://*.play-games.com/*",
+	"*://*.adlightning.com/*",
+	"*://*.microsoft.com/*collect",
+	"*://*.mktoresp.com/*",
+	"*://*.contentsquare.net/*",
+	"*://*.instagram.com/*seen",
+	"*://*.google.com/chat/v1/presence/setpresence",
+	"*://*.google.com/u/0/webchannel/events?*",
+	"*://*.bitly.com/*",
+	"*://*.bit.ly/*"
 ]},["blocking"])
