@@ -556,5 +556,6 @@ chrome.webRequest.onBeforeRequest.addListener(function(details) {
 	"*://*.google.com/chat/v1/presence/setpresence",
 	"*://*.google.com/u/0/webchannel/events?*",
 	"*://*.bitly.com/*",
-	"*://*.bit.ly/*"
+	"*://*.bit.ly/*",
+	"*://*.instagram.com/*/seen/"
 ]},["blocking"])
