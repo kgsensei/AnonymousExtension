@@ -39,7 +39,6 @@ const urls = [
 	"geoad.org",
 	"pngline.com",
 	"xbox-booter.com",
-	"xbonline.live",
 	"infected-zone.com",
 	"ipgrabber.dalenryder.com",
 	"discordresolver.c99.nl",
