@@ -20,11 +20,11 @@
 	},"block_list_title":{
 		"message":"What we Block:"
 	},"list_common_trackers":{
-		"message":"Common Trackers"
+		"message":"Trackers"
 	},"list_ip_grabbers":{
-		"message":"Public IP Grabbers"
+		"message":"IP Grabbers"
 	},"list_dangerous_sites":{
-		"message":"Common Dangerous Sites"
+		"message":"Dangerous Sites"
 	},"goal_title":{
 		"message":"Our Goal:"
 	},"goal_text":{

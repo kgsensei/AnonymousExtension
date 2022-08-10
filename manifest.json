@@ -1,18 +1,12 @@
 {
-	"manifest_version": 2,
+	"manifest_version": 3,
 	"name": "Anonymous Extension",
 	"author": "kgsensei",
-	"description": "A program to block risky websites and trackers.",
+	"description": "An extension developed to help you stay anonymous online. With tracking prevention and ad blocking capabilities, its designed for an out-of-the-box experience.",
 	"update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
 	"default_locale": "en",
-	"version": "1.3",
-	"content_scripts": [
-	{
-		"matches": ["<all_urls>"],
-		"js": ["jquery321.js"]
-	}
-	],
-	"browser_action": {
+	"version": "2.9999.9999.9999",
+	"action": {
 		"default_icon": "icon.png",
 		"default_popup": "base_anon_home.html"
 	},
@@ -20,13 +14,13 @@
 		"128": "icon.png"
 	},
 	"permissions": [
-		"webNavigation",
-		"webRequest",
-		"webRequestBlocking",
-		"tabs",
+		"declarativeNetRequest",
+		"tabs"
+	],
+	"host_permissions": [
 		"<all_urls>"
 	],
 	"background": {
-		"scripts": ["background.js"]
-	}
+    	"service_worker": "background.js"
+  	}
 }
