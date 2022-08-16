@@ -1,0 +1,54 @@
+body {
+	background-color: rgb(20, 20, 40);
+	font-family: sans-serif;
+	color: white;
+	width: 500px;
+	height: fit-content;
+}
+
+.paddingleft {
+	padding-left: 3px;
+	margin-left: 3px;
+}
+
+#titleBlock {
+	display: inline-block;
+	font-size: 30px;
+	height: 40px;
+}
+
+#titleBlock div {
+	display: inline-block;
+	position: absolute;
+	top: 13px;
+	left: 12%;
+}
+
+#iconImg {
+	width: 30px;
+	height: auto;
+}
+
+.sectionTitle {
+	padding-top: 10px;
+	font-size: 25px;
+}
+
+.section {
+	position: relative;
+	padding: 8px;
+	font-size: 20px;
+}
+
+a {
+	color: rgb(40, 180, 215);
+	transition: all 250ms;
+}
+
+a:hover {
+	color: rgb(40, 210, 250);
+}
+
+#versionTracker {
+	font-size: 12.5px;
+}

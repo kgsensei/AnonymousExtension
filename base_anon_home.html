@@ -1,48 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
-		<title>__MSG_ext_title__</title>
-		<script src="jquery321.js"></script>
-		<style>
-			body {
-				background-color: rgb(20,20,20);
-				color: white;
-				width: 500px;
-				height: fit-content;
-			}
-
-			.paddingleft {
-				padding-left: 3px;
-				margin-left: 3px;
-			}
-		</style>
+		<title>Anonymous Extension Dashboard</title>
+		<script src="/dashboardResources/jquery321.js"></script>
+		<link rel="stylesheet" href="/dashboardResources/dashboard.css">
 	</head>
 	<body>
-		<h1 id="ext_title">__MSG_ext_title__</h1>
-		<div class="paddingleft">
-			<h2>__MSG_settings_title__</h2>
-			<div class="paddingleft">
-				<div style="font-size:15px;" id="enabled_settings">
-					__MSG_enabled_settings__<input type="checkbox" id="enabled_checkbox" title="__MSG_enabled_settings__"> <span id="fs_0" style="display:none;color:aqua;"></span>
-				</div>
-			</div>
-			<h2>__MSG_trackers_title__</h2>
-			<div class="paddingleft" style="font-size:15px;">
-				Removed in v2.9999.9999.9999
-			</div>
-			<h2>__MSG_block_list_title__</h2>
-			<div class="paddingleft" style="font-size:15px;">
-				<ul>
-					<li>__MSG_list_common_trackers__</li>
-					<li>__MSG_list_ip_grabbers__</li>
-					<li>__MSG_list_dangerous_sites__</li>
-				</ul>
-			</div>
-			<h2>__MSG_legal_title__</h2>
-			<div class="paddingleft">
-				<div style="font-size:15px;">__MSG_copyright_text__<a href="https://kgsensei.dev" target="_blank" style="color:aqua">__MSG_kgsensei_text__</a>.</div>
-			</div>
+		<div id="titleBlock">
+			<img src="/icon.png" id="iconImg" title="Anonymous Extension Icon">
+			<div>Anonymous Extension</div>
 		</div>
-		<script src="homepage.js"></script>
+		<br>
+		<br>
+		<div class="sectionTitle">How does it work?</div>
+		<div class="section">
+			Anonymous Extension works by filtering out requests made by your browser to make sure the ones with personal information can't get through.
+			This includes common tracking services, like google analytics and doubleclick.net (a common ad provider).
+		</div>
+		<div class="sectionTitle">How do I know it's working?</div>
+		<div class="section">
+			Click <a href="https://google-analytics.com" target="_blank">here</a>, if the page says "Blocked by an Extension" its working! If not something might
+			be wrong and you should probably try re-installing this extension.
+		</div>
+		<br>
+		<div id="versionTracker">Anonymous Extension v3.0</div>
+		<script src="/dashboardResources/homepage.js"></script>
 	</body>
 </html>

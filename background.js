@@ -533,10 +533,6 @@ const urls = [
 	"client_event",
 	"/attribution/event",
 	"mouselog",
-	"chartbeat.com",
-	"bounceexchange.com",
-	"ipapi.co/json",
-	"ads.com"
 ]
 
 const LS = {
@@ -547,14 +543,13 @@ const LS = {
 }
 const h = "https://raw.githubusercontent.com/kgsensei/AnonymousExtension/master/hosts/"
 
-function updateDomainLists() {
+async function updateDomainLists() {
 	var x = ["a_list.txt|a_list", "i_list.txt|i_list", "t_list.txt|t_list"]
 	for(let i = 0; i < x.length; i++) {
 		let y = x[i].split('|')
-		fetch(h + y[0])
+		await fetch(h + y[0])
 		.then((r) => r.text())
 		.then(async (r) => {
-			console.log(r)
 			LS.setItem(y[1], r)
 		})
 	}
@@ -579,8 +574,6 @@ async function buildRuleConditions() {
 		var z = await LS.getItem(x[i])
 		var u = z.split('\n')
 		u.forEach((d, j) => {
-			console.log(d)
-			console.log(j)
 			r.push({
 				"id": j + i,
 				"priority": 1,
@@ -596,8 +589,8 @@ async function buildRuleConditions() {
 				}
 			})
 		})
-		chrome.declarativeNetRequest.getDynamicRules(previousRules => {
-			const p = previousRules.map(rule => rule.id)
+		chrome.declarativeNetRequest.getDynamicRules(e => {
+			const p = e.map(rule => rule.id)
 			chrome.declarativeNetRequest.updateDynamicRules(
 				{
 					removeRuleIds: p,
