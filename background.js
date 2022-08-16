@@ -561,15 +561,13 @@ function updateDomainLists() {
 	buildRuleConditions()
 }
 
-fetch(h + "version_tracker.txt")
+fetch(h + "vrCh.txt")
 .then((r) => r.text())
 .then(async(r) => {
 	if(r != await LS.getItem("v")) {
-		console.log("NEW UPDATE")
 		updateDomainLists()
 		LS.setItem("v", r)
 	} else {
-		console.log("CURRENT VER")
 		buildRuleConditions()
 	}
 })
