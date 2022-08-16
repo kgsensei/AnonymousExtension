@@ -545,52 +545,69 @@ const LS = {
 	setItem: (key, val) => chrome.storage.local.set({[key]: val}),
 	removeItems: keys => chrome.storage.local.remove(keys),
 }
+const h = "https://raw.githubusercontent.com/kgsensei/AnonymousExtension/master/hosts/"
 
-function updateDomainLists() {}
+function updateDomainLists() {
+	var x = ["a_list.txt|ad_list", "i_list.txt|ip_list", "t_list.txt|tracker_list"]
+	for(let i = 0; i < x.length; i++) {
+		let y = x[i].split('|')
+		fetch(h + y[0])
+		.then((r) => r.text())
+		.then(async (r) => {
+			console.log(r)
+			LS.setItem(y[1], r)
+		})
+	}
+	buildRuleConditions()
+}
 
-fetch("https://raw.githubusercontent.com/kgsensei/AnonymousExtension/master/hosts/version_tracker.txt")
-.then((response) => response.text())
-.then(async(response) => {
-	if(response != await LS.getItem("version")) {
+fetch(h + "version_tracker.txt")
+.then((r) => r.text())
+.then(async(r) => {
+	if(r != await LS.getItem("v")) {
 		console.log("NEW UPDATE")
-		await updateDomainLists()
-		await buildRuleConditions()
-		LS.setItem("version", response)
+		updateDomainLists()
+		LS.setItem("v", r)
 	} else {
 		console.log("CURRENT VER")
 		buildRuleConditions()
 	}
 })
 
-function buildRuleConditions() {
-	newRules = []
-
-	urls.forEach((domain, index) => {
-		newRules.push({
-			"id": index + 1,
-			"priority": 1,
-			"action": {
-				"type": "block"
-			},
-			"condition": {
-				"urlFilter": domain,
-				"resourceTypes": [
-					"csp_report", "font", "image", "main_frame", "media", "object", "other", "ping", "script",
-					"stylesheet", "sub_frame", "webbundle", "websocket", "webtransport", "xmlhttprequest"
-				]
-			}
+async function buildRuleConditions() {
+	var x = ["ad_list", "ip_list", "tracker_list"]
+	for(let i = 0; i < x.length; i++) {
+		var r = []
+		var z = await LS.getItem(x[i])
+		var u = z.split('\n')
+		u.forEach((d, j) => {
+			console.log(d)
+			console.log(j)
+			r.push({
+				"id": j + i,
+				"priority": 1,
+				"action": {
+					"type": "block"
+				},
+				"condition": {
+					"urlFilter": d,
+					"resourceTypes": [
+						"csp_report", "font", "image", "main_frame", "media", "object", "other", "ping", "script",
+						"stylesheet", "sub_frame", "webbundle", "websocket", "webtransport", "xmlhttprequest"
+					]
+				}
+			})
 		})
-	})
-
-	chrome.declarativeNetRequest.getDynamicRules(previousRules => {
-		const previousRuleIds = previousRules.map(rule => rule.id)
-		chrome.declarativeNetRequest.updateDynamicRules(
-			{
-				removeRuleIds: previousRuleIds,
-				addRules: newRules
-			}
-		)
-	})
+		chrome.declarativeNetRequest.getDynamicRules(previousRules => {
+			const p = previousRules.map(rule => rule.id)
+			chrome.declarativeNetRequest.updateDynamicRules(
+				{
+					removeRuleIds: p,
+					addRules: r
+				}
+			)
+		})
+	}
 }
 
 /*

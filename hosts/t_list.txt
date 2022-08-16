@@ -6,7 +6,7 @@ client_events
 clientlogger
 mouselog
 client-log
-fb.js
+/fb.js
 clicktale.com
 clicktale.net
 gtag
