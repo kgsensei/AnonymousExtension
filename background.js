@@ -539,34 +539,59 @@ const urls = [
 	"ads.com"
 ]
 
-newRules = []
+const LS = {
+	getAllItems: () => chrome.storage.local.get(),
+	getItem: async key => (await chrome.storage.local.get(key))[key],
+	setItem: (key, val) => chrome.storage.local.set({[key]: val}),
+	removeItems: keys => chrome.storage.local.remove(keys),
+}
 
-urls.forEach((domain, index) => {
-    newRules.push({
-        "id": index + 1,
-        "priority": 1,
-        "action": {
-			"type": "block"
-		},
-        "condition": {
-			"urlFilter": domain,
-			"resourceTypes": [
-				"csp_report", "font", "image", "main_frame", "media", "object", "other", "ping", "script",
-				"stylesheet", "sub_frame", "webbundle", "websocket", "webtransport", "xmlhttprequest"
-			]
-		}
-    })
+function updateDomainLists() {}
+
+fetch("https://raw.githubusercontent.com/kgsensei/AnonymousExtension/master/hosts/version_tracker.txt")
+.then((response) => response.text())
+.then(async(response) => {
+	if(response != await LS.getItem("version")) {
+		console.log("NEW UPDATE")
+		await updateDomainLists()
+		await buildRuleConditions()
+		LS.setItem("version", response)
+	} else {
+		console.log("CURRENT VER")
+		buildRuleConditions()
+	}
 })
 
-chrome.declarativeNetRequest.getDynamicRules(previousRules => {
-    const previousRuleIds = previousRules.map(rule => rule.id)
-    chrome.declarativeNetRequest.updateDynamicRules(
-		{
-			removeRuleIds: previousRuleIds,
-			addRules: newRules
-		}
-	)
-})
+function buildRuleConditions() {
+	newRules = []
+
+	urls.forEach((domain, index) => {
+		newRules.push({
+			"id": index + 1,
+			"priority": 1,
+			"action": {
+				"type": "block"
+			},
+			"condition": {
+				"urlFilter": domain,
+				"resourceTypes": [
+					"csp_report", "font", "image", "main_frame", "media", "object", "other", "ping", "script",
+					"stylesheet", "sub_frame", "webbundle", "websocket", "webtransport", "xmlhttprequest"
+				]
+			}
+		})
+	})
+
+	chrome.declarativeNetRequest.getDynamicRules(previousRules => {
+		const previousRuleIds = previousRules.map(rule => rule.id)
+		chrome.declarativeNetRequest.updateDynamicRules(
+			{
+				removeRuleIds: previousRuleIds,
+				addRules: newRules
+			}
+		)
+	})
+}
 
 /*
 chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(function (o) {
