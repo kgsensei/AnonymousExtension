@@ -457,7 +457,6 @@ const urls = [
 	"/global/js/facebook-connect",
 	"quantserve.com",
 	"/SearchConsoleAggReportUi/browserinfo",
-	"live.com/log",
 	"ezoic.net",
 	"disqus.com",
 	"disquscdn.com",
@@ -526,7 +525,7 @@ const urls = [
 	"/api/user_location",
 	"/web/metrics",
 	"client-log",
-	"fb.js",
+	"/fb.js",
 	"marketo.net",
 	"growsumo.com",
 	"intellimize.co",
@@ -568,3 +567,9 @@ chrome.declarativeNetRequest.getDynamicRules(previousRules => {
 		}
 	)
 })
+
+/*
+chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(function (o) {
+	console.log('rule matched:', o)
+})
+*/
