@@ -548,7 +548,7 @@ const LS = {
 const h = "https://raw.githubusercontent.com/kgsensei/AnonymousExtension/master/hosts/"
 
 function updateDomainLists() {
-	var x = ["a_list.txt|ad_list", "i_list.txt|ip_list", "t_list.txt|tracker_list"]
+	var x = ["a_list.txt|a_list", "i_list.txt|i_list", "t_list.txt|t_list"]
 	for(let i = 0; i < x.length; i++) {
 		let y = x[i].split('|')
 		fetch(h + y[0])
@@ -573,7 +573,7 @@ fetch(h + "vrCh.txt")
 })
 
 async function buildRuleConditions() {
-	var x = ["ad_list", "ip_list", "tracker_list"]
+	var x = ["a_list", "i_list", "t_list"]
 	for(let i = 0; i < x.length; i++) {
 		var r = []
 		var z = await LS.getItem(x[i])
