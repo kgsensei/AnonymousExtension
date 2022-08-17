@@ -2,8 +2,7 @@
 	"manifest_version": 3,
 	"name": "Anonymous Extension",
 	"author": "kgsensei",
-	"description": "An extension developed to help you stay anonymous online. With tracking prevention and ad blocking capabilities, designed for an out-of-the-box experience.",
-	"update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+	"description": "An extension developed to help you stay anonymous online with tracking prevention and ad blocking capabilities!",
 	"default_locale": "en",
 	"version": "3.0",
 	"action": {
