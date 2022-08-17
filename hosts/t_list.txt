@@ -16,7 +16,6 @@ metrics
 scevent.min.js
 attribution/event
 ipapi.co/json
-live.com/log
 tagmanager
 stats.pandora.com
 tiktok
