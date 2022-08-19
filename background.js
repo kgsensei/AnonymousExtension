@@ -64,9 +64,3 @@ async function buildRuleConditions() {
 		)
 	})
 }
-
-/*
-chrome.declarativeNetRequest.onRuleMatchedDebug.addListener(function (o) {
-	console.log('rule matched:', o)
-})
-*/
