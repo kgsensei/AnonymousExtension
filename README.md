@@ -6,7 +6,7 @@ Anonymous Extension is a kgsensei project and is Copyright &copy; of kgsensei 20
 
 AnonymousExtension is a Edge and Chrome browser extension designed to make the internet a safer place for you. I was browsing the internet recently and looking at the crazy amount of trackers in some websites, there are like 20 in some websites alone... Like why? So I decided to build this web extension to block trackers, ip grabbers and some dangerous websites I know about.
 
-Anonymous Extension | [Chrome Store](https://chrome.google.com/webstore/detail/dpobhogjdfjlgiejbbojhablmlighflg)
+Anonymous Extension | [Chrome Store](https://chrome.google.com/webstore/detail/dpobhogjdfjlgiejbbojhablmlighflg)  
 Anonymous Extension | [Edge Store](https://microsoftedge.microsoft.com/addons/detail/anonymous-extension/cdiiogmchafjebbdjgbchpdeoghfbocp)  
 Anonymous Extension | [Website](https://kgsensei.dev/anon)  
 Anonymous Extension | [Discord](https://discord.gg/U5A3QWXZKZ)  
