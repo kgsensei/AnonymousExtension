@@ -38,21 +38,37 @@ async function buildRuleConditions() {
 		var z = await LS.getItem(x[i])
 		var u = z.split('\n')
 		u.forEach((d, j) => {
-			r.push({
-				"id": `${i+1}${j}`*1,
-				"priority": 1,
-				"action": {
-					"type": "block"
-				},
-				"condition": {
-					"urlFilter": d,
-					"resourceTypes": [
-						"csp_report", "font", "image", "main_frame", "media", "object", "other", "ping", "script",
-						"stylesheet", "sub_frame", "webbundle", "websocket", "webtransport", "xmlhttprequest"
-					]
-				}
-			})
+			if(!d) {
+				r.push({
+					"id": `${i+1}${j}`*1,
+					"priority": 1,
+					"action": {
+						"type": "block"
+					},
+					"condition": {
+						"urlFilter": d,
+						"resourceTypes": [
+							"font",
+							"ping",
+							"other",
+							"image",
+							"media",
+							"object",
+							"script",
+							"sub_frame",
+							"webbundle",
+							"websocket",
+							"csp_report",
+							"main_frame",
+							"stylesheet",
+							"webtransport",
+							"xmlhttprequest"
+						]
+					}
+				})
+			}
 		})
+		
 	}
 	chrome.declarativeNetRequest.getDynamicRules(e => {
 		const p = e.map(rule => rule.id)
