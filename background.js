@@ -38,7 +38,7 @@ async function buildRuleConditions() {
 		var z = await LS.getItem(x[i])
 		var u = z.split('\n')
 		u.forEach((d, j) => {
-			if(!d) {
+			if(d != '') {
 				r.push({
 					"id": `${i+1}${j}`*1,
 					"priority": 1,
