@@ -19,4 +19,4 @@ The official Anonymous Extension website is kinda lame right now so I plan on up
 
 ## Legal
 
-Copyright &copy; kgsensei 2022.
+Copyright &copy; kgsensei 2023.
