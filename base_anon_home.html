@@ -2,28 +2,38 @@
 <html lang="en">
 	<head>
 		<title>Anonymous Extension Dashboard</title>
-		<script src="/dashboardResources/jquery321.js"></script>
 		<link rel="stylesheet" href="/dashboardResources/dashboard.css">
 	</head>
 	<body>
-		<div id="titleBlock">
-			<img src="/icon.png" id="iconImg" title="Anonymous Extension Icon">
-			<div>Anonymous Extension</div>
+		<div id="title_container">
+			<a href="https://anon.kgsensei.dev" target="_blank">
+				<img src="/icon.png" id="title_icon" title="Anonymous Extension Icon" draggable="false">
+			</a>
+			<div id="title_text">Anonymous Extension</div>
 		</div>
-		<br>
-		<br>
-		<div class="sectionTitle">How does it work?</div>
-		<div class="section">
-			Anonymous Extension works by filtering out requests made by your browser to make sure the ones with personal information can't get through.
-			This includes common tracking services, like google analytics and doubleclick.net (a common ad provider).
+		<div id="how_does_it_work" class="section">
+			<div class="section_title">How does it work?</div>
+			Anonymous Extension works by filtering out requests made by your browser
+			to make sure the ones with personal information can't get through. This
+			includes common tracking and ad services, like Google Analytics and
+			AdService.com (a common ad provider).
 		</div>
-		<div class="sectionTitle">How do I know it's working?</div>
-		<div class="section">
-			Click <a href="https://google-analytics.com" target="_blank">here</a>, if the page says "Blocked by an Extension" its working! If not something might
-			be wrong and you should probably try re-installing this extension.
+		<div id="quick_links_and_tips" class="section">
+			<div class="section_title">Additional Information...</div>
+			The little number by the extension icon shows the number of trackers blocked
+			on each page you visit, it looks like this:
+			<img src="/dashboardResources/extension_image.png" id="image_small" title="Anonymous Extension Showing 3 Trackers Blocked" draggable="false">
+			<br>
+			<a href="https://github.com/kgsensei/AnonymousExtension/issues" target="_blank">Report Issue</a>|
+			<a href="https://link.kgsensei.dev/discord" target="_blank">Join Discord</a>|
+			<a href="https://github.com/kgsensei/AnonymousExtension" target="_blank">Source Code</a>
 		</div>
-		<br>
-		<div id="versionTracker">Anonymous Extension v3.1</div>
-		<script src="/dashboardResources/homepage.js"></script>
+		<div id="version_text">
+			Anonymous Extension v4 | Copyright &copy;
+			<a href="https://kgsensei.dev" target="_blank">
+				kgsensei
+			</a>
+			2023
+		</div>
 	</body>
 </html>

@@ -1,43 +1,11 @@
 body {
-	background-color: rgb(20, 20, 40);
+	background-color: rgb(38, 40, 40);
 	font-family: sans-serif;
 	color: white;
 	width: 500px;
-	height: fit-content;
-}
-
-.paddingleft {
-	padding-left: 3px;
-	margin-left: 3px;
-}
-
-#titleBlock {
-	display: inline-block;
-	font-size: 30px;
-	height: 40px;
-}
-
-#titleBlock div {
-	display: inline-block;
-	position: absolute;
-	top: 13px;
-	left: 12%;
-}
-
-#iconImg {
-	width: 30px;
-	height: auto;
-}
-
-.sectionTitle {
-	padding-top: 10px;
-	font-size: 25px;
-}
-
-.section {
-	position: relative;
-	padding: 8px;
-	font-size: 20px;
+	height: 520px;
+	padding: 0;
+	margin: 0;
 }
 
 a {
@@ -49,6 +17,57 @@ a:hover {
 	color: rgb(40, 210, 250);
 }
 
-#versionTracker {
-	font-size: 12.5px;
+#version_text {
+	position: absolute;
+	left: 4px;
+	top: calc(100% - 18px);
+	font-size: 14px;
+}
+
+#title_container {
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	width: 80%;
+}
+
+#title_icon {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 50px;
+	width: 50px;
+}
+
+#title_text {
+	position: absolute;
+	top: 11px;
+	left: 60px;
+	font-size: 30px;
+}
+
+#how_does_it_work {
+	top: 85px;
+}
+
+#quick_links_and_tips {
+	top: 275px;
+}
+
+.section {
+	position: absolute;
+	left: 25px;
+	width: 450px;
+	font-size: 18px;
+}
+
+.section_title {
+	font-size: 25px;
+	margin: 10px 0px 10px 0px;
+}
+
+#image_small {
+	display: block;
+	width: auto;
+	height: 45px;
 }
