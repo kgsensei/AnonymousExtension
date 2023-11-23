@@ -5,18 +5,6 @@ userQuotes = [
 ]
 userQuoteIndex = 0
 
-function animateWaypoint(elem, delay, animationAction, animTime){
-	$(elem).waypoint({
-		handler: (direction) => {
-			$(elem).delay(delay).animate(animationAction, animTime)
-		},
-		offset: '85%'
-	})
-}
-
-for(let i = 0; i < 4; i++) {
-	animateWaypoint('#promo' + i, 100 * i, {"opacity": "1"}, 500)
-}
 setInterval(userQuoteRotate, 3000)
 
 function userQuoteRotate() {
