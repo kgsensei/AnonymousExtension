@@ -4,13 +4,14 @@
 	"author": "kgsensei",
 	"description": "An extension developed to help you stay anonymous online with tracking prevention and ad blocking capabilities!",
 	"default_locale": "en",
-	"version": "4",
+	"version": "5",
 	"action": {
 		"default_icon": "icon.png",
 		"default_popup": "base_anon_home.html"
 	},
 	"icons": {
-		"128": "icon.png"
+        "64": "icon_64x64.png",
+		"128": "icon_128x128.png"
 	},
 	"permissions": [
 		"declarativeNetRequest",

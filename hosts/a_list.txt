@@ -12,7 +12,6 @@ smartadserver
 adsystem
 advertising
 /user-sponsorship
-googlesyndication
 adservice
 adsafeprotected
 googletagmanager
@@ -20,7 +19,6 @@ doubleclick
 quantserve
 qccerttest
 qualaroo
-criteo
 moatads
 intergi
 playwire
