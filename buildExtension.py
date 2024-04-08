@@ -5,8 +5,11 @@ print("[All] Started Building Extension")
 files_global = [
     "./_locales/en/messages.json",
     "./_locales/es/messages.json",
+    "./_locales/fr/messages.json",
 
+    "./dashboardResources/dashboard.js",
     "./dashboardResources/dashboard.css",
+    "./dashboardResources/custom.min.css",
     "./dashboardResources/extension_image.png",
 
     "./base_anon_home.html",
@@ -18,13 +21,13 @@ files_global = [
 ]
 
 files_chromium = [
-    "./background.js",
-    "./manifest.json"
+    "./chromium/background.js",
+    "./chromium/manifest.json"
 ]
 
 files_gekko = [
-    "./firefox_only/background.js",
-    "./firefox_only/manifest.json"
+    "./gekko/background.js",
+    "./gekko/manifest.json"
 ]
 
 print("[Chromium] Creating ZIP File")
@@ -34,13 +37,13 @@ firefox = zipfile.ZipFile('anonymousExtension_FireFox.zip', 'w')
 with chromium as container:
     for file in (files_global + files_chromium):
         print("[Chromium] Writing", file)
-        container.write(file)
+        container.write(file, arcname = file.replace("chromium/", ""))
 print("[Chromium] Closing ZIP File")
 chromium.close()
 with firefox as container:
     for file in (files_global + files_gekko):
         print("[FireFox] Writing", file)
-        container.write(file, arcname = file.replace("firefox_only/", ""))
+        container.write(file, arcname = file.replace("gekko/", ""))
 print("[FireFox] Closing ZIP File")
 firefox.close()
 

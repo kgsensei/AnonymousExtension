@@ -1,8 +1,8 @@
 const storage = {
-    getAllItems: () => browser.storage.local.get(),
-    getItem: async (key) => (await browser.storage.local.get(key))[key],
-    setItem: (key, val) => browser.storage.local.set({ [key]: val }),
-    removeItems: (keys) => browser.storage.local.remove(keys)
+    getAllItems: () => chrome.storage.local.get(),
+    getItem: async (key) => (await chrome.storage.local.get(key))[key],
+    setItem: (key, val) => chrome.storage.local.set({ [key]: val }),
+    removeItems: (keys) => chrome.storage.local.remove(keys)
 }
 
 const base = "https://raw.githubusercontent.com/kgsensei/AnonymousExtension/master/hosts/"
@@ -47,10 +47,13 @@ const buildBrowserRules = async () => {
                     "websocket",
                     "stylesheet",
                     "csp_report",
-                    "xmlhttprequest"
+                    "xmlhttprequest",
+
+                    "webbundle",
+                    "webtransport"
                 ]
 
-                var action = { type: "block" }
+                let action = { type: "block" }
 
                 if(blockType === "Block_All") {
                     resourceTypes = [ "main_frame" ]
@@ -76,10 +79,10 @@ const buildBrowserRules = async () => {
         }
     })
 
-    browser.declarativeNetRequest.getDynamicRules(oldRules => {
+    chrome.declarativeNetRequest.getDynamicRules(oldRules => {
         const oldRuleIds = oldRules.map(rule => rule.id)
-
-        browser.declarativeNetRequest.updateDynamicRules({
+        
+        chrome.declarativeNetRequest.updateDynamicRules({
             removeRuleIds: oldRuleIds,
             addRules: rulesList
         })
@@ -97,4 +100,10 @@ fetch(base + "vrCh.txt")
         // Else, build ruleset
         buildBrowserRules()
     }
+})
+
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.declarativeNetRequest.setExtensionActionOptions({
+        displayActionCountAsBadgeText: true
+    })
 })

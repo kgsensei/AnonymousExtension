@@ -1,55 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+        <meta charset="utf-8">
+
 		<title>Anonymous Extension Dashboard</title>
-		<link rel="stylesheet" href="/dashboardResources/dashboard.css">
+
+        <style>
+            :root {
+                --kg-bg: #23282D;
+                --kg-fg: rgb(255, 255, 255);
+                --kg-fg-darker: rgb(190, 190, 190);
+
+                --kg-primary: rgb(30, 172, 244);
+                --kg-secondary: #00FF38;
+
+                --kg-font: Helvetica, sans-serif;
+            }
+
+            .secondary {--th-color: var(--kg-secondary);}
+        </style>
+		<link rel="stylesheet" href="./dashboardResources/custom.min.css">
+
+        <link rel="stylesheet" href="./dashboardResources/dashboard.css">
 	</head>
-	<body>
-		<div class="d-flex f-row v-align">
-            <img src="./icon.png" width="50" height="50">
-            <h1>Anonymous Extension</h1>
+	<body class="p-2">
+		<div class="d-flex mb-3">
+            <img src="./icon.png" class="img-sq-sm">
+            <h1 class="h2">AnonymousExtension</h1>
         </div>
 
-        <hr class="d-lg">
+        <div class="mb-2 fs-2">
+            <h2 class="fs-3">__MSG_settings_title__</h2>
+            __MSG_settings_tracking_protection__: <span class="text secondary">__MSG_settings_tracking_protection_on__</span>
+        </div>
 
-        <div class="d-flex f-col">
-            <h2>How do I know it's working?</h2>
-            <p>
-                The little number by the extension icon shows the number of
-                trackers blocked on each page you visit, it looks like this:
+        <div class="mb-2">
+            <h2 class="fs-3">__MSG_functional_title__</h2>
+            <p class="fs-2" id="chromiumIsWorking">
+                __MSG_functional_desc_chrome__
                 <br>
-                <img src="./dashboardResources/extension_image.png" width="35" height="35">
+                <img src="./dashboardResources/extension_image.png" width="40" height="40">
+            </p>
+
+            <p class="fs-2" id="gekkoIsWorking">
+                __MSG_functional_desc_gekko_one__ <a target="_blank" href="https://anon.kgsensei.dev/test" class="link primary">anon.kgsensei.dev/test</a>.
+                __MSG_functional_desc_gekko_two__
             </p>
         </div>
 
-        <hr class="d-lg">
-
-        <div class="d-flex f-col">
-            <h2>How does it work?</h2>
-            <p>
-                Anonymous Extension works by filtering out requests made
-                by your browser to make sure the ones with personal
-                information can't get through. This includes common tracking
-                and ad services, like Google Analytics and AdService.com (a
-                common ad provider).
-            </p>
+        <div class="d-flex w-100">
+            <a class="btn btn-outline secondary flex-grow" target="_blank" href="https://rainydais.com/bugreport?app=Anonymous%20Extension">__MSG_link_report_issue__</a>
+            <a class="btn btn-outline secondary flex-grow" target="_blank" href="https://link.kgsensei.dev/discord">Discord</a>
+            <a class="btn btn-outline secondary flex-grow" target="_blank" href="https://github.com/kgsensei/AnonymousExtension">__MSG_link_source_code__</a>
         </div>
 
-        <hr class="d-lg">
-
-        <div class="d-flex additional">
-            <a class="btn"
-                href="https://rainydais.com/bugreport?app=Anonymous%20Extension"
-                target="_blank">
-                Report Issue</a>
-            <a class="btn"
-                href="https://link.kgsensei.dev/discord"
-                target="_blank">
-                Discord</a>
-            <a class="btn"
-                href="https://github.com/kgsensei/AnonymousExtension"
-                target="_blank">
-                Source Code</a>
-        </div>
-	</body>
+        <script src="./dashboardResources/dashboard.js"></script>
+    </body>
 </html>

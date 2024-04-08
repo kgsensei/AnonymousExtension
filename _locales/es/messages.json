@@ -1,39 +1,32 @@
 {
-	"enabled_settings":{
-		"message":"Habilitado? "
-	},"clearda_settings":{
-		"message":"Borrar datos? "
-	},"clear_data_now_btn":{
-		"message":"Claro"
-	},"ext_title":{
-		"message":"Anon. Extensión Home"
-	},"settings_title":{
-		"message":"Configuración:"
-	},"trackers_title":{
-		"message":"Rastreadores bloqueados:"
-	},"we_blocked_text":{
-		"message":" bloqueamos "
-	},"trackers_text":{
-		"message":" seguidores."
-	},"in_text":{
-		"message":"En "
-	},"block_list_title":{
-		"message":"Lo que bloqueamos:"
-	},"list_common_trackers":{
-		"message":"Seguidores"
-	},"list_ip_grabbers":{
-		"message":"Captadores de IP"
-	},"list_dangerous_sites":{
-		"message":"Sitios Peligrosos"
-	},"goal_title":{
-		"message":"Nuestro Objetivo:"
-	},"goal_text":{
-		"message":"Esto no está exactamente destinado a hacerte invisible en línea, y no puede. Siempre habrá nuevos rastreadores, pero aún podemos intentarlo. Bloqueamos los rastreadores comunes en todos los sitios web con la esperanza de que podamos hacer que su experiencia en Internet sea mejor."
-	},"legal_title":{
-		"message":"Información Legal:"
-	},"kgsensei_text":{
-		"message":"kgsensei"
-	},"copyright_text":{
-		"message":"Copyright &copy; 2022 "
-	}
+    "settings_title": {
+        "message": "Settings"
+    },
+
+    "settings_tracking_protection": {
+        "message": "Tracking Protection"
+    },
+    "settings_tracking_protection_on": {
+        "message": "On"
+    },
+
+    "functional_title": {
+        "message": "How do I know it's working?"
+    },
+    "functional_desc_chrome": {
+        "message": "The little number by the extension icon shows the number of trackers blocked on each page you visit, it looks like this:"
+    },
+    "functional_desc_gekko_one": {
+        "message": "Try visiting"
+    },
+    "functional_desc_gekko_two": {
+        "message": "If the page says it was blocked by AnonymousExtension then it's working!"
+    },
+
+    "link_report_issue": {
+        "message": "Report Issue"
+    },
+    "link_source_code": {
+        "message": "Source Code"
+    }
 }

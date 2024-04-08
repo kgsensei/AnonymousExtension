@@ -1,6 +1,6 @@
-# Debug
+# Debugging and User Testing
 ~ Block_All
-jdigitalserver.com
+anon.kgsensei.dev/test
 
 # Location Tracking
 ~ Block_Normal
