@@ -53,7 +53,7 @@ const buildBrowserRules = async () => {
                 var action = { type: "block" }
 
                 if(blockType === "Block_All") {
-                    resourceTypes.push([ "main_frame" ])
+                    resourceTypes = [ "main_frame" ]
 
                     action = {
                         type: "redirect",
