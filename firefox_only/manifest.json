@@ -17,14 +17,11 @@
         "declarativeNetRequest",
 		"storage"
 	],
+	"host_permissions": [ "<all_urls>" ],
 	"background": {
-    	"scripts": [
-            "background.js"
-        ]
+    	"scripts": [ "background.js" ]
   	},
     "browser_specific_settings": {
-        "gecko": {
-            "id": "anonymousextension@kgsensei.dev"
-        }
+        "gecko": { "id": "anonymousextension@kgsensei.dev" }
     }
 }
