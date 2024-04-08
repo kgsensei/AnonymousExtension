@@ -1,32 +1,32 @@
 {
     "settings_title": {
-        "message": "Settings"
+        "message": "Configuration"
     },
 
     "settings_tracking_protection": {
-        "message": "Tracking Protection"
+        "message": "Protection de Seguimiento"
     },
     "settings_tracking_protection_on": {
-        "message": "On"
+        "message": "Encender"
     },
 
     "functional_title": {
-        "message": "How do I know it's working?"
+        "message": "¿Cómo se que está trabajando?"
     },
     "functional_desc_chrome": {
-        "message": "The little number by the extension icon shows the number of trackers blocked on each page you visit, it looks like this:"
+        "message": "El número de lado de la icono de extensión enseña el número de seguimientos bloqueados en cada página que visitas. Se ve como esto:"
     },
     "functional_desc_gekko_one": {
-        "message": "Try visiting"
+        "message": "Trata visitando"
     },
     "functional_desc_gekko_two": {
-        "message": "If the page says it was blocked by AnonymousExtension then it's working!"
+        "message": "Si el página dice que fue bloqueada de AnonymousExtension, está sirviendo!"
     },
 
     "link_report_issue": {
-        "message": "Report Issue"
+        "message": "Reporta Problema"
     },
     "link_source_code": {
-        "message": "Source Code"
+        "message": "Fuente Código"
     }
 }
