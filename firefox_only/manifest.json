@@ -17,10 +17,6 @@
         "declarativeNetRequest",
 		"storage"
 	],
-	"host_permissions": [
-		"<all_urls>",
-        "*://*/"
-	],
 	"background": {
     	"scripts": [
             "background.js"

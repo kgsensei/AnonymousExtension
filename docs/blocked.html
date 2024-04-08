@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+
+        <title>Anonymous Extension Blocked</title>
+
+        <link rel="icon" href="./img/icon.png">
+
+        <style>
+            :root {
+                --kg-bg: rgb(30, 30, 35);
+                --kg-fg: rgb(255, 255, 255);
+                --kg-fg-darker: rgb(190, 190, 190);
+
+                --kg-primary: rgb(30, 172, 244);
+
+                --kg-font: Helvetica, sans-serif;
+            }
+
+            a {
+                color: rgb(40, 180, 210);
+                transition: all 150ms;
+            }
+
+            a:hover {
+                color: rgb(50, 220, 255);
+            }
+        </style>
+        <link rel="stylesheet" href="https://dev.kgsensei.dev/custom.min.css">
+    </head>
+    <body class="d-flex center">
+        <div style="max-width: 450px;">
+            <img class="img-sq-sm" src="./img/icon.png">
+            <h1>Anonymous Extension</h1>
+            <hr>
+            <p class="fs-2">
+                This URL was blocked by Anonymous Extension.
+                If you believe this to be an error you can report it
+                <a target="_blank" href="https://rainydais.com/bugreport?app=Anonymous%20Extension">here</a>.
+                <br>
+                <br>
+                <span id="keywrd"></span>
+            </p>
+        </div>
+
+        <script>
+            const url = new URL(window.location.href)
+            const keywrd = url.searchParams.get("keywrd")
+
+            document.getElementById("keywrd").innerText = "Detected Keyword: " + keywrd
+        </script>
+    </body>
+</html>

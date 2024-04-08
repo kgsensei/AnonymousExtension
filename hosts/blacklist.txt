@@ -1,6 +1,6 @@
 # Debug
 ~ Block_All
-||jdigitalserver.com/
+jdigitalserver.com
 
 # Location Tracking
 ~ Block_Normal
