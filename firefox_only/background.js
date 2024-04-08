@@ -6,62 +6,82 @@ const storage = {
 }
 
 const base = "https://raw.githubusercontent.com/kgsensei/AnonymousExtension/master/hosts/"
-const r = ["a_list", "i_list", "t_list", ".txt|"]
+const list = "blacklist.txt"
 
-const udl = async () => {
-    let x = [
-        r[0] + r[3] + r[0],
-        r[1] + r[3] + r[1],
-        r[2] + r[3] + r[2]
-    ]
+const updateRuleset = async () => {
+    await fetch(base + list)
+    .then(r => r.text())
+    .then(async r => {
+        storage.setItem(list, r)
 
-    for (let i = 0; i < x.length; i++) {
-        let y = x[i].split('|')
-        await fetch(base + y[0])
-        .then(r => r.text())
-        .then(async r => {
-            storage.setItem(y[1], r)
-        })
-    }
-
-    brc()
+        buildBrowserRules()
+    })
 }
 
-const brc = async () => {
-    let x = [r[0], r[1], r[2]],
-        j = []
+const buildBrowserRules = async () => {
+    let blockType = "Block_Normal"
 
-    for (let i = 0; i < x.length; i++) {
-        let z = await storage.getItem(x[i]),
-            u = z.split('\n')
+    let rulesList = []
 
-        u.forEach((d, k) => {
-            if (d != '') {
-                j.push({
-                    "id": `${i + 1}${k}` * 1,
-                    "priority": 1,
-                    "action": { "type": "block" },
-                    "condition": {
-                        "urlFilter": d,
-                        "resourceTypes": [
-                            "font", "ping", "other",
-                            "websocket",
-                            "image", "media", "object",
-                            "csp_report", "xmlhttprequest",
-                            "stylesheet",
-                            "script", "sub_frame"
-                        ]
+    let storedRules = await storage.getItem(list)
+
+    let parsedHosts = storedRules.split('\n')
+
+    parsedHosts.forEach((filter, index) => {
+        filter = filter.trim()
+        if(filter[0] === '~') {
+            // Update block type, supported are 'Block_Normal' and 'Block_All'
+            blockType = filter.split(' ')[1]
+        } else {
+            // Remove newlines and comments from valid filters
+            if(filter !== '' && filter[0] !== '#') {
+                let resourceTypes = [
+                    "font",
+                    "ping",
+                    "other",
+                    "media",
+                    "image",
+                    "object",
+                    "script",
+                    "sub_frame",
+                    "websocket",
+                    "stylesheet",
+                    "csp_report",
+                    "xmlhttprequest"
+                ]
+
+                var action = { type: "block" }
+
+                if(blockType === "Block_All") {
+                    resourceTypes = [ "main_frame" ]
+
+                    action = {
+                        type: "redirect",
+                        redirect: {
+                            url: "https://rainydais.com/"
+                        }
                     }
+                }
+
+                rulesList.push({
+                    id: (index + 1),
+                    priority: (blockType === "Block_All" ? 2 : 1),
+                    condition: {
+                        urlFilter: filter,
+                        resourceTypes: resourceTypes
+                    },
+                    action: action
                 })
             }
-        })
-    }
+        }
+    })
 
-    browser.declarativeNetRequest.getDynamicRules(e => {
-        const p = e.map(rule => rule.id)
+    browser.declarativeNetRequest.getDynamicRules(oldRules => {
+        const oldRuleIds = oldRules.map(rule => rule.id)
+
         browser.declarativeNetRequest.updateDynamicRules({
-            removeRuleIds: p,
-            addRules: j
+            removeRuleIds: oldRuleIds,
+            addRules: rulesList
         })
     })
 }
@@ -69,10 +89,12 @@ const brc = async () => {
 fetch(base + "vrCh.txt")
 .then(r => r.text())
 .then(async r => {
-    if (r != await storage.getItem("v")) {
-        udl()
+    if(r != await storage.getItem("v")) {
+        // If blacklist version mismatch then update
+        updateRuleset()
         storage.setItem("v", r)
     } else {
-        brc()
+        // Else, build ruleset
+        buildBrowserRules()
     }
 })
