@@ -98,3 +98,17 @@ fetch(base + "vrCh.txt")
         buildBrowserRules()
     }
 })
+
+function checkPermissions() {
+    browser.permissions.contains({ origins: [ '<all_urls>' ] }, (hasPermissions) => {
+        if(!hasPermissions) {
+            console.debug("Missing permissions")
+            // Open a tab that tells the user to enable extra permissions
+            browser.tabs.create({ url: "missing_permissions.html", active: true })
+        }
+    })
+}
+
+browser.permissions.onRemoved.addListener(checkPermissions)
+
+checkPermissions()

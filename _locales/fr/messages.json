@@ -9,6 +9,9 @@
     "settings_tracking_protection_on": {
         "message": "Activé"
     },
+    "settings_tracking_protection_low": {
+        "message": "Dégradé"
+    },
 
     "functional_title": {
         "message": "Comment puis-je savoir si cela fonctionne?"

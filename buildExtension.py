@@ -27,7 +27,10 @@ files_chromium = [
 
 files_gekko = [
     "./gekko/background.js",
-    "./gekko/manifest.json"
+    "./gekko/manifest.json",
+
+    "./gekko/missingPerms.js",
+    "./gekko/missing_permissions.html"
 ]
 
 print("[Chromium] Creating ZIP File")

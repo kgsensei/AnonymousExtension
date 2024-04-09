@@ -7,7 +7,10 @@
         "message": "Tracking Protection"
     },
     "settings_tracking_protection_on": {
-        "message": "On"
+        "message": "Active"
+    },
+    "settings_tracking_protection_low": {
+        "message": "Degraded"
     },
 
     "functional_title": {
