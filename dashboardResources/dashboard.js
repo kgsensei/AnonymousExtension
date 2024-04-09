@@ -6,26 +6,6 @@ if(isFirefox) {
     document.getElementById("gekkoIsWorking").style.display = "none"
 }
 
-function checkPermissions() {
-    chrome.permissions.contains({ origins: [ '<all_urls>' ] })
-    .then(hasPermissions => {
-        if(!hasPermissions) {
-            document.getElementById("settings_tracking_protection_status").classList.remove("secondary")
-            document.getElementById("settings_tracking_protection_status").classList.add("warning")
-
-            if(isFirefox) {
-                document.getElementById("settings_tracking_protection_status").setAttribute("target", "_blank")
-                document.getElementById("settings_tracking_protection_status").setAttribute("href", "/missing_permissions.html")
-            }
-
-            document.getElementById("settings_tracking_protection_status").innerText = "__MSG_settings_tracking_protection_low__"
-
-            // Rerun localization because we updated some of the content now
-            localizeHtmlPage()
-        }
-    })
-}
-
 function localizeHtmlPage() {
     const objects = document.getElementsByTagName('html')
 
@@ -42,5 +22,4 @@ function localizeHtmlPage() {
     }
 }
 
-checkPermissions()
 localizeHtmlPage()

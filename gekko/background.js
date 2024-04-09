@@ -53,14 +53,7 @@ const buildBrowserRules = async () => {
                 let action = { type: "block" }
 
                 if(blockType === "Block_All") {
-                    resourceTypes = [ "main_frame" ]
-
-                    action = {
-                        type: "redirect",
-                        redirect: {
-                            url: "https://anon.kgsensei.dev/blocked?keywrd=" + filter
-                        }
-                    }
+                    resourceTypes.push("main_frame")
                 }
 
                 rulesList.push({
@@ -98,17 +91,3 @@ fetch(base + "vrCh.txt")
         buildBrowserRules()
     }
 })
-
-function checkPermissions() {
-    browser.permissions.contains({ origins: [ '<all_urls>' ] }, (hasPermissions) => {
-        if(!hasPermissions) {
-            console.debug("Missing permissions")
-            // Open a tab that tells the user to enable extra permissions
-            browser.tabs.create({ url: "missing_permissions.html", active: true })
-        }
-    })
-}
-
-browser.permissions.onRemoved.addListener(checkPermissions)
-
-checkPermissions()

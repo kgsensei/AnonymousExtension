@@ -56,14 +56,7 @@ const buildBrowserRules = async () => {
                 let action = { type: "block" }
 
                 if(blockType === "Block_All") {
-                    resourceTypes = [ "main_frame" ]
-
-                    action = {
-                        type: "redirect",
-                        redirect: {
-                            url: "https://anon.kgsensei.dev/blocked?keywrd=" + filter
-                        }
-                    }
+                    resourceTypes.push("main_frame")
                 }
 
                 rulesList.push({
