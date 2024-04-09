@@ -39,7 +39,11 @@
             const url = new URL(window.location.href)
             const keywrd = url.searchParams.get("keywrd")
 
-            document.getElementById("keywrd").innerText = "Detected Keyword: " + keywrd
+            if(keywrd == "anon.kgsensei.dev") {
+                document.getElementById("keywrd").innerText = "Looks like you wanted to test AnonymousExtension, if you're seeing this message then the extension is working!"
+            } else {
+                document.getElementById("keywrd").innerText = "Detected Keyword: " + keywrd
+            }
         </script>
     </body>
 </html>
