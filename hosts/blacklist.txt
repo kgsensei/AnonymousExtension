@@ -44,6 +44,7 @@ vidoza.net
 me/user-info
 bat.bing.com
 /web/metrics
+/v1/log_event
 metrics.nexus
 rover.ebay.com
 pulsar.ebay.com
@@ -55,12 +56,17 @@ richaudience.com
 ebay.com/identity/
 /api/user_location
 presence.roblox.com
+collector.github.com
 scorecardresearch.com
 cloudflareinsights.com
+securemetrics.apple.com
 canonprintersdrivers.com
 washingmachineinside.com
+microsoft.com/OneCollector
+facebook.com/csp/reporting
 /v9/auth/location-metadata
 /gp/sponsored-products/logging
+static.cdninstagram.com/rsrc.php
 phenomenologicalpsychology.com
 keratosispilaris101.com
 bestfullmoviesinhd.org
@@ -279,6 +285,7 @@ ad.bitmedia.io
 adsafeprotected
 googletagmanager
 /adBlockDetector
+cdn.carbonads.com
 googletagservices
 /user-sponsorship
 9xbuddy.com/js/ads.js
