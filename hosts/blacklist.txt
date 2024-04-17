@@ -52,6 +52,7 @@ pulsar.ebay.com
 /sensorCollect/
 /api/v9/science
 justpremium.com
+analytics.min.js
 richaudience.com
 /api/growth-events
 ebay.com/identity/
