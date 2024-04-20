@@ -54,6 +54,8 @@ pulsar.ebay.com
 justpremium.com
 analytics.min.js
 richaudience.com
+monitor.azure.com
+api.amplitude.com
 /api/growth-events
 ebay.com/identity/
 /api/user_location
@@ -64,10 +66,10 @@ cloudflareinsights.com
 securemetrics.apple.com
 canonprintersdrivers.com
 washingmachineinside.com
-microsoft.com/OneCollector
 facebook.com/csp/reporting
 /v9/auth/location-metadata
 /gp/sponsored-products/logging
+browser.events.data.microsoft.com
 phenomenologicalpsychology.com
 keratosispilaris101.com
 bestfullmoviesinhd.org
