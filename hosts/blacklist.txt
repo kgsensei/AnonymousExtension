@@ -44,7 +44,6 @@ vidoza.net
 me/user-info
 bat.bing.com
 /web/metrics
-analytics.js
 /v1/log_event
 metrics.nexus
 rover.ebay.com
