@@ -31,6 +31,8 @@ graph.instagram.com
 byteoversea.com
 ibytedtos.com
 tvpixel.com
+hotjar.com
+adsco.re
 v2/track
 ns1p.com
 ns1p.net
@@ -41,7 +43,10 @@ branch.io
 vidoza.co
 vidoza.net
 iubenda.js
+sensic.net
 /api/track
+omtrdc.net
+demdex.net
 me/user-info
 bat.bing.com
 /web/metrics
@@ -69,6 +74,7 @@ securemetrics.apple.com
 canonprintersdrivers.com
 washingmachineinside.com
 facebook.com/csp/reporting
+visualwebsiteoptimizer.com
 /v9/auth/location-metadata
 /gp/sponsored-products/logging
 browser.events.data.microsoft.com
