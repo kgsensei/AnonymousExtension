@@ -61,6 +61,7 @@ analytics.min.js
 richaudience.com
 monitor.azure.com
 api.amplitude.com
+cdn.growthbook.io
 /api/growth-events
 ebay.com/identity/
 /api/user_location
@@ -77,6 +78,7 @@ facebook.com/csp/reporting
 visualwebsiteoptimizer.com
 /v9/auth/location-metadata
 /gp/sponsored-products/logging
+google-analytics.com/analytics.js
 browser.events.data.microsoft.com
 phenomenologicalpsychology.com
 privacy-policy.truste.com
@@ -217,6 +219,7 @@ aaddcount.com
 topeuropix.net
 vereinslinie.de
 techrepublic.com
+api.btloader.com
 casinobonus24.se
 casinosonline.co.uk
 onlinecasinos.co.uk
@@ -299,7 +302,6 @@ incloudfl.com
 pncloudfl.com
 bncloudfl.com
 adalliance.io
-97.74.238.106
 contentsquare
 smartadserver
 adsbygoogle.js
