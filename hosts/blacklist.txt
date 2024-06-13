@@ -192,6 +192,7 @@ gamezup.com
 musicdl.org
 vidoevo.com
 yamatele.tv
+seedtag.com
 3shktv.com
 8gharb.com
 load2u.com
@@ -209,6 +210,7 @@ a2gw.com
 zdnet.com
 3lift.com
 actpx.com
+criteo.com
 earthtv.com
 360yield.com
 33across.com
@@ -218,6 +220,7 @@ actiflex.org
 aaddcount.com
 topeuropix.net
 vereinslinie.de
+smilewanted.com
 techrepublic.com
 api.btloader.com
 casinobonus24.se
@@ -269,6 +272,7 @@ ipgrabber.dalenryder.com
 ~ Block_Normal
 adform
 tiqcdn
+4dex.io
 adap.tv
 intergi
 moatads
@@ -281,7 +285,9 @@ adservice
 a-ads.com
 getclicky
 adcell.de
+openx.net
 /nativead
+adnxs.com
 adcell.com
 aaxads.com
 qccerttest
@@ -297,6 +303,7 @@ adcity.tech
 doubleclick
 everesttech
 clickfunnels
+yieldlove.js
 a.adroll.com
 incloudfl.com
 pncloudfl.com
@@ -304,6 +311,8 @@ bncloudfl.com
 adalliance.io
 contentsquare
 smartadserver
+ad-serving.net
+ad_service2.js
 adsbygoogle.js
 bounceexchange
 ad.bitmedia.io
@@ -315,6 +324,7 @@ googletagmanager
 cdn.carbonads.com
 googletagservices
 /user-sponsorship
+rubiconproject.com
 cdn.bannersnack.com
 9xbuddy.com/js/ads.js
 ad.atown.jp/adserver/
