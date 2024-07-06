@@ -7,12 +7,11 @@ files_global = [
     "./_locales/es/messages.json",
     "./_locales/fr/messages.json",
 
-    "./dashboardResources/dashboard.js",
-    "./dashboardResources/dashboard.css",
-    "./dashboardResources/custom.min.css",
-    "./dashboardResources/extension_image.png",
-
-    "./base_anon_home.html",
+    "./src/dashboard.js",
+    "./src/dashboard.css",
+    "./src/dashboard.html",
+    "./src/custom.min.css",
+    "./src/extension_image.png",
 
     "./icon_64x64.png",
     "./icon_128x128.png",
