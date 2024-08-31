@@ -3,3 +3,4 @@
 #adBlockerModal
 div[aria-label="Ads"]
 li[data-layout="ad"]
+sidebar-ad
