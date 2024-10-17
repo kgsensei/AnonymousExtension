@@ -16,9 +16,6 @@
     "functional_title": {
         "message": "Comment puis-je savoir si cela fonctionne?"
     },
-    "functional_desc_chrome": {
-        "message": "Le petit chiffre à côté de l'icône de l'extension indique le nombre de trackers bloqués sur chaque page que vous visitez, il ressemble à ceci:"
-    },
     "functional_desc_gekko_one": {
         "message": "Essayez de visiter"
     },

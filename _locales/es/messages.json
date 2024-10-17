@@ -16,9 +16,6 @@
     "functional_title": {
         "message": "¿Cómo se que está trabajando?"
     },
-    "functional_desc_chrome": {
-        "message": "El número de lado de la icono de extensión enseña el número de seguimientos bloqueados en cada página que visitas. Se ve como esto:"
-    },
     "functional_desc_gekko_one": {
         "message": "Trata visitando"
     },

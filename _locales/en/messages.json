@@ -16,14 +16,11 @@
     "functional_title": {
         "message": "How do I know it's working?"
     },
-    "functional_desc_chrome": {
-        "message": "The little number by the extension icon shows the number of trackers blocked on each page you visit, it looks like this:"
-    },
     "functional_desc_gekko_one": {
         "message": "Try visiting"
     },
     "functional_desc_gekko_two": {
-        "message": "If the page says it was blocked by AnonymousExtension then it's working!"
+        "message": "If the page says AnonymousExtension is enabled, then it's working!"
     },
 
     "link_report_issue": {

@@ -1,11 +1,3 @@
-const isFirefox = navigator.userAgent.indexOf("Firefox") !== -1
-
-if(isFirefox) {
-    document.getElementById("chromiumIsWorking").style.display = "none"
-} else {
-    document.getElementById("gekkoIsWorking").style.display = "none"
-}
-
 function localizeHtmlPage() {
     const objects = document.getElementsByTagName('html')
 
