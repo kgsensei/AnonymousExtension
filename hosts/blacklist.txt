@@ -1,6 +1,6 @@
 # Debugging and User Testing
 ~ Block_All
-anon.kgsensei.dev/test
+anon.kgsensei.dev/api/isFunctional
 
 # Location Tracking
 ~ Block_Normal
@@ -12,8 +12,12 @@ ipapi.co/json
 
 # Tracking
 ~ Block_Normal
+intercomcdn.com
+api.refiner.io
+js.refiner.io
 client_events
 clientlogger
+intercom.io
 mouselog
 logging
 gtag

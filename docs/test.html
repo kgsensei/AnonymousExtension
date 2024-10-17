@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>AnonymousExtension Status</title>
+
+        <link rel="icon" href="./img/icon.png">
+
+        <style>
+            :root {
+                --kg-bg: #23282D;
+                --kg-fg: rgb(255, 255, 255);
+                --kg-fg-darker: rgb(190, 190, 190);
+
+                --kg-primary: #00FF38;
+
+                --kg-font: Helvetica, sans-serif;
+            }
+
+			#footer {
+				position: absolute;
+				text-align: center;
+				width: 100%;
+				bottom: 5px;
+				font-size: 15px;
+				left: 0;
+			}
+
+			#footer a {
+				color: #808080;
+			}
+
+			#footer a:nth-child(1) {
+				margin-right: 1.25rem;
+			}
+        </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.0/custom.min.css">
+    </head>
+    <body class="d-flex center">
+        <div style="max-width: 450px;">
+            <img class="img-sq-sm" src="./img/icon.png">
+            <h1>AnonymousExtension</h1>
+            <hr>
+            <p class="fs-4">
+                AnonymousExtension is: <span id="keywrd">Checking Status...</span>
+            </p>
+        </div>
+
+		<div id="footer">
+			<a href="https://github.com/kgsensei/AnonymousExtension">Source Code</a>
+			<a href="https://anon.kgsensei.dev">Homepage</a>
+		</div>
+
+        <script>
+			fetch("https://anon.kgsensei.dev/api/isFunctional")
+			.then(r => {
+				document.getElementById("keywrd").innerText = "Disabled."
+				document.getElementById("keywrd").style.color = "#FFCE42"
+			})
+			.catch(r => {
+				document.getElementById("keywrd").innerText = "Enabled!"
+				document.getElementById("keywrd").style.color = "#00FF38"
+			})
+        </script>
+    </body>
+</html>
