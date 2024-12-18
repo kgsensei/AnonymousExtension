@@ -19,15 +19,19 @@ client_events
 clientlogger
 intercom.io
 mouselog
+a-mo.net
 logging
+1rx.io
 gtag
 /fb.js
 clicktale
 client-log
 tagmanager
+yellowblue.io
 online-metrix
 hsadspixel.net
 scevent.min.js
+onetag-sys.com
 s.xlgmedia.com
 logr-ingest.com
 hs-analytics.net
@@ -40,6 +44,7 @@ graph.facebook.com
 graph.instagram.com
 play.google.com/log
 target.microsoft.com
+minutemedia-prebid.com
 improving.duckduckgo.com
 byteoversea.com
 ibytedtos.com
