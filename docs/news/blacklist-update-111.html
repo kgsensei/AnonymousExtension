@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+    <head>
+        <meta charset="utf8">
+
+        <title>AnonymousExtension News</title>
+
+		<meta name="description" content="The official AnonymousExtension website. Get news on all the new updates on AnonymousExtension.">
+        <meta name="keywords" content="anonymous, extension, anonymousextension, web, extensions, privacy, ads, trackers, chrome, edge, firefox">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="kgsensei">
+		<meta name="url" content="https://anon.kgsensei.dev/news">
+
+		<meta name="og:url" content="https://anon.kgsensei.dev/news">
+		<meta name="og:title" content="AnonymousExtension News">
+		<meta name="og:image" content="http://anon.kgsensei.dev/img/AnonymousExtensionPreview.png">
+		<meta name="og:image:width" content="1200">
+		<meta name="og:image:height" content="600">
+		<meta name="og:site_name" content="AnonymousExtension">
+		<meta name="og:description" content="The official AnonymousExtension website. Get news on all the new updates on AnonymousExtension.">
+
+		<meta name="twitter:card" content="summary_large_image">
+
+		<meta name="theme-color" content="#00FF38">
+
+        <style>
+            :root {
+                --kg-bg: #192028;
+				--kg-bg-lighter: #212933;
+                --kg-fg: #e1e1f5;
+                --kg-fg-darker: #bebebe;
+
+                --kg-primary: #00FF38;
+				--kg-secondary: #949494;
+
+                --kg-font: Helvetica, sans-serif;
+            }
+
+			.secondary { --th-color: var(--kg-secondary); }
+        </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.2/custom.min.css">
+		<link rel="stylesheet" href="/css/anon.css">
+
+        <script async src="https://kgsensei.dev/js/ka.js"></script>
+        <script src="https://kgsensei.dev/js/er.js"></script>
+        <script>window.er_init("anon.kgsensei.dev")</script>
+
+		<script src="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.2/simple.min.js"></script>
+
+		<link rel="icon" href="/img/icon.png">
+    </head>
+    <body>
+        <header class="d-flex py-3 mb-4 mx-4">
+            <a href="/" class="d-flex txt-normal">
+                <img class="me-2" width="40" height="40" src="/img/icon.png" alt="AnonymousExtension Logo">
+                <h1 class="h4 mt-1">AnonymousExtension</h1>
+            </a>
+        </header>
+
+        <div class="mt-7 mb-7 w-100 px-4">
+            <div class="m-auto mw-500">
+				<h2 class="h4">Blacklist Update!</h2>
+				<i>04/03/25 DMY</i>
+				<p class="fs-2">
+					Today we gave the AnonymousExtension blacklist a long needed update.
+					This update changed how everything is set up behind the scenes too.
+					Previously we kept everything in one huge complicated text file, can
+					you imagine that?
+					<br><br>
+					So the process has been updated. The blacklist will now be maintained
+					in a JSON file and will be "compiled" into the normal blacklist file.
+					Any changes will be made to the JSON file and will be reflected in the
+					main blacklist file when new releases come out.
+					<br><br>
+					Enough about the process, in this update we actually <i>removed</i>
+					websites from the blacklist. Don't worry though! We started using more
+					keyword matching instead. So even though we removed some websites,
+					AnonymousExtension actually blocks even MORE trackers, ads, and
+					ip grabbers than before!
+					<br><br>
+					Given the improved keyword matching and better maintenance processes
+					you should be able to expect even faster (and more) updates in the future.
+					<br><br>
+					Oh yeah, we also updated the website and added a news feed, but your
+					reading on the website right now so you should know that.
+				</p>
+            </div>
+        </div>
+
+        <footer>
+			<div class="link-list">
+				<div>
+					<span>Resources</span>
+					<ul>
+						<li>
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="https://github.com/kgsensei/AnonymousExtension" target="_blank">GitHub</a>
+						</li>
+						<li>
+							<a href="https://kgsensei.dev" target="_blank">kgsensei.dev</a>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<span>Webstores</span>
+					<ul>
+						<li>
+							<a href="https://chromewebstore.google.com/detail/anonymous-extension/dpobhogjdfjlgiejbbojhablmlighflg" target="_blank">Chrome</a>
+						</li>
+						<li>
+							<a href="https://microsoftedge.microsoft.com/addons/detail/anonymous-extension/cdiiogmchafjebbdjgbchpdeoghfbocp" target="_blank">Edge</a>
+						</li>
+						<li>
+							<a href="https://addons.mozilla.org/addon/anonymous-extension/" target="_blank">Firefox</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+        </footer>
+    </body>
+</html>

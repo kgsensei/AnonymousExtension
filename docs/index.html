@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark" class="h-100">
+<html lang="en" class="h-100">
     <head>
         <meta charset="utf8">
 
         <title>AnonymousExtension</title>
 
 		<meta name="description" content="The official AnonymousExtension website. Your premier online privacy web extension. Available on all major browsers.">
-        <meta name="keywords" content="kgsensei, anonymous, extension, web, extensions, privacy, ads, trackers, chrome, edge, firefox">
+        <meta name="keywords" content="anonymous, extension, anonymousextension, web, extensions, privacy, ads, trackers, chrome, edge, firefox">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="kgsensei">
 		<meta name="url" content="https://anon.kgsensei.dev">
@@ -21,94 +21,120 @@
 
 		<meta name="twitter:card" content="summary_large_image">
 
-		<meta name="theme-color" content="#141428">
+		<meta name="theme-color" content="#00FF38">
 
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
-		<link rel='stylesheet' href='./css/bootstrapIcons.css'>
+        <style>
+            :root {
+                --kg-bg: #192028;
+				--kg-bg-lighter: #212933;
+                --kg-fg: #e1e1f5;
+                --kg-fg-darker: #bebebe;
 
-        <script src="./js/bootstrap.min.js"></script>
+                --kg-primary: #00FF38;
+				--kg-secondary: #949494;
+
+                --kg-font: Helvetica, sans-serif;
+            }
+
+			.secondary { --th-color: var(--kg-secondary); }
+        </style>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.2/custom.min.css">
+		<link rel="stylesheet" href="/css/anon.css">
 
         <script async src="https://kgsensei.dev/js/ka.js"></script>
-
         <script src="https://kgsensei.dev/js/er.js"></script>
         <script>window.er_init("anon.kgsensei.dev")</script>
 
-		<link rel="icon" href="./img/icon.png">
-    </head>
-    <body class="h-100 text-center d-flex flex-column" style="margin: 0px 5%;">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom mb-auto">
-            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-                <img class="me-2" width="40" height="40" src="./img/icon.png" alt="AnonymousExtension Logo">
-                <span class="fs-4">AnonymousExtension</span>
-            </a>
+		<script src="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.2/simple.min.js"></script>
 
-            <ul class="nav nav-pills">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://chromewebstore.google.com/detail/anonymous-extension/dpobhogjdfjlgiejbbojhablmlighflg" target="_blank" class="nav-link">Chrome</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://microsoftedge.microsoft.com/addons/detail/anonymous-extension/cdiiogmchafjebbdjgbchpdeoghfbocp" target="_blank" class="nav-link">Edge</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://addons.mozilla.org/addon/anonymous-extension/" target="_blank" class="nav-link">FireFox</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://github.com/kgsensei/AnonymousExtension" target="_blank" class="nav-link">GitHub</a>
-                </li>
-            </ul>
+		<link rel="icon" href="/img/icon.png">
+    </head>
+    <body>
+        <header class="d-flex py-3 mb-4 mx-4">
+            <a href="/" class="d-flex txt-normal">
+                <img class="me-2" width="40" height="40" src="/img/icon.png" alt="AnonymousExtension Logo">
+                <h1 class="h4 mt-1">AnonymousExtension</h1>
+            </a>
         </header>
 
-        <div class="container my-5">
-            <div class="p-5 text-center bg-body-tertiary rounded-3">
-                <img class="mt-4 mb-3" width="100" height="100" src="./img/icon.png" alt="AnonymousExtension Logo">
-                <h1 class="text-body-emphasis">AnonymousExtension</h1>
-                <p class="col-lg-8 mx-auto fs-5 text-muted">
-                    Anonymous Extension is a privacy focused web extension designed to block ads and trackers.
-                    It's super easy to use and has amassed more than 900+ weekly users!
+        <div class="mt-7 mb-7 w-100 px-4">
+            <div class="m-auto mw-700">
+				<div class="d-flex mb-4 w-100">
+					<img src="/img/icon.png" alt="AnonymousExtension Logo" width="80" height="80" class="m-auto">
+				</div>
+                <p class="fs-4 mb-3 center">
+                    Anonymous Extension is a privacy focused web extension
+					designed to block Ads, Trackers, and IP grabbers. It's
+					super easy to use and has amassed more than 1,100+ weekly
+					users!
                 </p>
-                <div class="d-inline-flex gap-2 mb-5">
-                    <a class="d-inline-flex align-items-center btn btn-outline-primary btn-lg px-4 rounded-pill" type="button" id="gbt" target="_blank">
-                        Unsupported on Your Browser
-                    </a>
-                    <a class="btn btn-outline-secondary btn-lg px-4 rounded-pill"
-                        type="button" target="_blank"
-                        href="https://github.com/kgsensei/AnonymousExtension">
-                        Source Code
-                    </a>
+                <div class="d-flex w-100">
+					<div class="m-auto center">
+						<a id="get_browser_link" class="txt-normal me-1" target="_blank">
+							<button id="get_browser_name" class="btn btn-lg btn-full fs-5 primary" type="button">
+								Unsupported on Your Browser
+							</button>
+						</a>
+						<a class="txt-normal" target="_blank" href="https://github.com/kgsensei/AnonymousExtension">
+							<button class="btn btn-lg btn-outline fs-5 secondary mt-2" type="button">
+								Source Code
+							</button>
+						</a>
+					</div>
                 </div>
             </div>
         </div>
 
-        <footer class="py-3 my-4 mt-auto">
-            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-                <li class="nav-item">
-                    <a href="/" class="nav-link px-2 text-body-secondary">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://chromewebstore.google.com/detail/anonymous-extension/dpobhogjdfjlgiejbbojhablmlighflg" target="_blank" class="nav-link px-2 text-body-secondary">Chrome</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://microsoftedge.microsoft.com/addons/detail/anonymous-extension/cdiiogmchafjebbdjgbchpdeoghfbocp" target="_blank" class="nav-link px-2 text-body-secondary">Edge</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://addons.mozilla.org/addon/anonymous-extension/" target="_blank" class="nav-link px-2 text-body-secondary">FireFox</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://github.com/kgsensei/AnonymousExtension" target="_blank" class="nav-link px-2 text-body-secondary">GitHub</a>
-                </li>
-                <li class="nav-item">
-                    <a href="https://kgsensei.dev" class="nav-link px-2 text-body-secondary">kgsensei.dev</a>
-                </li>
-            </ul>
-            <p class="text-center text-body-secondary">AnonymousExtension and associated assets are copyright &copy; kgsensei, 2024.</p>
+		<div class="pt-2 mb-6 w-100 px-4">
+			<div class="m-auto mw-700">
+				<h2 class="h5">Recent News</h2>
+				<div>
+					<a class="txt-normal" href="/news/blacklist-update-111">
+						<div class="border-1 radius-1 py-1 px-2 m-1 btn">
+							<h3 class="fs-3">Updated Blacklist &amp; New Maintenance Stuff</h3>
+							<p>
+								04/03/25 DMY - Updated the Anonymous Extension Blacklist
+							</p>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+
+        <footer>
+			<div class="link-list">
+				<div>
+					<span>Resources</span>
+					<ul>
+						<li>
+							<a href="/">Home</a>
+						</li>
+						<li>
+							<a href="https://github.com/kgsensei/AnonymousExtension" target="_blank">GitHub</a>
+						</li>
+						<li>
+							<a href="https://kgsensei.dev" target="_blank">kgsensei.dev</a>
+						</li>
+					</ul>
+				</div>
+				<div>
+					<span>Webstores</span>
+					<ul>
+						<li>
+							<a href="https://chromewebstore.google.com/detail/anonymous-extension/dpobhogjdfjlgiejbbojhablmlighflg" target="_blank">Chrome</a>
+						</li>
+						<li>
+							<a href="https://microsoftedge.microsoft.com/addons/detail/anonymous-extension/cdiiogmchafjebbdjgbchpdeoghfbocp" target="_blank">Edge</a>
+						</li>
+						<li>
+							<a href="https://addons.mozilla.org/addon/anonymous-extension/" target="_blank">Firefox</a>
+						</li>
+					</ul>
+				</div>
+			</div>
         </footer>
 
         <script>
-            function gid(i){return document.getElementById(i)}
-
             navigator.sayswho = (() => {
                 var N = navigator.appName, ua = navigator.userAgent, tem
 
@@ -128,12 +154,12 @@
 
             switch (navigator.sayswho[0]) {
                 case "Firefox":
-                    gid("gbt").innerHTML = "Get for FireFox"
-                    gid("gbt").setAttribute("href", "https://addons.mozilla.org/addon/anonymous-extension/")
+                    gid("get_browser_name").setHTML("Get for Firefox");
+                    gid("get_browser_link").setAttr("href", "https://addons.mozilla.org/addon/anonymous-extension/");
                     break;
                 case "Chrome":
-                    gid("gbt").innerHTML = "Get for Chrome"
-                    gid("gbt").setAttribute("href", "https://chromewebstore.google.com/detail/anonymous-extension/dpobhogjdfjlgiejbbojhablmlighflg")
+                    gid("get_browser_name").setHTML("Get for Chrome / Edge");
+                    gid("get_browser_link").setAttr("href", "https://chromewebstore.google.com/detail/anonymous-extension/dpobhogjdfjlgiejbbojhablmlighflg");
                 default:
                     break;
             }

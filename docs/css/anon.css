@@ -1,184 +1,56 @@
-body {
-	background-color: rgb(20, 20, 40);
-	font-family: sans-serif;
-	color: white;
-	padding: 0px;
-	margin: 0px;
+.mw-700 {
+	max-width: 800px;
 }
 
-#title {
-	position: absolute;
-	font-size: 3vw;
-	left: 15%;
-	top: 15%;
+.mw-500 {
+	max-width: 600px;
 }
 
-#subtitle {
-	position: absolute;
-	font-size: 1.5vw;
-	left: 20%;
-	top: 25%;
-}
-
-#footer {
-	top: 220%;
+footer {
 	width: 100%;
-	height: 25%;
-	column-count: 4;
-	position: absolute;
-	background-color: rgba(0, 0, 0, 0.5);
+	padding: 30px;
+	position: relative;
+	background-color: var(--kg-bg-lighter);
 }
 
-.linkContainer {
-	padding-right: 50px;
-    padding-left: 50px;
-    padding-top: 50px;
+footer .link-list {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	position: relative;
+	flex-direction: row;
+	color: var(--kg-fg-darker);
+	justify-content: space-around;
 }
 
-#footer a {
-	color: rgb(255, 255, 255);
-	text-decoration: none;
+footer .link-list div {
+	margin: 30px;
 }
 
-.fadeIn {
-	opacity: 0;
+footer .link-list div span {
+	font-size: 16px;
+	font-weight: 600;
 }
 
-#promo0 {
-	position: absolute;
-	top: 110%;
-	left: 60%;
-	font-size: 1.5vw;
+footer ul {
+	padding: 0px;
+	list-style-type: none;
 }
 
-#promo1 {
-	position: absolute;
-	top: 130%;
-	left: 10%;
-	font-size: 1.5vw;
+footer ul li {
+	padding: 5px 0px;
 }
 
-#promo2 {
-	position: absolute;
-	top: 150%;
-	left: 60%;
-	font-size: 1.5vw;
+footer ul li a {
+	font-size: 14px;
+	color: var(--kg-fg-darker);
 }
 
-#promo3 {
-	position: absolute;
-	top: 170%;
-	left: 10%;
-	font-size: 1.5vw;
-}
-
-#promo4 {
-	position: absolute;
-	top: 195%;
-	left: 5%;
-	width: 90%;
-	text-align: center;
-}
-
-.getItHereIcons {
-	cursor: pointer;
-	height: 70px;
-	width: auto;
-}
-
-.getItHereContainer {
-	display: inline;
-	padding: 15px;
-}
-
-.animTest {
-	opacity: 0;
-}
-
-#clickDownBtn {
-	position: absolute;
-	left: 48%;
-	top: 93%;
-	cursor: pointer;
-}
-
-.bi-chevron-bar-down {
-    font-size: 2.5vw;
-}
-
-@media only screen and (max-width: 600px) {
-	#title {
-		font-size: 3.5vh;
-		left: 5%;
-		top: 25%;
-	}
-	
-	#subtitle {
-		font-size: 3.5vw;
-		left: 10%;
-		top: 30%;
-	}
-
-	.bi-chevron-bar-down {
-		font-size: 4vh;
-	}
-	
-	.linkContainer {
-		padding-right: 4vw;
-		padding-left: 4vw;
-		padding-top: 4.5vh;
-	}
-
-	#footer {
-		column-count: 2;
-	}
-	
-	#footer a {
-		font-size: 1.66vh;
-		color: rgb(255, 255, 255);
-		text-decoration: none;
-	}
-	
-	.fadeIn {
-		opacity: 0;
-	}
-	
-	#promo0 {
-		left: 5%;
-		font-size: 2.25vh;
-	}
-	
-	#promo1 {
-		left: 5%;
-		font-size: 2.25vh;
-	}
-	
-	#promo2 {
-		left: 5%;
-		font-size: 2.25vh;
-	}
-	
-	#promo3 {
-		left: 5%;
-		font-size: 2.25vh;
-	}
-	
-	#promo4 {
-		position: absolute;
-		top: 195%;
-		left: 5%;
-		width: 90%;
-		text-align: center;
-	}
-	
-	.getItHereIcons {
-		cursor: pointer;
-		height: 50px;
-		width: auto;
-	}
-	
-	.getItHereContainer {
-		display: inline;
-		padding: 5px;
+@media only screen and (max-device-width: 990px) {
+	footer .link-list {
+		display: block;
+		flex-wrap: unset;
+		flex-direction: unset;
+		justify-content: unset;
 	}
 }
