@@ -20,7 +20,7 @@
 			"ads.*.org",
 			"ads.*.net",
 			"ads.*.io",
-			"ad.*.com",
+			"||ad.*.com",
 			"ad.*.org",
 			"ad.*.net",
 			"ad.*.io"
