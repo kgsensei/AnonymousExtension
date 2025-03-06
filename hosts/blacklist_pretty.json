@@ -21,9 +21,9 @@
 			"ads.*.net",
 			"ads.*.io",
 			"||ad.*.com",
-			"ad.*.org",
-			"ad.*.net",
-			"ad.*.io"
+			"||ad.*.org",
+			"||ad.*.net",
+			"||ad.*.io"
 		]
 	},
 	"Location Tracking": {
