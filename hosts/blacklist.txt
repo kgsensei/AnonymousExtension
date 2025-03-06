@@ -11,10 +11,10 @@ ads.*.com
 ads.*.org
 ads.*.net
 ads.*.io
-ad.*.com
-ad.*.org
-ad.*.net
-ad.*.io
+||ad.*.com
+||ad.*.org
+||ad.*.net
+||ad.*.io
 # Location Tracking
 ~ Block_Normal
 /v9/auth/location-metadata
