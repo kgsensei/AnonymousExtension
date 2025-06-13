@@ -7,10 +7,10 @@ stats.*.com
 stats.*.org
 stats.*.net
 stats.*.io
-ads.*.com
-ads.*.org
-ads.*.net
-ads.*.io
+||ads.*.com
+||ads.*.org
+||ads.*.net
+||ads.*.io
 ||ad.*.com
 ||ad.*.org
 ||ad.*.net
@@ -81,6 +81,8 @@ sdiapi.com
 segment.io
 navdmp.com
 refiner.io
+klaviyo.js
+c.bing.com
 disqus.com
 hotjar.com
 i.clean.gg
@@ -116,6 +118,7 @@ yellowblue.io
 online-metrix
 adobecqms.net
 ibytedtos.com
+pubfig.min.js
 byzoruator.com
 scevent.min.js
 onetag-sys.com
@@ -137,6 +140,7 @@ cookiefirst.com
 shareaholic.com
 siftscience.com
 justpremium.com
+api.kimonix.com
 assoc-amazon.com
 hs-analytics.net
 thebrighttag.com
@@ -159,6 +163,7 @@ ingest.blackfire.io
 presence.roblox.com
 ewouwamsubsouvy.net
 graph.instagram.com
+identity.netlify.com
 collector.github.com
 target.microsoft.com
 js-agent.newrelic.com
