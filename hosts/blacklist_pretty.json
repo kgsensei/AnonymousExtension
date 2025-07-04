@@ -65,6 +65,7 @@
 			"/v1/log_event",
 			"/usertracking",
 			"/api/v9/science",
+			"/insight.min.js",
 			"/sensorCollect/",
 			"attribution/event",
 			"/api/growth-events",
