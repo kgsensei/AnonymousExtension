@@ -19,6 +19,6 @@ with open("blacklist_pretty.json") as f_read:
 				keywords_total.append(keyword)
 			output += f"{keyword}\n"
 	print("[Blacklist Builder]", "Writing blacklist_candidate.txt")
-	with open("blaclist_candidate.txt", "w") as f_write:
+	with open("blacklist_candidate.txt", "w") as f_write:
 		f_write.write(output[:-1])
 	print("[Blacklist Builder]", "Finished")

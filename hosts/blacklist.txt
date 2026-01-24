@@ -106,6 +106,7 @@ meetrics.net
 bat.bing.com
 optmnstr.com
 adobedtm.com
+datadoghq.com
 cookiebot.com
 qualtrics.com
 cookiepro.com
@@ -204,6 +205,7 @@ adcell.de
 /nativead
 media.net
 adnxs.com
+adzerk.net
 adform.net
 adhigh.net
 adroll.com
@@ -256,12 +258,14 @@ bounceexchange
 cdn.taboola.com
 adsafeprotected
 stickyadstv.com
+static.truex.com
 /adBlockDetector
 sharethrough.com
 cdn.carbonads.com
 /user-sponsorship
 rubiconproject.com
 cdn.bannersnack.com
+advertisement-ads.js
 9xbuddy.com/js/ads.js
 adaptv.advertising.com
 antiadblocksystems.com
