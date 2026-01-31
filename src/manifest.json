@@ -30,6 +30,15 @@
 		"all_frames": true
 	}],
 
+	"web_accessible_resources": [{
+		"matches": [
+			"*://*/*"
+		],
+		"resources": [
+			"src/fingerprinting/*"
+		]
+	}],
+
 	"background": {
 		"service_worker": "src/background.js"
 	}

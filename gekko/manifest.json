@@ -4,28 +4,41 @@
 	"author": "kgsensei",
 	"description": "An extension developed to help you stay anonymous online with tracking prevention and ad blocking capabilities!",
 	"default_locale": "en",
-	"version": "5.3",
+	"version": "5.4",
+
 	"action": {
 		"default_icon": "icon.png",
-		"default_popup": "src/dashboard.html"
+		"default_popup": "dash/dashboard.html"
 	},
+
 	"icons": {
-        "64": "icon_64x64.png",
+		"64": "icon_64x64.png",
 		"128": "icon_128x128.png"
 	},
+
 	"permissions": [
-        "declarativeNetRequest",
+		"declarativeNetRequest",
 		"storage"
 	],
-    "background": {
-        "scripts": [
-            "background.js"
-        ]
-    },
-    "browser_specific_settings": {
-        "gecko": {
+
+	"host_permissions": [ "<all_urls>" ],
+
+	"content_scripts": [{
+		"matches": [ "<all_urls>" ],
+		"js": [ "src/injector.js" ],
+		"run_at": "document_start",
+		"all_frames": true
+	}],
+
+	"background": {
+		"scripts": [ "src/background.js" ],
+		"service_worker": "src/background.js"
+	},
+
+	"browser_specific_settings": {
+		"gecko": {
 			"id": "anonymousextension@kgsensei.dev",
 			"strict_min_version": "109.0"
 		}
-    }
+	}
 }
