@@ -4,7 +4,7 @@
 		<img
 			alt="AnonymousExtension; An Internet Privacy Tool"
 			src="./branding/GithubLogoWName.svg"
-			width="65%">
+			width="75%">
 	</picture>
 </div>
 
@@ -25,7 +25,8 @@ AnonymousExtension makes it easy to take back at least a little of your privacy:
 
 - Blocks trackers, ads, fingerprinting scripts, and other malicious resources.
 
-- Works across Chrome, Edge, and Firefox.
+- Works across Chrome, Edge, Firefox, (and in theory, every Chromium based
+  browser.)
 
 - Lightweight & plug-and-play, just install and go.
 
@@ -33,7 +34,8 @@ AnonymousExtension makes it easy to take back at least a little of your privacy:
   the scenes at every step.
 
 **Disclaimer:** AnonymousExtension is *very* aggressive in blocking potential
-threats. This means some websites may break or not function as intended.
+threats. Blocking aggressively is great most of the time, but it means some
+websites may break or not function as intended if there's a false positive.
 
 ## Getting Started
 
@@ -58,8 +60,10 @@ Also See:
 - Comprehensive Tracker Blocking: Blocks third-party trackers, ads,
   fingerprinting scripts, and more. The block list is constantly being updated
   in the background, you never have to do anything!
-- Cross-Browser Support: Works in Chrome, Edge, and Firefox. It's an out-of-box
-  experience by design.
+
+- Cross-Browser Support: Works in Chrome, Edge, Firefox, (and in theory, every
+  Chromium based browser.) It's an out-of-box experience by design.
+
 - Aggressive Privacy Protections: Stops scripts at the network level, reducing
   CPU usage and improving security. This also means AnonymousExtension doesn't
   have to use invasive permissions, like page modification.
@@ -103,17 +107,19 @@ but it's hard to keep track of everything that way.
 ### Contributing to the Website
 
 All website code is stored in `/docs/`. It's nothing special, just normal HTML,
-CSS, and JS. PRs for improvements, documentation, bug fixes, or design changes
-are all welcome!
+CSS, and JS. Pull requests for improvements, documentation, bug fixes, or design
+changes are all welcome!
 
 ### Reporting an Issue
 
-If you notice a broken site or a missed tracker then you should open a GitHub
-issue! Include details like the URL, browser, and what happened.
+If you notice a broken site or a missed tracker then you should open a
+[GitHub issue](https://github.com/kgsensei/AnonymousExtension/issues/new)!
+Include details like the URL, browser, what happened, and what you expected to
+happen.
 
 ## Legal
 
-AnonymousExtension is a kgsensei project.
+AnonymousExtension is a kgsensei project.  
 Copyright &copy; of kgsensei.
 
 Use responsibly. AnonymousExtension does not guarantee anonymity. It reduces
