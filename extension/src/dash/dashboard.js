@@ -1,17 +1,17 @@
-function localizeHtmlPage() {
-	const objects = document.getElementsByTagName('html')
+(() => {
+	function localizeHtmlPage() {
+		const objects = document.getElementsByClassName('translate');
 
-	for (let j = 0; j < objects.length; j++) {
-		var obj = objects[j]
-		var valStrH = obj.innerHTML.toString()
-		var valNewH = valStrH.replace(/__MSG_(\w+)__/g, (match, v1) => {
-			return v1 ? chrome.i18n.getMessage(v1) : ""
-		})
+		for (let i = 0; i < objects.length; i++) {
+			let obj = objects[i];
+			let valStrH = obj.innerText.toString();
+			let valNewH = valStrH.replace(/__MSG_(\w+)__/g, (match, v1) => {
+				return v1 ? chrome.i18n.getMessage(v1) : "";
+			});
 
-		if(valNewH != valStrH) {
-			obj.innerHTML = valNewH
+			if (valNewH != valStrH) obj.innerText = valNewH;
 		}
 	}
-}
 
-localizeHtmlPage()
+	localizeHtmlPage();
+})();
