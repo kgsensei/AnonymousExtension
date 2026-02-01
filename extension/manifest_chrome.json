@@ -2,22 +2,27 @@
 	"manifest_version": 3,
 	"name": "Anonymous Extension",
 	"author": "kgsensei",
+	"homepage_url": "https://anon.kgsensei.dev",
 	"description": "An extension developed to help you stay anonymous online with tracking prevention and ad blocking capabilities!",
 	"default_locale": "en",
-	"version": "5.3",
+	"version": "5.4",
+
 	"action": {
-		"default_icon": "icon.png",
-		"default_popup": "src/dashboard.html"
+		"default_icon": "src/icon.png",
+		"default_popup": "src/dash/dashboard.html"
 	},
+
 	"icons": {
-        "64": "icon_64x64.png",
-		"128": "icon_128x128.png"
+		"64": "src/icon_64x64.png",
+		"128": "src/icon_128x128.png"
 	},
+
 	"permissions": [
 		"declarativeNetRequest",
 		"storage"
 	],
-    "background": {
-        "service_worker": "background.js"
-    }
+
+	"background": {
+		"service_worker": "src/background.js"
+	}
 }

@@ -15,6 +15,11 @@ stats.*.io
 ||ad.*.org
 ||ad.*.net
 ||ad.*.io
+# Fingerprinting
+~ Block_All
+fingerprintjs
+fingerprint2
+fpcdn.io
 # Location Tracking
 ~ Block_Normal
 /v9/auth/location-metadata

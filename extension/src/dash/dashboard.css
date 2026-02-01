@@ -1,0 +1,12 @@
+body {
+	width: 500px;
+}
+
+.flex-grow {
+	flex-grow: 1;
+}
+
+hr {
+	border-style: solid;
+	border-color: rgb(73 73 73)
+}

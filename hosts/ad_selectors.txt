@@ -1,6 +1,0 @@
-#player-ads
-.ytd-ad-slot-renderer
-#adBlockerModal
-div[aria-label="Ads"]
-li[data-layout="ad"]
-sidebar-ad

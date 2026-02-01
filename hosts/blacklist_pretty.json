@@ -26,6 +26,14 @@
 			"||ad.*.io"
 		]
 	},
+	"Fingerprinting": {
+		"block": "all",
+		"keywords": [
+			"fingerprintjs",
+			"fingerprint2",
+			"fpcdn.io"
+		]
+	},
 	"Location Tracking": {
 		"block": "normal",
 		"keywords": [
