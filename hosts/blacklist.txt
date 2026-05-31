@@ -51,9 +51,10 @@ me/user-info
 /web/metrics
 /v1/log_event
 /usertracking
-/api/v9/science
+/beacon.min.js
 /insight.min.js
 /sensorCollect/
+/api/v9/science
 attribution/event
 /api/growth-events
 /logging_client_events
@@ -78,6 +79,7 @@ hybrid.ai
 rlcdn.com
 vidoza.net
 criteo.com
+criteo.net
 iubenda.js
 sensic.net
 omtrdc.net
@@ -92,6 +94,9 @@ c.bing.com
 disqus.com
 hotjar.com
 i.clean.gg
+pbstck.com
+seedtag.com
+primis.tech
 opmnstr.com
 segment.com
 zohocdn.com
@@ -126,6 +131,7 @@ online-metrix
 adobecqms.net
 ibytedtos.com
 pubfig.min.js
+anonymised.io
 byzoruator.com
 scevent.min.js
 onetag-sys.com
@@ -170,6 +176,8 @@ ingest.blackfire.io
 presence.roblox.com
 ewouwamsubsouvy.net
 graph.instagram.com
+analytics.google.com
+google.com/g/collect
 identity.netlify.com
 collector.github.com
 target.microsoft.com
@@ -210,6 +218,8 @@ adcell.de
 /nativead
 media.net
 adnxs.com
+tapad.com
+fwmrm.net
 adzerk.net
 adform.net
 adhigh.net
@@ -227,6 +237,8 @@ betrad.com
 nuggad.net
 ad-manager
 adnium.com
+gumgum.com
+iionads.com
 abtasty.com
 addthis.com
 adition.com
@@ -249,6 +261,9 @@ clickfunnels
 yieldlove.js
 a.adroll.com
 pubmatic.com
+network-n.com
+sitescout.com
+snigelweb.com
 incloudfl.com
 html-load.com
 nativeads.com
@@ -261,6 +276,9 @@ acxiomapac.com
 ad-serving.net
 ad_service2.js
 bounceexchange
+stackadapt.com
+casalemedia.com
+optidigital.com
 cdn.taboola.com
 adsafeprotected
 stickyadstv.com
@@ -270,6 +288,7 @@ sharethrough.com
 cdn.carbonads.com
 /user-sponsorship
 rubiconproject.com
+content-loader.com
 cdn.bannersnack.com
 advertisement-ads.js
 9xbuddy.com/js/ads.js

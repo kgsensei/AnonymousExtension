@@ -3,7 +3,10 @@ const is_firefox = typeof browser !== 'undefined';
 const ext = is_firefox ? browser : chrome;
 
 // URL Constants
-const URL_BASE = "https://cdn.jsdelivr.net/gh/kgsensei/AnonymousExtension@latest/hosts/";
+const DEV_MODE = false; // make sure this is false on prod
+const URL_BASE = DEV_MODE
+	? "http://localhost:3000/" // dev (for live updating and testing of blacklist)
+	: "https://cdn.jsdelivr.net/gh/kgsensei/AnonymousExtension@latest/hosts/"; // prod
 const BLACKLIST = "blacklist.txt";
 const VERSION = "vrCh.txt";
 
@@ -122,7 +125,7 @@ ext.runtime.onStartup.addListener(() => {
 		return res.text();
 	})
 	.then(async (remote_version) => {
-		if (remote_version != await storage.get_item("local_version")) {
+		if (remote_version != await storage.get_item("local_version") || DEV_MODE) {
 			update_ruleset();
 			storage.set_item(
 				"local_version",
