@@ -1,141 +1,237 @@
-// Configuration and Browser Compatibility
-const is_firefox = typeof browser !== 'undefined';
+// configuration and browser compatibility
+const is_firefox =
+	typeof browser === "object" &&
+	typeof browser.runtime === "object";
 const ext = is_firefox ? browser : chrome;
 
-// URL Constants
+// constants
 const DEV_MODE = false; // make sure this is false on prod
+
 const URL_BASE = DEV_MODE
-	? "http://localhost:3000/" // dev (for live updating and testing of blacklist)
-	: "https://cdn.jsdelivr.net/gh/kgsensei/AnonymousExtension@latest/hosts/"; // prod
+	? "http://localhost:3000/"
+	: "https://cdn.jsdelivr.net/gh/kgsensei/AnonymousExtension@latest/hosts/";
+
 const BLACKLIST = "blacklist.txt";
 const VERSION = "vrCh.txt";
 
-// Block Behavior Enum
+const MAX_DYNAMIC_RULES = 30_000;
+
+// block behavior "enum"
 const BlockType = {
 	Normal: 0,
 	All: 1
 };
 
-// Storage Helper
+// storage Helper
 const storage = {
 	get_item: async (key) => {
 		const result = await ext.storage.local.get(key);
-		return result ? result[key] : undefined;
+		return result[key];
 	},
-	set_item: (key, val) => ext.storage.local.set({ [key]: val })
+
+	set_item: async (key, val) => {
+		await ext.storage.local.set({ [key]: val });
+	}
 };
 
-/*
-* Makes a request to the CDN where the blacklist is stored
-* and saves the resulting text locally in the extension
-*/
-function update_ruleset() {
-	fetch(URL_BASE + BLACKLIST)
-	.then((res) => {
+// makes a request to the CDN where the blacklist is stored
+// and saves the resulting text locally in the extension
+async function download_ruleset() {
+	try {
+		const res = await fetch(URL_BASE + BLACKLIST);
+
 		if (!res.ok)
-			throw new Error(`Failed to fetch blacklist ${res.status}`);
-		return res.text();
-	})
-	.then((remote_blacklist) => storage.set_item(
-		BLACKLIST,
-		remote_blacklist
-	))
-	.then(build_ruleset)
-	.catch((err) => {
-		console.error("[update_ruleset]", err);
-	});
+			throw new Error(`Failed to Fetch Blacklist: Status: ${res.status}`);
+
+		const remote_blacklist = await res.text();
+
+		// store locally
+		await storage.set_item(
+			BLACKLIST,
+			remote_blacklist
+		);
+
+		await build_ruleset();
+	} catch (e) {
+		console.error("[download_ruleset]", e);
+		throw e;
+	}
 }
 
-/*
-* Build a new ruleset and remove the previous ruleset,
-* this should only be triggered when performing an update.
-*/
+// build a new ruleset, this should only be triggered during an update
 async function build_ruleset() {
 	let request_handle_type = BlockType.Normal;
 
 	const new_rules = [];
+
 	const stored_rules = await storage.get_item(BLACKLIST);
-	const split_hosts = (stored_rules || '').split('\n');
+	if (typeof stored_rules !== "string" || stored_rules.length === 0) {
+		console.warn("[build_ruleset] No Saved Blacklist Available");
+		return;
+	}
+
+	const split_hosts = stored_rules.split(/\r?\n/);
 
 	const default_resource_types = [
-		"font", "ping", "other", "media", "image", "object", "script",
-		"sub_frame", "websocket", "stylesheet", "csp_report", "xmlhttprequest"
+		"font",
+		"ping",
+		"other",
+		"media",
+		"image",
+		"object",
+		"script",
+		"sub_frame",
+		"websocket",
+		"stylesheet",
+		"csp_report",
+		"xmlhttprequest"
 	];
 
-	for (const [index, line] of split_hosts.entries()) {
+	let next_rule_id = 1;
+
+	for (const line of split_hosts) {
 		let filter = line.trim();
 
-		if (!filter || filter.startsWith('#')) continue;
+		// comment or empty line
+		if (!filter || filter.startsWith('#'))
+			continue;
+
+		// directive line
 		if (filter.startsWith('~')) {
-			const new_block_type = filter.split(' ')[1]?.trim();
-			request_handle_type = (new_block_type === "Block_All")
-				? BlockType.All
-				: BlockType.Normal;
+			const new_block_type = filter.slice(1).trim();
+
+			request_handle_type =
+				new_block_type === "Block_All"
+					? BlockType.All
+					: BlockType.Normal;
+
 			continue;
 		}
 
-		const block_resource_types = [...default_resource_types];
+		if (new_rules.length >= MAX_DYNAMIC_RULES) {
+			console.warn(`[build_ruleset] Reached Rule Limit: ${MAX_DYNAMIC_RULES}`);
+			break;
+		}
 
-		if (!is_firefox) block_resource_types.push("webbundle", "webtransport");
-		if (request_handle_type === BlockType.All) block_resource_types.push("main_frame");
+		const block_resource_types = [ ...default_resource_types ];
+
+		// non-firefox browsers support these other request types
+		// that also should be blocked if possible
+		if (!is_firefox) {
+			block_resource_types.push(
+				"webbundle",
+				"webtransport"
+			);
+		}
+
+		// if the current block directive is to block the entire
+		// page the include 'main_frame' as a blocked resource type
+		if (request_handle_type === BlockType.All)
+			block_resource_types.push("main_frame");
 
 		new_rules.push({
-			id: index + 1,
+			id: next_rule_id++,
 			priority: 1,
-			condition: { urlFilter: filter, resourceTypes: block_resource_types },
-			action: { type: "block" }
+
+			condition: {
+				urlFilter: filter,
+				resourceTypes: block_resource_types
+			},
+
+			action: {
+				type: "block"
+			}
 		});
 	}
 
-	ext.declarativeNetRequest.getDynamicRules(old_rules => {
+	await replace_dynamic_rules(new_rules);
+}
+
+// replace all dynamic rules with newly generated rules
+async function replace_dynamic_rules(new_rules) {
+	if (!Array.isArray(new_rules))
+		return;
+
+	try {
+		const old_rules = await ext.declarativeNetRequest.getDynamicRules();
 		const old_rule_ids = old_rules.map(rule => rule.id);
 
-		ext.declarativeNetRequest.updateDynamicRules({
+		await ext.declarativeNetRequest.updateDynamicRules({
 			removeRuleIds: old_rule_ids,
 			addRules: new_rules
 		});
-	});
+
+		console.log(`[replace_dynamic_rules] Installed ${new_rules.length} Rules`);
+	} catch (e) {
+		console.error("[replace_dynamic_rules]", e);
+		throw e;
+	}
 }
 
-/*
-* If we're on a chromium based browser we'll want to
-* link the extension badge to the number of requests
-* blocked on the current page.
-*/
-ext.runtime.onInstalled.addListener(() => {
-	if (!is_firefox) {
-		ext.declarativeNetRequest.setExtensionActionOptions({
-			displayActionCountAsBadgeText: true
-		});
-	}
+// check for update and install if needed
+async function update_checker() {
+	try {
+		const res = await fetch(URL_BASE + VERSION);
 
-	// Update ruleset on first install
-	update_ruleset();
-});
-
-/*
-* Run update checker on extension startup. This should
-* cut down on the number of times the version is checked.
-*/
-ext.runtime.onStartup.addListener(() => {
-	fetch(URL_BASE + VERSION)
-	.then((res) => {
 		if (!res.ok)
-			throw new Error(`Failed to fetch version ${res.status}`);
-		return res.text();
-	})
-	.then(async (remote_version) => {
-		if (remote_version != await storage.get_item("local_version") || DEV_MODE) {
-			update_ruleset();
-			storage.set_item(
+			throw new Error(`Failed to Fetch Version: Status: ${res.status}`);
+
+		const remote_version = (await res.text()).trim();
+		const local_version = (await storage.get_item("local_version"))?.trim();
+		console.log(remote_version, local_version);
+
+		if (remote_version !== local_version || DEV_MODE) {
+			console.log(`[update_checker] Updating Ruleset (${local_version} -> ${remote_version})`);
+
+			await download_ruleset();
+
+			await storage.set_item(
 				"local_version",
 				remote_version
 			);
 		} else {
-			build_ruleset();
+			// rebuild from cache if something happened and there are no rules installed
+			const installed_rules = await ext.declarativeNetRequest.getDynamicRules();
+			if (installed_rules.length === 0) {
+				console.warn("[update_checker] Dynamic Rules Missing, Rebuilding from Cache");
+
+				await build_ruleset();
+			} else {
+				console.log(`[update_checker] ${installed_rules.length} Dynamic Rules Already Installed`);
+			}
 		}
-	})
-	.catch((err) => {
-		console.error("[onStartup]", err);
-	});
+	} catch (e) {
+		console.error("[update_checker]", e);
+	}
+}
+
+// first installation
+ext.runtime.onInstalled.addListener(async () => {
+	console.log(`[onInstalled] First Install/Update Triggered (is_firefox? ${is_firefox})`);
+
+	try {
+		try {
+			await ext.declarativeNetRequest.setExtensionActionOptions({
+				displayActionCountAsBadgeText: true
+			});
+		} catch (e) {
+			console.log("[onInstalled] Failed to Enable 'displayActionCountAsBadgeText'");
+		}
+
+		// Ensure a fresh install immediately downloads and installs rules.
+		await update_checker();
+	} catch (e) {
+		console.error("[onInstalled]", e);
+	}
+});
+
+// run update checker on browser startup
+ext.runtime.onStartup.addListener(async () => {
+	console.log("[onStartup] Startup Triggered");
+
+	try {
+		await update_checker();
+	} catch (e) {
+		console.error("[onStartup]", e);
+	}
 });
