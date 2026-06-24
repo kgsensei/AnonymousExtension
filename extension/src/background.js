@@ -87,6 +87,15 @@ async function build_ruleset() {
 		"xmlhttprequest"
 	];
 
+	// non-firefox browsers support these other request types
+	// that also should be blocked if possible
+	if (!is_firefox) {
+		default_resource_types.push(
+			"webbundle",
+			"webtransport"
+		);
+	}
+
 	let next_rule_id = 1;
 
 	for (const line of split_hosts) {
@@ -114,15 +123,6 @@ async function build_ruleset() {
 		}
 
 		const block_resource_types = [ ...default_resource_types ];
-
-		// non-firefox browsers support these other request types
-		// that also should be blocked if possible
-		if (!is_firefox) {
-			block_resource_types.push(
-				"webbundle",
-				"webtransport"
-			);
-		}
 
 		// if the current block directive is to block the entire
 		// page the include 'main_frame' as a blocked resource type
