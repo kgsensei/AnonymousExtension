@@ -161,8 +161,10 @@ async function replace_dynamic_rules(new_rules) {
 			addRules: new_rules
 		});
 
+		await storage.set_item("rule_count", new_rules.length);
 		console.log(`[replace_dynamic_rules] Installed ${new_rules.length} Rules`);
 	} catch (e) {
+		await storage.set_item("rule_count", 0);
 		console.error("[replace_dynamic_rules]", e);
 		throw e;
 	}
@@ -204,6 +206,23 @@ async function update_checker() {
 		console.error("[update_checker]", e);
 	}
 }
+
+// listen for events from UI component
+ext.runtime.onMessage.addListener((message, _, sendResponse) => {
+	if (message === "query-version") {
+		storage.get_item("local_version")
+			.then((r) => r.trim())
+			.then((r) =>
+				sendResponse(`${ext.runtime.getManifest().version}x${r}`));
+	}
+
+	if (message === "query-rule-count") {
+		storage.get_item("rule_count")
+			.then((r) => sendResponse(r));
+	}
+
+	return true;
+});
 
 // first installation
 ext.runtime.onInstalled.addListener(async () => {

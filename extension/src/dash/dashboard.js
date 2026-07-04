@@ -1,4 +1,11 @@
 (() => {
+	// configuration and browser compatibility
+	const is_firefox =
+		typeof browser === "object" &&
+		typeof browser.runtime === "object";
+	const ext = is_firefox ? browser : chrome;
+
+	// translation support
 	function localizeHtmlPage() {
 		const objects = document.getElementsByClassName('translate');
 
@@ -13,5 +20,17 @@
 		}
 	}
 
+	// fetch version and rule count
+	function queryBackgroundData() {
+		ext.runtime.sendMessage("query-version", (version) => {
+			document.getElementById("query_res_version").innerText = version;
+		});
+
+		ext.runtime.sendMessage("query-rule-count", (rule_count) => {
+			document.getElementById("query_res_rule_count").innerText = rule_count;
+		});
+	}
+
 	localizeHtmlPage();
+	queryBackgroundData();
 })();
