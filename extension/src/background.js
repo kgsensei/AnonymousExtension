@@ -180,7 +180,7 @@ async function update_checker() {
 
 		const remote_version = (await res.text()).trim();
 		const local_version = (await storage.get_item("local_version"))?.trim();
-		console.log(remote_version, local_version);
+		console.log("Version Compare", remote_version, local_version);
 
 		if (remote_version !== local_version || DEV_MODE) {
 			console.log(`[update_checker] Updating Ruleset (${local_version} -> ${remote_version})`);
