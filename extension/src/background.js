@@ -11,6 +11,7 @@ const URL_BASE = DEV_MODE
 	? "http://localhost:3000/"
 	: "https://cdn.jsdelivr.net/gh/kgsensei/AnonymousExtension@latest/hosts/";
 
+const WHITELIST_KEY = "whitelist";
 const BLACKLIST = "blacklist.txt";
 const VERSION = "vrCh.txt";
 
@@ -219,6 +220,18 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 	if (message === "query-rule-count") {
 		storage.get_item("rule_count")
 			.then((r) => sendResponse(r));
+	}
+
+	if (message === "query-tab-url") {
+		chrome.tabs.query({
+			active: true,
+			currentWindow: true
+		}, (tabs) => {
+			console.log("tab dump", tabs[0]);
+			var tab = tabs[0];
+			var url = tab.url;
+			sendResponse(url);
+		});
 	}
 
 	return true;

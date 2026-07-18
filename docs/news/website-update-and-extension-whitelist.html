@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf8">
 
-		<title>AnonymousExtension News | Blacklist Update and Maintenance (04/03/25)</title>
+		<title>AnonymousExtension News | Website Update and Extension Whitelist (18/07/26)</title>
 
 		<meta name="description" content="The official AnonymousExtension website. Get news on all the new updates on AnonymousExtension.">
 		<meta name="keywords" content="anonymous, extension, anonymousextension, kgsensei, web, privacy, adblock, chrome, edge, firefox">
@@ -20,7 +20,7 @@
 		<meta name="og:description" content="The official AnonymousExtension website. Get news on all the new updates on AnonymousExtension.">
 
 		<meta name="twitter:card" content="summary_large_image">
-		<meta name="robots" content="index, follow">
+        <meta name="robots" content="index, follow">
 		<meta name="theme-color" content="#00FF38">
 
 		<style>
@@ -64,30 +64,34 @@
 
 		<div class="mt-5 mb-7 w-100 px-4">
 			<div class="m-auto mw-500">
-				<h2 class="h4">Updated Blacklist &amp; New Maintenance Stuff</h2>
-				<i>04/03/25 DMY</i>
+				<h2 class="h4">Website Update &amp; Extension Whitelist</h2>
+				<i>18/07/26 DMY</i>
 				<p class="fs-2">
-					Today we gave the AnonymousExtension blacklist a long needed update.
-					This update changed how everything is set up behind the scenes too.
-					Previously we kept everything in one huge complicated text file, can
-					you imagine that?
+					Updated the official AnonymousExtension website. Brought the numbers
+                    on the homepage up to date and added figure with trackers blocked,
+                    technically we can't know exactly how many trackers were blocked but
+                    1 million seems like a nice whole number (and it's probably low by
+                    a factor of 10 honestly.) Part of the website update was removing the
+					footer and replacing it with some kgsensei branding, this is the plan
+					for most kgsensei websites currently. Might consider adding a better
+					navigation bar for the website now that the footer is gone though.
 					<br><br>
-					So the process has been updated. The blacklist will now be maintained
-					in a JSON file and will be "compiled" into the normal blacklist file.
-					Any changes will be made to the JSON file and will be reflected in the
-					main blacklist file when new releases come out.
+					Started serious work on the AnonymousExtension whitelist feature, this
+                    has been highly requested (basically you can give websites a free pass
+                    and AnonymousExtension won't block them.) This allows you to keep using
+                    AnonymousExtension for most websites, but not on ones you want to
+                    support (via ads) or that get broken because of a false positive.
 					<br><br>
-					Enough about the process, in this update we actually <i>removed</i>
-					websites from the blacklist. Don't worry though! We started using more
-					keyword matching instead. So even though we removed some websites,
-					AnonymousExtension actually blocks even MORE trackers, ads, and
-					ip grabbers than before!
+					Also in this update: you can now see your current extension version,
+                    the blacklist version, and the number of installed rules.
 					<br><br>
-					Given the improved keyword matching and better maintenance processes
-					you should be able to expect even faster (and more) updates in the future.
+					The version might be hard to read, it's {extension version}x{blacklist
+                    version}. So 5.6x7.18.26 means you're running extension version 5.6 and
+                    blacklist version 7.18.26
 					<br><br>
-					Oh yeah, we also updated the website and added a news feed, but your
-					reading on the website right now so you should know that.
+					Also investigating ways that to build a "temporary disable" feature
+                    which would allow you to turn off AnonymousExtension for a short period
+                    (after which it will re-enable itself, so you don't forget.)
 				</p>
 			</div>
 		</div>

@@ -13,6 +13,13 @@
 		"message": "Degraded"
 	},
 
+	"settings_whitelist": {
+		"message": "Whitelist Website"
+	},
+	"whitelist_button": {
+		"message": "Add"
+	},
+
 	"functional_title": {
 		"message": "How do I know it's working?"
 	},

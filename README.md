@@ -13,7 +13,7 @@
 [![Firefox Add-ons](https://img.shields.io/badge/Firefox-Addons-6d5bc3?style=for-the-badge&logo=firefoxbrowser)](https://addons.mozilla.org/en-US/firefox/addon/anonymous-extension)
 [![From Source](https://img.shields.io/badge/From-Source-6d7681?style=for-the-badge&logo=github)](https://github.com/kgsensei/AnonymousExtension/releases/latest)
 
-## Overview
+# Overview
 
 **AnonymousExtension** is a privacy-focused browser extension designed to give
 you more control over your digital footprint. With the explosion of trackers,
@@ -53,9 +53,7 @@ Also See:
 
 - [Official Website](https://anon.kgsensei.dev)
 
-- [Community Discord](https://link.kgsensei.dev/discord)
-
-## Features
+# Features
 
 - Comprehensive Tracker Blocking: Blocks third-party trackers, ads,
   fingerprinting scripts, and more. The block list is constantly being updated
@@ -68,12 +66,15 @@ Also See:
   CPU usage and improving security. This also means AnonymousExtension doesn't
   have to use invasive permissions, like page modification.
 
-## Contributing
+# Contributing
 
-### Contributing to the Blacklist
+## Contributing to the Blacklist
 
 Contributions are very welcome and help everyone stay safer online.  
 The user-friendly block list is located at `/hosts/blacklist_pretty.json`.
+
+Blacklist Hits:  
+![jsDelivr hits (GitHub)](https://img.shields.io/jsdelivr/gh/hm/kgsensei/AnonymousExtension?style=for-the-badge&color=blue)
 
 It's broken up into sections based on the category of the blocking keyword/regex
 pattern. It also has a "block level" field where you can define the behavior for
@@ -95,6 +96,12 @@ Example:
 			"badwebsite.com",
 			"creepymalware.net"
 		]
+	},
+	"Tacking Websites": {
+		"block": "normal",
+		"keywords": [
+			"||ads.example.com"
+		]
 	}
 }
 ```
@@ -104,13 +111,16 @@ Once you've made your changes to `blacklist_pretty.json` you can run the
 `blacklist.txt` file. You can always modify the `blacklist.txt` file directly,
 but it's hard to keep track of everything that way.
 
-### Contributing to the Website
+You can test the extension locally by flipping the DEV flag in
+`/extension/src/background.js` and serving the blacklist from localhost.
+
+## Contributing to the Website
 
 All website code is stored in `/docs/`. It's nothing special, just normal HTML,
 CSS, and JS. Pull requests for improvements, documentation, bug fixes, or design
 changes are all welcome!
 
-### Reporting an Issue
+## Reporting an Issue
 
 If you notice a broken site or a missed tracker then you should open a
 [GitHub issue](https://github.com/kgsensei/AnonymousExtension/issues/new)!
@@ -119,8 +129,7 @@ happen.
 
 ## Legal
 
-AnonymousExtension is a kgsensei project.  
-Copyright &copy; of kgsensei.
+AnonymousExtension is a kgsensei project. Copyright &copy; of kgsensei.
 
 Use responsibly. AnonymousExtension does not guarantee anonymity. It reduces
 tracking, but it will unfortunately never be able to block everything.
