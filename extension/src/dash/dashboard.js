@@ -6,7 +6,7 @@
 	const ext = is_firefox ? browser : chrome;
 
 	// translation support
-	function localizeHtmlPage() {
+	function localize_html_page() {
 		const objects = document.getElementsByClassName('translate');
 
 		for (let i = 0; i < objects.length; i++) {
@@ -20,7 +20,7 @@
 		}
 	}
 
-	function isBrowserOwnedURL(url) {
+	function is_browser_owned_url(url) {
 		if (typeof url !== "string" || url.length === 0)
 			return false;
 
@@ -36,18 +36,18 @@
 	}
 
 	// fetch version and rule count
-	function queryBackgroundData() {
-		ext.runtime.sendMessage("query-version", (version) => {
+	function query_background_data() {
+		ext.runtime.sendMessage({ type: "query", q: "query-version" }, (version) => {
 			document.getElementById("query_res_version").innerText = version;
 		});
 
-		ext.runtime.sendMessage("query-rule-count", (rule_count) => {
+		ext.runtime.sendMessage({ type: "query", q: "query-rule-count" }, (rule_count) => {
 			document.getElementById("query_res_rule_count").innerText = rule_count;
 		});
 
-		ext.runtime.sendMessage("query-tab-url", (url) => {
+		ext.runtime.sendMessage({ type: "query", q: "query-tab-url" }, (url) => {
 			const tab_url_btn = document.getElementById("whitelist_button");
-			const browser_url = isBrowserOwnedURL(url);
+			const browser_url = is_browser_owned_url(url);
 
 			if (browser_url) {
 				tab_url_btn.classList.add("warning");
@@ -60,6 +60,14 @@
 		});
 	}
 
-	localizeHtmlPage();
-	queryBackgroundData();
+	function whitelist_domain(domain) {
+		ext.runtime.sendMessage({ type: "whitelist", domain: "haaafadghea" }, (result) => {
+			if (result.success === true) {
+				query_background_data(); // update rule count if success
+			}
+		});
+	}
+
+	localize_html_page();
+	query_background_data();
 })();

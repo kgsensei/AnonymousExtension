@@ -99,6 +99,7 @@ async function build_ruleset() {
 
 	let next_rule_id = 1;
 
+	// handle blacklist rules
 	for (const line of split_hosts) {
 		let filter = line.trim();
 
@@ -144,6 +145,9 @@ async function build_ruleset() {
 			}
 		});
 	}
+
+	// handle whitelist urls
+	// ...
 
 	await replace_dynamic_rules(new_rules);
 }
@@ -208,30 +212,73 @@ async function update_checker() {
 	}
 }
 
+async function add_to_whitelist(domain) {
+	// the rule id's start at 1 in build_ruleset so
+	// if we get the current number of rules and add
+	// 1 to them then the id should be the next valid
+	// number, this way we can add whitelist rules without
+	// having to rebuild the entire blacklist too.
+	const current_rules = await storage.get_item("rule_count");
+	const current_id = Number(current_rules) + 1;
+
+	const new_whitelist_rule = [{
+		id: current_id,
+		priority: 2, // higher priority for whitelist
+
+		condition: {
+			urlFilter: `||${domain}/*`,
+			resourceTypes: "main_frame"
+		},
+
+		action: {
+			type: "allowAllRequests" // allow ALL frame requests
+		}
+	}];
+
+	try {
+		await ext.declarativeNetRequest.updateDynamicRules({
+			addRules: new_whitelist_rule
+		});
+
+		await storage.set_item("rule_count", current_id);
+		console.log(`[add_to_whitelist] Installed 1 Rule to Whitelist`);
+	} catch (e) {
+		await storage.set_item("rule_count", current_rules);
+		console.error("[add_to_whitelist]", e);
+	}
+}
+
 // listen for events from UI component
 ext.runtime.onMessage.addListener((message, _, sendResponse) => {
-	if (message === "query-version") {
-		storage.get_item("local_version")
-			.then((r) => r.trim())
-			.then((r) =>
-				sendResponse(`${ext.runtime.getManifest().version}x${r}`));
+	if (message.type === "query") {
+		if (message.q === "query-version") {
+			storage.get_item("local_version")
+				.then((r) => r.trim())
+				.then((r) =>
+					sendResponse(`${ext.runtime.getManifest().version}x${r}`));
+		}
+
+		if (message.q === "query-rule-count") {
+			storage.get_item("rule_count")
+				.then((r) => sendResponse(r));
+		}
+
+		if (message.q === "query-tab-url") {
+			chrome.tabs.query({
+				active: true,
+				currentWindow: true
+			}, (tabs) => {
+				console.log("tab dump", tabs[0]);
+				var tab = tabs[0];
+				var url = tab.url;
+				sendResponse(url);
+			});
+		}
 	}
 
-	if (message === "query-rule-count") {
-		storage.get_item("rule_count")
-			.then((r) => sendResponse(r));
-	}
-
-	if (message === "query-tab-url") {
-		chrome.tabs.query({
-			active: true,
-			currentWindow: true
-		}, (tabs) => {
-			console.log("tab dump", tabs[0]);
-			var tab = tabs[0];
-			var url = tab.url;
-			sendResponse(url);
-		});
+	if (message.type === "whitelist") {
+		add_to_whitelist(message.domain);
+		sendResponse({ success: true });
 	}
 
 	return true;
