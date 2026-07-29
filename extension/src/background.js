@@ -338,27 +338,33 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 				currentWindow: true
 			}, (tabs) => {
 				const url = tabs[0]?.url;
-				sendResponse(url);
+				const domain = url ? url.split("://")[1].split("/")[0] : "";
+				storage.get_item(WHITELIST_KEY)
+					.then((r) => JSON.parse(r ?? "{}"))
+					.then((r) => sendResponse({
+						url: url,
+						is_whitelisted: r.hasOwnProperty(domain)
+					}));
 			});
-		}
-
-		if (message.q === "query-whitelist") {
-			storage.get_item(WHITELIST_KEY)
-				.then((r) => JSON.parse(r ?? "{}"))
-				.then((r) => sendResponse(r));
 		}
 	}
 
 	if (message.type === "whitelist-add") {
 		add_to_whitelist(message.domain)
 			.then(() => sendResponse({ success: true }))
-			.catch((e) => sendResponse({ success: false, error: e.message }));
+			.catch((e) => sendResponse({
+				success: false,
+				error: e.message
+			}));
 	}
 
 	if (message.type === "whitelist-remove") {
 		remove_from_whitelist(message.domain)
 			.then(() => sendResponse({ success: true }))
-			.catch((e) => sendResponse({ success: false, error: e.message }));
+			.catch((e) => sendResponse({
+				success: false,
+				error: e.message
+			}));
 	}
 
 	return true;

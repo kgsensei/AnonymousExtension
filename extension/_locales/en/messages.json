@@ -14,10 +14,16 @@
 	},
 
 	"settings_whitelist": {
-		"message": "Whitelist Website"
+		"message": "Whitelist Management"
 	},
-	"whitelist_button": {
+	"whitelist_button_add": {
 		"message": "Add"
+	},
+	"whitelist_button_remove": {
+		"message": "Remove"
+	},
+	"whitelist_button_unavailable": {
+		"message": "Cannot Whitelist this Tab"
 	},
 
 	"functional_title": {

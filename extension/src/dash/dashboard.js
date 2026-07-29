@@ -5,6 +5,9 @@
 		typeof browser.runtime === "object";
 	const ext = is_firefox ? browser : chrome;
 
+	const URL_ATTR_KEY = "data-url";
+	const MODE_ATTR_KEY = "data-whitelist-mode";
+
 	// translation support
 	function localize_html_page() {
 		const objects = document.getElementsByClassName('translate');
@@ -13,7 +16,7 @@
 			let obj = objects[i];
 			let valStrH = obj.innerText.toString();
 			let valNewH = valStrH.replace(/__MSG_(\w+)__/g, (match, v1) => {
-				return v1 ? chrome.i18n.getMessage(v1) : "";
+				return v1 ? ext.i18n.getMessage(v1) : "";
 			});
 
 			if (valNewH != valStrH) obj.innerText = valNewH;
@@ -45,23 +48,41 @@
 			document.getElementById("query_res_rule_count").innerText = rule_count;
 		});
 
-		ext.runtime.sendMessage({ type: "query", q: "query-tab-url" }, (url) => {
+		ext.runtime.sendMessage({ type: "query", q: "query-tab-url" }, (res) => {
+			const protection_status = document.getElementById("settings_tracking_protection_status");
 			const tab_url_btn = document.getElementById("whitelist_button");
-			const browser_url = is_browser_owned_url(url);
+			const parsed_url = res.url.split("://")[1].split("/")[0];
+			const browser_url = is_browser_owned_url(res.url);
 
 			if (browser_url) {
 				tab_url_btn.classList.add("warning");
 				tab_url_btn.classList.remove("secondary");
-				tab_url_btn.innerText = "Cannot Whitelist this Tab";
-			} else {
-				const parsed_url = url.split("://")[1].split("/")[0];
-				document.getElementById("query_tab_url").innerText = parsed_url;
+				tab_url_btn.innerText = ext.i18n.getMessage("whitelist_button_unavailable");
+				return;
 			}
+
+			if (res.is_whitelisted) {
+				protection_status.classList.add("warning");
+				protection_status.classList.remove("secondary");
+				protection_status.innerText = ext.i18n.getMessage("settings_tracking_protection_low");
+			}
+
+			tab_url_btn.innerText =
+				`${ext.i18n.getMessage(
+					"whitelist_button_" + res.is_whitelisted
+						? "remove"
+						: "add")
+				}: ${parsed_url}`;
+			tab_url_btn.setAttribute(URL_ATTR_KEY, parsed_url);
+			tab_url_btn.setAttribute(MODE_ATTR_KEY, res.is_whitelisted ? "remove" : "add");
 		});
 	}
 
-	function whitelist_domain(domain) {
-		ext.runtime.sendMessage({ type: "whitelist-add", domain: domain }, (result) => {
+	function whitelist_domain() {
+		const tab_url_btn = document.getElementById("whitelist_button");
+		const domain = tab_url_btn.getAttribute(URL_ATTR_KEY);
+		const mode = tab_url_btn.getAttribute(MODE_ATTR_KEY);
+		ext.runtime.sendMessage({ type: `whitelist-${mode}`, domain: domain }, (result) => {
 			query_background_data(); // update rule count on result
 		});
 	}
@@ -69,12 +90,7 @@
 	document.addEventListener("DOMContentLoaded", () => {
 		// dom loaded so we can hook buttons
 		document.getElementById("whitelist_button").addEventListener("click", () => {
-			const domain = document.getElementById("query_tab_url").textContent.trim();
-
-			if (domain === "anon.kgsensei.dev" || domain.length === 0)
-				return;
-
-			whitelist_domain(domain);
+			whitelist_domain();
 		});
 	});
 
