@@ -4,14 +4,19 @@ const is_firefox =
 	typeof browser.runtime === "object";
 const ext = is_firefox ? browser : chrome;
 
-// constants
+// dev mode flag
 const DEV_MODE = false; // make sure this is false on prod
 
 const URL_BASE = DEV_MODE
 	? "http://localhost:3000/"
 	: "https://cdn.jsdelivr.net/gh/kgsensei/AnonymousExtension@latest/hosts/";
 
+// storage keys
 const WHITELIST_KEY = "whitelist";
+const RULE_COUNT_KEY = "rule_count";
+const LOCAL_VERSION_KEY = "local_version"
+
+// url base extensions
 const BLACKLIST = "blacklist.txt";
 const VERSION = "vrCh.txt";
 
@@ -119,11 +124,6 @@ async function build_ruleset() {
 			continue;
 		}
 
-		if (new_rules.length >= MAX_DYNAMIC_RULES) {
-			console.warn(`[build_ruleset] Reached Rule Limit: ${MAX_DYNAMIC_RULES}`);
-			break;
-		}
-
 		const block_resource_types = [ ...default_resource_types ];
 
 		// if the current block directive is to block the entire
@@ -146,8 +146,36 @@ async function build_ruleset() {
 		});
 	}
 
-	// handle whitelist urls
-	// ...
+	// handle whitelist rules
+	const whitelist = await storage.get_item(WHITELIST_KEY);
+	if (typeof whitelist === "string" && whitelist.length > 0) {
+		// parsed_whitelist must be mutable since the rule
+		// id's may change when the ruleset is rebuilt
+		let parsed_whitelist = JSON.parse(whitelist);
+		const whitelist_domains = Object.keys(parsed_whitelist);
+
+		for (let i = 0; i < whitelist_domains.length; i++) {
+			new_rules.push({
+				id: next_rule_id,
+				priority: 2, // higher priority for whitelist
+
+				condition: {
+					urlFilter: `||${whitelist_domains[i]}/*`,
+					resourceTypes: [ "main_frame" ]
+				},
+
+				action: {
+					type: "allowAllRequests" // allow ALL frame requests
+				}
+			});
+
+			// update whitelist rule id since it's possibly different now
+			parsed_whitelist[whitelist_domains[i]] = next_rule_id;
+			next_rule_id++;
+		}
+
+		await storage.set_item(WHITELIST_KEY, JSON.stringify(parsed_whitelist));
+	}
 
 	await replace_dynamic_rules(new_rules);
 }
@@ -166,10 +194,10 @@ async function replace_dynamic_rules(new_rules) {
 			addRules: new_rules
 		});
 
-		await storage.set_item("rule_count", new_rules.length);
+		await storage.set_item(RULE_COUNT_KEY, new_rules.length);
 		console.log(`[replace_dynamic_rules] Installed ${new_rules.length} Rules`);
 	} catch (e) {
-		await storage.set_item("rule_count", 0);
+		await storage.set_item(RULE_COUNT_KEY, 0);
 		console.error("[replace_dynamic_rules]", e);
 		throw e;
 	}
@@ -184,7 +212,7 @@ async function update_checker() {
 			throw new Error(`Failed to Fetch Version: Status: ${res.status}`);
 
 		const remote_version = (await res.text()).trim();
-		const local_version = (await storage.get_item("local_version"))?.trim();
+		const local_version = (await storage.get_item(LOCAL_VERSION_KEY))?.trim();
 		console.log("Version Compare", remote_version, local_version);
 
 		if (remote_version !== local_version || DEV_MODE) {
@@ -193,7 +221,7 @@ async function update_checker() {
 			await download_ruleset();
 
 			await storage.set_item(
-				"local_version",
+				LOCAL_VERSION_KEY,
 				remote_version
 			);
 		} else {
@@ -201,7 +229,6 @@ async function update_checker() {
 			const installed_rules = await ext.declarativeNetRequest.getDynamicRules();
 			if (installed_rules.length === 0) {
 				console.warn("[update_checker] Dynamic Rules Missing, Rebuilding from Cache");
-
 				await build_ruleset();
 			} else {
 				console.log(`[update_checker] ${installed_rules.length} Dynamic Rules Already Installed`);
@@ -218,8 +245,8 @@ async function add_to_whitelist(domain) {
 	// 1 to them then the id should be the next valid
 	// number, this way we can add whitelist rules without
 	// having to rebuild the entire blacklist too.
-	const current_rules = await storage.get_item("rule_count");
-	const current_id = Number(current_rules) + 1;
+	const installed_rules = await ext.declarativeNetRequest.getDynamicRules();
+	const current_id = installed_rules.length + 1;
 
 	const new_whitelist_rule = [{
 		id: current_id,
@@ -227,7 +254,7 @@ async function add_to_whitelist(domain) {
 
 		condition: {
 			urlFilter: `||${domain}/*`,
-			resourceTypes: "main_frame"
+			resourceTypes: [ "main_frame" ]
 		},
 
 		action: {
@@ -240,45 +267,98 @@ async function add_to_whitelist(domain) {
 			addRules: new_whitelist_rule
 		});
 
-		await storage.set_item("rule_count", current_id);
-		console.log(`[add_to_whitelist] Installed 1 Rule to Whitelist`);
+		await storage.set_item(RULE_COUNT_KEY, current_id);
+		console.log("[add_to_whitelist] Installed 1 Rule to Whitelist");
 	} catch (e) {
-		await storage.set_item("rule_count", current_rules);
 		console.error("[add_to_whitelist]", e);
 	}
+
+	const whitelist = await storage.get_item(WHITELIST_KEY);
+	if (typeof whitelist !== "string" || whitelist.length === 0) {
+		// if whitelist doesn't exist then create it and store
+		// the currently added domain and rule id
+		await storage.set_item(WHITELIST_KEY, JSON.stringify({
+			[domain]: current_id
+		}));
+	} else {
+		// whitelist exists, so add the rule to it
+		let parsed_whitelist = JSON.parse(whitelist);
+		parsed_whitelist[domain] = current_id; // add current whitelist rule
+		await storage.set_item(WHITELIST_KEY, JSON.stringify(parsed_whitelist));
+	}
+}
+
+async function remove_from_whitelist(domain) {
+	const whitelist = await storage.get_item(WHITELIST_KEY);
+	if (typeof whitelist !== "string" || whitelist.length === 0)
+		return;
+
+	let parsed_whitelist = JSON.parse(whitelist);
+
+	// only remove if the id is valid and the domain is in the whitelist
+	let rule_id = parsed_whitelist[domain];
+	if (typeof rule_id !== "number")
+		return;
+
+	// remove domain from whitelist
+	delete parsed_whitelist[domain];
+
+	// remove whitelist rule from dynamic rules list
+	await ext.declarativeNetRequest.updateDynamicRules({
+		removeRuleIds: [ rule_id ]
+	});
+
+	// update the stored whitelist
+	await storage.set_item(WHITELIST_KEY, JSON.stringify(parsed_whitelist));
+
+	// updated the stored rule count
+	const installed_rules = await ext.declarativeNetRequest.getDynamicRules();
+	await storage.set_item(RULE_COUNT_KEY, installed_rules.length);
 }
 
 // listen for events from UI component
 ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 	if (message.type === "query") {
 		if (message.q === "query-version") {
-			storage.get_item("local_version")
-				.then((r) => r.trim())
+			storage.get_item(LOCAL_VERSION_KEY)
+				.then((r) => (r ?? "").trim())
 				.then((r) =>
-					sendResponse(`${ext.runtime.getManifest().version}x${r}`));
+					sendResponse(`${ ext.runtime.getManifest().version }x${ r }`)
+				);
 		}
 
 		if (message.q === "query-rule-count") {
-			storage.get_item("rule_count")
+			storage.get_item(RULE_COUNT_KEY)
 				.then((r) => sendResponse(r));
 		}
 
 		if (message.q === "query-tab-url") {
-			chrome.tabs.query({
+			ext.tabs.query({
 				active: true,
 				currentWindow: true
 			}, (tabs) => {
-				console.log("tab dump", tabs[0]);
-				var tab = tabs[0];
-				var url = tab.url;
+				const url = tabs[0]?.url;
 				sendResponse(url);
 			});
 		}
+
+		if (message.q === "query-whitelist") {
+			storage.get_item(WHITELIST_KEY)
+				.then((r) => JSON.parse(r ?? "{}"))
+				.then((r) => sendResponse(r));
+		}
 	}
 
-	if (message.type === "whitelist") {
-		add_to_whitelist(message.domain);
-		sendResponse({ success: true });
+	if (message.type === "whitelist-add") {
+		add_to_whitelist(message.domain)
+			.then(() => sendResponse({ success: true }))
+			.catch((e) => sendResponse({ success: false, error: e.message }));
+	}
+
+	if (message.type === "whitelist-remove") {
+		remove_from_whitelist(message.domain)
+			.then(() => sendResponse({ success: true }))
+			.catch((e) => sendResponse({ success: false, error: e.message }));
 	}
 
 	return true;
@@ -287,6 +367,7 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 // first installation
 ext.runtime.onInstalled.addListener(async () => {
 	console.log(`[onInstalled] First Install/Update Triggered (is_firefox? ${is_firefox})`);
+	await storage.set_item(WHITELIST_KEY, JSON.stringify({})); // save an empty object on installation
 
 	try {
 		try {

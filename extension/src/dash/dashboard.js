@@ -61,12 +61,22 @@
 	}
 
 	function whitelist_domain(domain) {
-		ext.runtime.sendMessage({ type: "whitelist", domain: "haaafadghea" }, (result) => {
-			if (result.success === true) {
-				query_background_data(); // update rule count if success
-			}
+		ext.runtime.sendMessage({ type: "whitelist-add", domain: domain }, (result) => {
+			query_background_data(); // update rule count on result
 		});
 	}
+
+	document.addEventListener("DOMContentLoaded", () => {
+		// dom loaded so we can hook buttons
+		document.getElementById("whitelist_button").addEventListener("click", () => {
+			const domain = document.getElementById("query_tab_url").textContent.trim();
+
+			if (domain === "anon.kgsensei.dev" || domain.length === 0)
+				return;
+
+			whitelist_domain(domain);
+		});
+	});
 
 	localize_html_page();
 	query_background_data();
