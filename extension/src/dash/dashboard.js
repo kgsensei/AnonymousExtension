@@ -64,29 +64,30 @@
 			}
 
 			if (res.is_whitelisted) {
+				// protection status
 				protection_status.classList.add("warning");
 				protection_status.classList.remove("secondary");
 				protection_status.innerText = ext.i18n.getMessage("settings_tracking_protection_low");
+
+				// whitelist button
+				tab_url_btn.classList.add("warning");
+				tab_url_btn.classList.remove("secondary");
+				tab_url_btn.innerText =
+					`${ext.i18n.getMessage("whitelist_button_remove")}: ${parsed_url}`;
 			} else {
+				// protection status
 				protection_status.classList.add("secondary");
 				protection_status.classList.remove("warning");
 				protection_status.innerText = ext.i18n.getMessage("settings_tracking_protection_on");
-			}
 
-			if (res.is_whitelisted) {
-				tab_url_btn.classList.add("warning");
-				tab_url_btn.classList.remove("secondary");
-			} else {
+				// whitelist button
 				tab_url_btn.classList.add("secondary");
 				tab_url_btn.classList.remove("warning");
+				tab_url_btn.innerText =
+					`${ext.i18n.getMessage("whitelist_button_add")}: ${parsed_url}`;
 			}
 
-			tab_url_btn.innerText =
-				`${ext.i18n.getMessage(
-					"whitelist_button_" + res.is_whitelisted
-						? "remove"
-						: "add")
-				}: ${parsed_url}`;
+			// whitelist button attributes
 			tab_url_btn.setAttribute(URL_ATTR_KEY, parsed_url);
 			tab_url_btn.setAttribute(MODE_ATTR_KEY, res.is_whitelisted ? "remove" : "add");
 		});
