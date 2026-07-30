@@ -1,0 +1,45 @@
+{
+	"settings_title": {
+		"message": "设置"
+	},
+
+	"settings_tracking_protection": {
+		"message": "跟踪保护"
+	},
+	"settings_tracking_protection_on": {
+		"message": "已启用"
+	},
+	"settings_tracking_protection_low": {
+		"message": "已降低"
+	},
+
+	"settings_whitelist": {
+		"message": "白名单管理"
+	},
+	"whitelist_button_add": {
+		"message": "添加"
+	},
+	"whitelist_button_remove": {
+		"message": "移除"
+	},
+	"whitelist_button_unavailable": {
+		"message": "无法将此标签页添加到白名单"
+	},
+
+	"functional_title": {
+		"message": "如何确认扩展正在正常工作？"
+	},
+	"functional_desc_gekko_one": {
+		"message": "请访问"
+	},
+	"functional_desc_gekko_two": {
+		"message": "如果页面显示 AnonymousExtension 已启用，则说明扩展正在正常工作！"
+	},
+
+	"link_report_issue": {
+		"message": "报告问题"
+	},
+	"link_source_code": {
+		"message": "源代码"
+	}
+}

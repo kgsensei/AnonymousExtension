@@ -23,7 +23,7 @@
 		"message": "Remove"
 	},
 	"whitelist_button_unavailable": {
-		"message": "Cannot Whitelist this Tab"
+		"message": "Unable to Whitelist this Tab"
 	},
 
 	"functional_title": {
@@ -37,7 +37,7 @@
 	},
 
 	"link_report_issue": {
-		"message": "Report Issue"
+		"message": "Report an Issue"
 	},
 	"link_source_code": {
 		"message": "Source Code"

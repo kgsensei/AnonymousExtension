@@ -1,0 +1,45 @@
+{
+	"settings_title": {
+		"message": "Настройки"
+	},
+
+	"settings_tracking_protection": {
+		"message": "Защита от отслеживания"
+	},
+	"settings_tracking_protection_on": {
+		"message": "Активна"
+	},
+	"settings_tracking_protection_low": {
+		"message": "Ограничена"
+	},
+
+	"settings_whitelist": {
+		"message": "Управление белым списком"
+	},
+	"whitelist_button_add": {
+		"message": "Добавить"
+	},
+	"whitelist_button_remove": {
+		"message": "Удалить"
+	},
+	"whitelist_button_unavailable": {
+		"message": "Не удалось добавить эту вкладку в белый список"
+	},
+
+	"functional_title": {
+		"message": "Как узнать, что расширение работает?"
+	},
+	"functional_desc_gekko_one": {
+		"message": "Попробуйте открыть"
+	},
+	"functional_desc_gekko_two": {
+		"message": "Если на странице указано, что AnonymousExtension включено, значит, всё работает!"
+	},
+
+	"link_report_issue": {
+		"message": "Сообщить о проблеме"
+	},
+	"link_source_code": {
+		"message": "Исходный код"
+	}
+}

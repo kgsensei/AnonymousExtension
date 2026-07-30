@@ -1,0 +1,45 @@
+{
+	"settings_title": {
+		"message": "設定"
+	},
+
+	"settings_tracking_protection": {
+		"message": "トラッキング防止"
+	},
+	"settings_tracking_protection_on": {
+		"message": "有効"
+	},
+	"settings_tracking_protection_low": {
+		"message": "低下"
+	},
+
+	"settings_whitelist": {
+		"message": "ホワイトリストの管理"
+	},
+	"whitelist_button_add": {
+		"message": "追加"
+	},
+	"whitelist_button_remove": {
+		"message": "削除"
+	},
+	"whitelist_button_unavailable": {
+		"message": "このタブをホワイトリストに追加できません"
+	},
+
+	"functional_title": {
+		"message": "正常に動作しているか確認するには？"
+	},
+	"functional_desc_gekko_one": {
+		"message": "次のページにアクセスしてみてください"
+	},
+	"functional_desc_gekko_two": {
+		"message": "ページに「AnonymousExtension が有効です」と表示されれば、正常に動作しています。"
+	},
+
+	"link_report_issue": {
+		"message": "問題を報告する"
+	},
+	"link_source_code": {
+		"message": "ソースコード"
+	}
+}

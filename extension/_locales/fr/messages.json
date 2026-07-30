@@ -4,17 +4,30 @@
 	},
 
 	"settings_tracking_protection": {
-		"message": "Protection contre le pistage"
+		"message": "Protection Contre le Pistage"
 	},
 	"settings_tracking_protection_on": {
-		"message": "Activé"
+		"message": "Active"
 	},
 	"settings_tracking_protection_low": {
 		"message": "Dégradé"
 	},
 
+	"settings_whitelist": {
+		"message": "Gestion de la Liste Blanche"
+	},
+	"whitelist_button_add": {
+		"message": "Ajouter"
+	},
+	"whitelist_button_remove": {
+		"message": "Supprimer"
+	},
+	"whitelist_button_unavailable": {
+		"message": "Impossible d'ajouter cet onglet à la liste blanche"
+	},
+
 	"functional_title": {
-		"message": "Comment puis-je savoir si cela fonctionne?"
+		"message": "Comment savoir si cela fonctionne?"
 	},
 	"functional_desc_gekko_one": {
 		"message": "Essayez de visiter"
@@ -27,6 +40,6 @@
 		"message": "Signaler un problème"
 	},
 	"link_source_code": {
-		"message": "Code Source"
+		"message": "Code source"
 	}
 }

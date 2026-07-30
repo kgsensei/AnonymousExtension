@@ -1,0 +1,45 @@
+{
+	"settings_title": {
+		"message": "Definições"
+	},
+
+	"settings_tracking_protection": {
+		"message": "Proteção Contra Rastreamento"
+	},
+	"settings_tracking_protection_on": {
+		"message": "Ativa"
+	},
+	"settings_tracking_protection_low": {
+		"message": "Reduzida"
+	},
+
+	"settings_whitelist": {
+		"message": "Gestão da lista de permissões"
+	},
+	"whitelist_button_add": {
+		"message": "Adicionar"
+	},
+	"whitelist_button_remove": {
+		"message": "Remover"
+	},
+	"whitelist_button_unavailable": {
+		"message": "Não é possível adicionar este separador à lista de permissões"
+	},
+
+	"functional_title": {
+		"message": "Como sei que está a funcionar?"
+	},
+	"functional_desc_gekko_one": {
+		"message": "Experimente visitar"
+	},
+	"functional_desc_gekko_two": {
+		"message": "Se a página indicar que o AnonymousExtension está ativado, então está a funcionar!"
+	},
+
+	"link_report_issue": {
+		"message": "Reportar um problema"
+	},
+	"link_source_code": {
+		"message": "Código-fonte"
+	}
+}

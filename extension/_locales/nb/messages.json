@@ -1,0 +1,45 @@
+{
+	"settings_title": {
+		"message": "Innstillinger"
+	},
+
+	"settings_tracking_protection": {
+		"message": "Sporingsbeskyttelse"
+	},
+	"settings_tracking_protection_on": {
+		"message": "Aktiv"
+	},
+	"settings_tracking_protection_low": {
+		"message": "Redusert"
+	},
+
+	"settings_whitelist": {
+		"message": "Administrer hviteliste"
+	},
+	"whitelist_button_add": {
+		"message": "Legg til"
+	},
+	"whitelist_button_remove": {
+		"message": "Fjern"
+	},
+	"whitelist_button_unavailable": {
+		"message": "Kan ikke legge denne fanen til i hvitelisten"
+	},
+
+	"functional_title": {
+		"message": "Hvordan vet jeg at det fungerer?"
+	},
+	"functional_desc_gekko_one": {
+		"message": "Prøv å besøke"
+	},
+	"functional_desc_gekko_two": {
+		"message": "Hvis siden viser at AnonymousExtension er aktivert, fungerer den!"
+	},
+
+	"link_report_issue": {
+		"message": "Rapporter et problem"
+	},
+	"link_source_code": {
+		"message": "Kildekode"
+	}
+}

@@ -1,0 +1,45 @@
+{
+	"settings_title": {
+		"message": "সেটিংস"
+	},
+
+	"settings_tracking_protection": {
+		"message": "ট্র্যাকিং সুরক্ষা"
+	},
+	"settings_tracking_protection_on": {
+		"message": "সক্রিয়"
+	},
+	"settings_tracking_protection_low": {
+		"message": "হ্রাসপ্রাপ্ত"
+	},
+
+	"settings_whitelist": {
+		"message": "অনুমতি তালিকা পরিচালনা"
+	},
+	"whitelist_button_add": {
+		"message": "যোগ করুন"
+	},
+	"whitelist_button_remove": {
+		"message": "সরান"
+	},
+	"whitelist_button_unavailable": {
+		"message": "এই ট্যাবটি অনুমতি তালিকায় যোগ করা যাবে না"
+	},
+
+	"functional_title": {
+		"message": "আমি কীভাবে বুঝব যে এটি কাজ করছে?"
+	},
+	"functional_desc_gekko_one": {
+		"message": "এই ওয়েবসাইটে যান"
+	},
+	"functional_desc_gekko_two": {
+		"message": "যদি পৃষ্ঠায় দেখায় যে AnonymousExtension সক্রিয় রয়েছে, তাহলে এটি সঠিকভাবে কাজ করছে!"
+	},
+
+	"link_report_issue": {
+		"message": "সমস্যা জানান"
+	},
+	"link_source_code": {
+		"message": "সোর্স কোড"
+	}
+}

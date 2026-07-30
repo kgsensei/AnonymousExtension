@@ -4,29 +4,42 @@
 	},
 
 	"settings_tracking_protection": {
-		"message": "Protection de Seguimiento"
+		"message": "Protección Contra el Rastreo"
 	},
 	"settings_tracking_protection_on": {
-		"message": "Encendido"
+		"message": "Activa"
 	},
 	"settings_tracking_protection_low": {
-		"message": "Degradar"
+		"message": "Reducida"
+	},
+
+	"settings_whitelist": {
+		"message": "Administración de la Lista Blanca"
+	},
+	"whitelist_button_add": {
+		"message": "Agregar"
+	},
+	"whitelist_button_remove": {
+		"message": "Eliminar"
+	},
+	"whitelist_button_unavailable": {
+		"message": "No se puede añadir esta pestaña a la lista blanca"
 	},
 
 	"functional_title": {
-		"message": "¿Cómo se que está trabajando?"
+		"message": "¿Cómo sé que está funcionando?"
 	},
 	"functional_desc_gekko_one": {
-		"message": "Trata visitando"
+		"message": "Prueba a visitar"
 	},
 	"functional_desc_gekko_two": {
-		"message": "Si el página dice que fue bloqueada de AnonymousExtension, está sirviendo!"
+		"message": "Si la página indica que AnonymousExtension está habilitada, ¡está funcionando!"
 	},
 
 	"link_report_issue": {
-		"message": "Reporta Problema"
+		"message": "Informar de un problema"
 	},
 	"link_source_code": {
-		"message": "Fuente Código"
+		"message": "Código fuente"
 	}
 }

@@ -1,0 +1,45 @@
+{
+	"settings_title": {
+		"message": "सेटिंग्स"
+	},
+
+	"settings_tracking_protection": {
+		"message": "ट्रैकिंग सुरक्षा"
+	},
+	"settings_tracking_protection_on": {
+		"message": "सक्रिय"
+	},
+	"settings_tracking_protection_low": {
+		"message": "कमज़ोर"
+	},
+
+	"settings_whitelist": {
+		"message": "अनुमति सूची प्रबंधन"
+	},
+	"whitelist_button_add": {
+		"message": "जोड़ें"
+	},
+	"whitelist_button_remove": {
+		"message": "हटाएँ"
+	},
+	"whitelist_button_unavailable": {
+		"message": "इस टैब को अनुमति सूची में नहीं जोड़ा जा सकता"
+	},
+
+	"functional_title": {
+		"message": "मुझे कैसे पता चलेगा कि यह काम कर रहा है?"
+	},
+	"functional_desc_gekko_one": {
+		"message": "इस वेबसाइट पर जाएँ"
+	},
+	"functional_desc_gekko_two": {
+		"message": "यदि पेज पर AnonymousExtension सक्षम दिखता है, तो यह सही तरीके से काम कर रहा है!"
+	},
+
+	"link_report_issue": {
+		"message": "समस्या की रिपोर्ट करें"
+	},
+	"link_source_code": {
+		"message": "स्रोत कोड"
+	}
+}
