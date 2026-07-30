@@ -51,8 +51,10 @@
 		ext.runtime.sendMessage({ type: "query", q: "query-tab-url" }, (res) => {
 			const protection_status = document.getElementById("settings_tracking_protection_status");
 			const tab_url_btn = document.getElementById("whitelist_button");
-			const parsed_url = res.url.split("://")[1].split("/")[0];
 			const browser_url = is_browser_owned_url(res.url);
+			const parsed_url = res.url.indexOf("://") != -1 ?
+				res.url.split("://")[1].split("/")[0] :
+				res.url.split("/")[0];
 
 			if (browser_url) {
 				tab_url_btn.classList.add("warning");
@@ -65,6 +67,18 @@
 				protection_status.classList.add("warning");
 				protection_status.classList.remove("secondary");
 				protection_status.innerText = ext.i18n.getMessage("settings_tracking_protection_low");
+			} else {
+				protection_status.classList.add("secondary");
+				protection_status.classList.remove("warning");
+				protection_status.innerText = ext.i18n.getMessage("settings_tracking_protection_on");
+			}
+
+			if (res.is_whitelisted) {
+				tab_url_btn.classList.add("warning");
+				tab_url_btn.classList.remove("secondary");
+			} else {
+				tab_url_btn.classList.add("secondary");
+				tab_url_btn.classList.remove("warning");
 			}
 
 			tab_url_btn.innerText =
@@ -82,6 +96,10 @@
 		const tab_url_btn = document.getElementById("whitelist_button");
 		const domain = tab_url_btn.getAttribute(URL_ATTR_KEY);
 		const mode = tab_url_btn.getAttribute(MODE_ATTR_KEY);
+
+		if (typeof domain !== "string" || typeof mode !== "string")
+			return;
+
 		ext.runtime.sendMessage({ type: `whitelist-${mode}`, domain: domain }, (result) => {
 			query_background_data(); // update rule count on result
 		});

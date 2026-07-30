@@ -338,7 +338,10 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 				currentWindow: true
 			}, (tabs) => {
 				const url = tabs[0]?.url;
-				const domain = url ? url.split("://")[1].split("/")[0] : "";
+				const domain = url.indexOf("://") != -1 ?
+					url.split("://")[1].split("/")[0] :
+					url.split("/")[0];
+
 				storage.get_item(WHITELIST_KEY)
 					.then((r) => JSON.parse(r ?? "{}"))
 					.then((r) => sendResponse({
