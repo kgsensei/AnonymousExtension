@@ -12,9 +12,16 @@ if os.path.exists(gekko_zip_name):
 	os.remove(gekko_zip_name)
 
 files_global = [
+	"_locales/bn/messages.json",
 	"_locales/en/messages.json",
 	"_locales/es/messages.json",
 	"_locales/fr/messages.json",
+	"_locales/hi/messages.json",
+	"_locales/ja/messages.json",
+	"_locales/nb/messages.json",
+	"_locales/pt/messages.json",
+	"_locales/ru/messages.json",
+	"_locales/zh/messages.json",
 
 	"src/dash/custom.min.css",
 	"src/dash/dashboard.css",
