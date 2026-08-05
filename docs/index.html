@@ -45,8 +45,6 @@
 		<script src="https://kgsensei.dev/js/er.js"></script>
 		<script>window.er_init("anon.kgsensei.dev")</script>
 
-		<script src="https://cdn.jsdelivr.net/gh/kgsensei/devtools@1.2/simple.min.js"></script>
-
 		<link rel="icon" href="/img/icon.png">
 	</head>
 	<body>
@@ -70,12 +68,12 @@
 				</p>
 				<div class="d-flex flex-col w-100">
 					<div class="m-auto center">
-						<a id="get_browser_link" class="txt-normal me-1" target="_blank">
+						<a id="get_browser_link" class="txt-normal me-1" href="https://chromewebstore.google.com/detail/anonymous-extension/dpobhogjdfjlgiejbbojhablmlighflg" target="_blank">
 							<button id="get_browser_name" class="btn btn-lg btn-full fs-5 primary" type="button">
-								Unsupported on Your Browser
+								Get for Chrome
 							</button>
 						</a>
-						<a class="txt-normal" target="_blank" href="https://github.com/kgsensei/AnonymousExtension">
+						<a class="txt-normal" href="https://github.com/kgsensei/AnonymousExtension" target="_blank">
 							<button class="btn btn-lg btn-outline fs-5 secondary mt-2" type="button">
 								Source Code
 							</button>
@@ -133,35 +131,6 @@
 
 		<div id="final">AnonymousExtension is a <a href="https://kgsensei.dev" target="_blank">kgsensei</a> project</div>
 
-		<script>
-			navigator.sayswho = (() => {
-				var N = navigator.appName, ua = navigator.userAgent, tem
-
-				// if IE11+
-				if (new RegExp("Trident/.*rv:([0-9]{1,}[\.0-9]{0,})").exec(ua) !== null) {
-					var M= ["Internet Explorer"]
-					if(M && (tem = ua.match(/rv:([0-9]{1,}[\.0-9]{0,})/)) != null) M[2] = tem[1]
-					M = M? [M[0], M[2]]: [N, navigator.appVersion,'-?']
-					return M
-				}
-
-				var M = ua.match(/(opera|chrome|safari|firefox|msie)\/?\s*(\.?\d+(\.\d+)*)/i)
-				if(M && (tem= ua.match(/version\/([\.\d]+)/i))!= null) M[2]= tem[1]
-				M = M? [M[1], M[2]]: [N, navigator.appVersion,'-?']
-				return M
-			})();
-
-			switch (navigator.sayswho[0]) {
-				case "Firefox":
-					gid("get_browser_name").setHTML("Get for Firefox");
-					gid("get_browser_link").setAttr("href", "https://addons.mozilla.org/addon/anonymous-extension/");
-					break;
-				case "Chrome":
-					gid("get_browser_name").setHTML("Get for Chrome / Edge");
-					gid("get_browser_link").setAttr("href", "https://chromewebstore.google.com/detail/anonymous-extension/dpobhogjdfjlgiejbbojhablmlighflg");
-				default:
-					break;
-			}
-		</script>
+		<script src="/js/selector.js" type="module"></script>
 	</body>
 </html>
