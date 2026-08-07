@@ -339,7 +339,7 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 
 		if (message.q === "query-rule-count") {
 			storage.get_item(RULE_COUNT_KEY)
-				.then((r) => sendResponse(r));
+				.then((r) => sendResponse(r ?? "[error]"));
 		}
 
 		if (message.q === "query-tab-url") {
@@ -357,6 +357,10 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 					.then((r) => sendResponse({
 						url: url,
 						is_whitelisted: r.hasOwnProperty(domain)
+					}))
+					.catch((e) => sendResponse({
+						url: "[error]",
+						is_whitelisted: false
 					}));
 			});
 		}
@@ -413,7 +417,9 @@ ext.alarms.onAlarm.addListener((alarm) => {
 // first installation
 ext.runtime.onInstalled.addListener(async () => {
 	console.log(`[onInstalled] First Install/Update Triggered (is_firefox? ${is_firefox})`);
-	await storage.set_item(WHITELIST_KEY, JSON.stringify({})); // save an empty object on installation
+
+	// save an empty object on installation
+	await storage.set_item(WHITELIST_KEY, JSON.stringify({}));
 
 	try {
 		try {
