@@ -14,11 +14,18 @@ const URL_BASE = DEV_MODE
 // storage keys
 const WHITELIST_KEY = "whitelist";
 const RULE_COUNT_KEY = "rule_count";
-const LOCAL_VERSION_KEY = "local_version"
+const LOCAL_VERSION_KEY = "local_version";
+
+// alarm names
+const ALARM_TEMP_DISABLE = "temp_disable";
+const ALARM_TEST_UPDATE = "update_checker";
 
 // url base extensions
 const BLACKLIST = "blacklist.txt";
 const VERSION = "vrCh.txt";
+
+// random constants
+const DAY_IN_MINUTES = 1_440; // 60 * 24;
 
 const MAX_DYNAMIC_RULES = 30_000;
 
@@ -93,8 +100,8 @@ async function build_ruleset() {
 		"xmlhttprequest"
 	];
 
-	// non-firefox browsers support these other request types
-	// that also should be blocked if possible
+	// non-firefox browsers support these other request
+	// types that also should be blocked if possible
 	if (!is_firefox) {
 		default_resource_types.push(
 			"webbundle",
@@ -126,8 +133,9 @@ async function build_ruleset() {
 
 		const block_resource_types = [ ...default_resource_types ];
 
-		// if the current block directive is to block the entire
-		// page the include 'main_frame' as a blocked resource type
+		// if the current block directive is to block the
+		// entire page the include 'main_frame' as a
+		// blocked resource type
 		if (request_handle_type === BlockType.All)
 			block_resource_types.push("main_frame");
 
@@ -169,7 +177,8 @@ async function build_ruleset() {
 				}
 			});
 
-			// update whitelist rule id since it's possibly different now
+			// update whitelist rule id since it's
+			// possibly different now
 			parsed_whitelist[whitelist_domains[i]] = next_rule_id;
 			next_rule_id++;
 		}
@@ -213,7 +222,7 @@ async function update_checker() {
 
 		const remote_version = (await res.text()).trim();
 		const local_version = (await storage.get_item(LOCAL_VERSION_KEY))?.trim();
-		console.log("Version Compare", remote_version, local_version);
+		console.log("[update_checker] Version Compare", remote_version, local_version);
 
 		if (remote_version !== local_version || DEV_MODE) {
 			console.log(`[update_checker] Updating Ruleset (${local_version} -> ${remote_version})`);
@@ -225,7 +234,8 @@ async function update_checker() {
 				remote_version
 			);
 		} else {
-			// rebuild from cache if something happened and there are no rules installed
+			// rebuild from cache if something happened
+			// and there are no rules installed
 			const installed_rules = await ext.declarativeNetRequest.getDynamicRules();
 			if (installed_rules.length === 0) {
 				console.warn("[update_checker] Dynamic Rules Missing, Rebuilding from Cache");
@@ -275,8 +285,8 @@ async function add_to_whitelist(domain) {
 
 	const whitelist = await storage.get_item(WHITELIST_KEY);
 	if (typeof whitelist !== "string" || whitelist.length === 0) {
-		// if whitelist doesn't exist then create it and store
-		// the currently added domain and rule id
+		// if whitelist doesn't exist then create it and
+		// store the currently added domain and rule id
 		await storage.set_item(WHITELIST_KEY, JSON.stringify({
 			[domain]: current_id
 		}));
@@ -370,7 +380,34 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 			}));
 	}
 
+	if (message.type === "temp-disable") {
+		// sending an empty array to replace_dynamic_rules
+		// should delete all existing rules and add none
+		replace_dynamic_rules([]);
+
+		// persistAcrossSessions = false because we should
+		// (in-theory) rebuild the blacklist on browser
+		// startup if there are no existing rules
+		ext.alarms.create(ALARM_TEMP_DISABLE, {
+			delayInMinutes: 5,
+			persistAcrossSessions: false
+		});
+	}
+
 	return true;
+});
+
+// alarm listener
+ext.alarms.onAlarm.addListener((alarm) => {
+	if (alarm.name === ALARM_TEMP_DISABLE) {
+		// re-build ruleset
+		build_ruleset();
+	}
+
+	if (alarm.name === ALARM_TEST_UPDATE) {
+		// run update checker once a day
+		update_checker();
+	}
 });
 
 // first installation
@@ -387,7 +424,8 @@ ext.runtime.onInstalled.addListener(async () => {
 			console.log("[onInstalled] Failed to Enable 'displayActionCountAsBadgeText'");
 		}
 
-		// Ensure a fresh install immediately downloads and installs rules.
+		// Ensure a fresh install immediately
+		// downloads and installs rules
 		await update_checker();
 	} catch (e) {
 		console.error("[onInstalled]", e);
@@ -403,4 +441,12 @@ ext.runtime.onStartup.addListener(async () => {
 	} catch (e) {
 		console.error("[onStartup]", e);
 	}
+
+	// run update checker once every day because
+	// some users never close their browser
+	ext.alarms.create(ALARM_TEST_UPDATE, {
+		delayInMinutes: DAY_IN_MINUTES,
+		periodInMinutes: DAY_IN_MINUTES,
+		persistAcrossSessions: false
+	});
 });
