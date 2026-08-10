@@ -5,7 +5,7 @@
 	"homepage_url": "https://anon.kgsensei.dev",
 	"description": "An extension developed to help you stay anonymous online with tracking prevention and ad blocking capabilities!",
 	"default_locale": "en",
-	"version": "6.0",
+	"version": "6.1",
 
 	"action": {
 		"default_icon": "src/icon.png",
@@ -20,7 +20,8 @@
 	"permissions": [
 		"declarativeNetRequest",
 		"activeTab",
-		"storage"
+		"storage",
+		"alarms"
 	],
 
 	"background": {

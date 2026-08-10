@@ -392,9 +392,12 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 		// persistAcrossSessions = false because we should
 		// (in-theory) rebuild the blacklist on browser
 		// startup if there are no existing rules
-		ext.alarms.create(ALARM_TEMP_DISABLE, {
-			delayInMinutes: 5,
-			persistAcrossSessions: false
+		ext.alarms.get(ALARM_TEMP_DISABLE).then((temp_disable) => {
+			if (!temp_disable) {
+				ext.alarms.create(ALARM_TEMP_DISABLE, {
+					delayInMinutes: 5
+				});
+			}
 		});
 	}
 
@@ -403,15 +406,15 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 
 // alarm listener
 ext.alarms.onAlarm.addListener((alarm) => {
-	if (alarm.name === ALARM_TEMP_DISABLE) {
-		// re-build ruleset
-		build_ruleset();
-	}
+	console.log(`[alarms.onAlarm] Alarm triggered end: ${alarm.name}`);
 
-	if (alarm.name === ALARM_TEST_UPDATE) {
-		// run update checker once a day
+	// re-build ruleset
+	if (alarm.name === ALARM_TEMP_DISABLE)
+		build_ruleset();
+
+	// run update checker once a day
+	if (alarm.name === ALARM_TEST_UPDATE)
 		update_checker();
-	}
 });
 
 // first installation
@@ -436,6 +439,16 @@ ext.runtime.onInstalled.addListener(async () => {
 	} catch (e) {
 		console.error("[onInstalled]", e);
 	}
+
+	// run update checker once every day because
+	// some users never close their browser
+	const alarm_update = await ext.alarms.get(ALARM_TEST_UPDATE);
+	if (!alarm_update) {
+		ext.alarms.create(ALARM_TEST_UPDATE, {
+			delayInMinutes: DAY_IN_MINUTES,
+			periodInMinutes: DAY_IN_MINUTES
+		});
+	}
 });
 
 // run update checker on browser startup
@@ -450,9 +463,11 @@ ext.runtime.onStartup.addListener(async () => {
 
 	// run update checker once every day because
 	// some users never close their browser
-	ext.alarms.create(ALARM_TEST_UPDATE, {
-		delayInMinutes: DAY_IN_MINUTES,
-		periodInMinutes: DAY_IN_MINUTES,
-		persistAcrossSessions: false
-	});
+	const alarm_update = await ext.alarms.get(ALARM_TEST_UPDATE);
+	if (!alarm_update) {
+		ext.alarms.create(ALARM_TEST_UPDATE, {
+			delayInMinutes: DAY_IN_MINUTES,
+			periodInMinutes: DAY_IN_MINUTES
+		});
+	}
 });
