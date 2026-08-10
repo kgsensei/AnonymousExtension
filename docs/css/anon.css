@@ -6,6 +6,10 @@
 	max-width: 600px;
 }
 
+.mb-auto {
+	margin-bottom: auto;
+}
+
 #final {
 	padding: 45px 0px 15px 0px;
 	text-align: center;
