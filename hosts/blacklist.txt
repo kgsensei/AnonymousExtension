@@ -46,7 +46,6 @@ client_events
 # General Tracking
 ~ Block_Normal
 /fb.js
-tiktok
 v2/track
 pubmatic
 chartbeat
