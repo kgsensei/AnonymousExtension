@@ -17,7 +17,6 @@ const RULE_COUNT_KEY = "rule_count";
 const LOCAL_VERSION_KEY = "local_version";
 
 // alarm names
-const ALARM_TEMP_DISABLE = "temp_disable";
 const ALARM_TEST_UPDATE = "update_checker";
 
 // url base extensions
@@ -384,35 +383,11 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 			}));
 	}
 
-	if (message.type === "temp-disable") {
-		// sending an empty array to replace_dynamic_rules
-		// should delete all existing rules and add none
-		replace_dynamic_rules([]);
-
-		// persistAcrossSessions = false because we should
-		// (in-theory) rebuild the blacklist on browser
-		// startup if there are no existing rules
-		ext.alarms.get(ALARM_TEMP_DISABLE).then((temp_disable) => {
-			if (!temp_disable) {
-				ext.alarms.create(ALARM_TEMP_DISABLE, {
-					delayInMinutes: 5
-				});
-			}
-		});
-	}
-
 	return true;
 });
 
-// alarm listener
+// alarm test update callback
 ext.alarms.onAlarm.addListener((alarm) => {
-	console.log(`[alarms.onAlarm] Alarm triggered end: ${alarm.name}`);
-
-	// re-build ruleset
-	if (alarm.name === ALARM_TEMP_DISABLE)
-		build_ruleset();
-
-	// run update checker once a day
 	if (alarm.name === ALARM_TEST_UPDATE)
 		update_checker();
 });
