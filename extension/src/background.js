@@ -25,7 +25,6 @@ const VERSION = "vrCh.txt";
 
 // random constants
 const DAY_IN_MINUTES = 1_440; // 60 * 24;
-
 const MAX_DYNAMIC_RULES = 30_000;
 
 // block behavior "enum"
