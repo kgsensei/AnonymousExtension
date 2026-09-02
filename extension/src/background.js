@@ -26,6 +26,7 @@ const VERSION = "vrCh.txt";
 // random constants
 const DAY_IN_MINUTES = 1_440; // 60 * 24;
 const MAX_DYNAMIC_RULES = 30_000;
+const CACHE_STRATEGY = "no-store";
 
 // block behavior "enum"
 const BlockType = {
@@ -49,7 +50,7 @@ const storage = {
 // and saves the resulting text locally in the extension
 async function download_ruleset() {
 	try {
-		const res = await fetch(URL_BASE + BLACKLIST);
+		const res = await fetch(URL_BASE + BLACKLIST, { cache: CACHE_STRATEGY });
 
 		if (!res.ok)
 			throw new Error(`Failed to Fetch Blacklist: Status: ${res.status}`);
@@ -213,7 +214,7 @@ async function replace_dynamic_rules(new_rules) {
 // check for update and install if needed
 async function update_checker() {
 	try {
-		const res = await fetch(URL_BASE + VERSION);
+		const res = await fetch(URL_BASE + VERSION, { cache: CACHE_STRATEGY });
 
 		if (!res.ok)
 			throw new Error(`Failed to Fetch Version: Status: ${res.status}`);
