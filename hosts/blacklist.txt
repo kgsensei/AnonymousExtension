@@ -349,6 +349,7 @@ cdn.bannersnack.com
 advertisement-ads.js
 redditstatic.com/ads
 9xbuddy.com/js/ads.js
+selector.voltaxam.com
 adaptv.advertising.com
 antiadblocksystems.com
 # Google Specific
