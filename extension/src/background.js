@@ -8,7 +8,7 @@ const ext = is_firefox ? browser : chrome;
 const DEV_MODE = false; // make sure this is false on prod
 
 const URL_BASE = DEV_MODE
-	? "http://localhost:3000/"
+	? "https://localhost:3000/"
 	: "https://cdn.jsdelivr.net/gh/kgsensei/AnonymousExtension@latest/hosts/";
 
 // storage keys
@@ -20,7 +20,7 @@ const LOCAL_VERSION_KEY = "local_version";
 const ALARM_TEST_UPDATE = "update_checker";
 
 // url base extensions
-const BLACKLIST = "blacklist.txt";
+const BLACKLIST = "blacklist.json";
 const VERSION = "vrCh.txt";
 
 // random constants
@@ -82,7 +82,7 @@ async function build_ruleset() {
 		return;
 	}
 
-	const split_hosts = stored_rules.split(/\r?\n/);
+	const split_hosts = JSON.parse(stored_rules);
 
 	const default_resource_types = [
 		"font",
@@ -113,10 +113,6 @@ async function build_ruleset() {
 	// handle blacklist rules
 	for (const line of split_hosts) {
 		let filter = line.trim();
-
-		// comment or empty line
-		if (!filter || filter.startsWith('#'))
-			continue;
 
 		// directive line
 		if (filter.startsWith('~')) {

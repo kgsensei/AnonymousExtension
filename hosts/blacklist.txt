@@ -1,3 +1,4 @@
+# This file must remain to support legacy versions of AnonymousExtension
 # Debugging and Testing
 ~ Block_All
 anon.kgsensei.dev/api/isFunctional
@@ -349,7 +350,6 @@ cdn.bannersnack.com
 advertisement-ads.js
 redditstatic.com/ads
 9xbuddy.com/js/ads.js
-selector.voltaxam.com
 adaptv.advertising.com
 antiadblocksystems.com
 # Google Specific
