@@ -86,6 +86,7 @@
 			"/interads.js",
 			"/iubenda.js",
 			"/klaviyo.js",
+			"/track.js",
 			"/fb.js"
 		]
 	},
@@ -113,6 +114,7 @@
 
 			"||ex.co/",
 			"||cpx.to/",
+			"||6sc.co/",
 			"||1rx.io/",
 			"||sjv.io/",
 			"||pxf.io/",
@@ -120,6 +122,7 @@
 			"||tru.am/",
 			"||p-n.io/",
 			"||mrf.io/",
+			"||gaug.es/",
 			"||bidr.io/",
 			"||3gl.net/",
 			"||pix.pub/",
@@ -127,6 +130,7 @@
 			"||spot.im/",
 			"||dv.tech/",
 			"||ortb.net/",
+			"||yadro.ru/",
 			"||piano.io/",
 			"||zqtk.net/",
 			"||ispot.tv/",
@@ -137,6 +141,7 @@
 			"||ywxi.net/",
 			"||a-mo.net/",
 			"||amung.us/",
+			"||lngtd.com/",
 			"||ck-ie.com/",
 			"||braze.com/",
 			"||simpli.fi/",
@@ -160,6 +165,7 @@
 			"||rlcdn.com/",
 			"||prmutv.co/",
 			"||loopme.me/", 
+			"||uidapi.com/",
 			"||inmobi.com/",
 			"||ymmobi.com/",
 			"||clarity.ms/",
@@ -167,6 +173,7 @@
 			"||criteo.com/",
 			"||criteo.net/",
 
+			"||concert.io/",
 			"||megpxs.com/",
 			"||htlbid.com/",
 			"||aditude.io/",
@@ -304,6 +311,8 @@
 			"||trueanthem.com/",
 			"||drivenmove.com/",
 			"||cdn.rumdash.io/",
+			"||convertbox.com/",
+			"||bqstreamer.com/",
 			"||ipredictive.com/",
 			"||scholarsark.com/",
 			"||techlab-cdn.com/",
@@ -376,6 +385,8 @@
 			"||cookieinformation.com/",
 			"||scorecardresearch.com/",
 			"||analytics.twitter.com/",
+			"||powerstarsbuilding.com/",
+			"||convertexperiments.com/",
 			"||cloudflareinsights.com/",
 			"||minutemedia-prebid.com/",
 			"||securemetrics.apple.com/",
@@ -483,6 +494,7 @@
 			"||liadm.com/",
 			"||kargo.com/",
 			"||fwmrm.net/",
+			"||optable.co/",
 			"||adzerk.net/",
 			"||trustx.org/",
 			"||adform.net/",
@@ -606,9 +618,8 @@
 
 			"/user-sponsorship",
 
+			"||stg.*.com/",
 			"||stg.html-load.cc/",
-			"||stg.daintilyrare.com/",
-			"||stg.vol.zebracave.com/",
 
 			"||rubiconproject.com/",
 			"||content-loader.com/",
