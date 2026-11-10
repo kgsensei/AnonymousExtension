@@ -1,4 +1,6 @@
 (() => {
+	let logo_clicks = 0;
+
 	// configuration and browser compatibility
 	const is_firefox =
 		typeof browser === "object" &&
@@ -101,7 +103,7 @@
 		if (typeof domain !== "string" || typeof mode !== "string")
 			return;
 
-		ext.runtime.sendMessage({ type: `whitelist-${mode}`, domain: domain }, (result) => {
+		ext.runtime.sendMessage({ type: `whitelist-${mode}`, domain: domain }, (_) => {
 			query_background_data(); // update rule count on result
 		});
 	}
@@ -110,6 +112,16 @@
 		// dom loaded so we can hook buttons
 		document.getElementById("whitelist_button").addEventListener("click", () => {
 			whitelist_domain();
+		});
+
+		document.getElementById("anonext_logo").addEventListener("click", () => {
+			logo_clicks++;
+			if (logo_clicks >= 3) {
+				ext.runtime.sendMessage({ type: "whitelist_force_update" }, (_) => {
+					logo_clicks = 0;
+					query_background_data();
+				});
+			}
 		});
 	});
 

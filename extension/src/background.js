@@ -208,7 +208,7 @@ async function replace_dynamic_rules(new_rules) {
 }
 
 // check for update and install if needed
-async function update_checker() {
+async function update_checker(force_update = false) {
 	try {
 		const res = await fetch(URL_BASE + VERSION, { cache: CACHE_STRATEGY });
 
@@ -219,7 +219,7 @@ async function update_checker() {
 		const local_version = (await storage.get_item(LOCAL_VERSION_KEY))?.trim();
 		console.log("[update_checker] Version Compare", remote_version, local_version);
 
-		if (remote_version !== local_version || DEV_MODE) {
+		if (remote_version !== local_version || DEV_MODE || force_update) {
 			console.log(`[update_checker] Updating Ruleset (${local_version} -> ${remote_version})`);
 
 			await download_ruleset();
@@ -372,6 +372,15 @@ ext.runtime.onMessage.addListener((message, _, sendResponse) => {
 
 	if (message.type === "whitelist-remove") {
 		remove_from_whitelist(message.domain)
+			.then(() => sendResponse({ success: true }))
+			.catch((e) => sendResponse({
+				success: false,
+				error: e.message
+			}));
+	}
+
+	if (message.type === "whitelist_force_update") {
+		update_checker(force_update = true)
 			.then(() => sendResponse({ success: true }))
 			.catch((e) => sendResponse({
 				success: false,
