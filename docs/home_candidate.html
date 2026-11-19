@@ -1,0 +1,758 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d19">
+<meta name="description" content="AnonymousExtension by kgsensei. Take control of your online privacy and browse with greater peace of mind.">
+
+<title>AnonymousExtension by kgsensei | Your Privacy. Your Rules.</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #090d19;
+  --surface: #111829;
+  --surface-light: #172137;
+  --purple: #8765ff;
+  --cyan: #53d9e9;
+  --text: #f5f6ff;
+  --muted: #9ca8bd;
+  --border: rgba(255,255,255,.09);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.7;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: min(1120px, 90%);
+  margin: auto;
+}
+
+h1,h2,h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.15;
+}
+
+.gradient-text {
+  background: linear-gradient(90deg,#a58aff,#60dce8);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* NAVIGATION */
+
+nav {
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.logo-icon {
+  width: 38px;
+  height: 38px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: linear-gradient(135deg,var(--purple),#5140bd);
+  font-size: 20px;
+}
+
+.logo span { color: var(--cyan); }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.nav-links a:hover { color: white; }
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  padding: 13px 23px;
+  border-radius: 9px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: .2s;
+  cursor: pointer;
+}
+
+.button-primary {
+  background: linear-gradient(135deg,#9475ff,#7052e8);
+  color: white;
+  box-shadow: 0 7px 30px rgba(135,101,255,.22);
+}
+
+.button-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 35px rgba(135,101,255,.4);
+}
+
+.button-outline {
+  border: 1px solid var(--border);
+  color: white;
+}
+
+.button-outline:hover { background: var(--surface-light); }
+
+/* HERO */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: 110px 0 100px;
+  text-align: center;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle,rgba(116,82,255,.18),transparent 70%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 850px;
+  margin: auto;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 15px;
+  border: 1px solid rgba(135,101,255,.3);
+  border-radius: 30px;
+  color: #b7a7ff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  background: rgba(135,101,255,.08);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  background: #6de6b1;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #6de6b1;
+}
+
+.hero h1 {
+  font-size: clamp(42px,7vw,76px);
+  letter-spacing: -3px;
+  margin: 28px 0 22px;
+}
+
+.hero-description {
+  max-width: 620px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 18px;
+}
+
+.hero-actions {
+  margin-top: 35px;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-note {
+  color: #77849b;
+  font-size: 12px;
+  margin-top: 19px;
+}
+
+.hero-image {
+  max-width: 850px;
+  width: 100%;
+  margin: 70px auto 0;
+  display: block;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+  box-shadow: 0 30px 100px rgba(0,0,0,.4);
+}
+
+/* TRUST STRIP */
+
+.trust-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 28px 0;
+}
+
+.trust-items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 55px;
+  flex-wrap: wrap;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.trust-item {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+}
+
+.trust-item strong {
+  color: var(--cyan);
+  font-size: 17px;
+}
+
+/* GENERAL SECTIONS */
+
+.content-section { padding: 100px 0; }
+
+.section-heading {
+  max-width: 650px;
+  text-align: center;
+  margin: 0 auto 55px;
+}
+
+.section-heading h2 {
+  font-size: clamp(32px,4vw,46px);
+  margin: 17px 0;
+  letter-spacing: -1.5px;
+}
+
+.section-heading p {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+/* FEATURES */
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+
+.feature-card {
+  background: linear-gradient(145deg,#141e32,#0e1525);
+  border: 1px solid var(--border);
+  padding: 32px;
+  border-radius: 15px;
+  transition: .25s;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(135,101,255,.5);
+}
+
+.feature-icon {
+  height: 49px;
+  width: 49px;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  background: rgba(135,101,255,.13);
+  color: #ad98ff;
+  font-size: 23px;
+  margin-bottom: 24px;
+}
+
+.feature-card h3 {
+  font-size: 19px;
+  margin-bottom: 12px;
+}
+
+.feature-card p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* PRIVACY */
+
+.privacy-section {
+  background: linear-gradient(180deg,#0d1424,#090d19);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.privacy-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 70px;
+}
+
+.privacy-visual {
+  width: 100%;
+  border-radius: 18px;
+  border: 1px solid var(--border);
+}
+
+.privacy-copy h2 {
+  font-size: clamp(32px,4vw,43px);
+  margin: 18px 0;
+  letter-spacing: -1px;
+}
+
+.privacy-copy > p {
+  color: var(--muted);
+  margin-bottom: 27px;
+}
+
+.privacy-point {
+  display: flex;
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.check {
+  flex-shrink: 0;
+  width: 27px;
+  height: 27px;
+  display: grid;
+  place-items: center;
+  background: rgba(83,217,233,.12);
+  color: var(--cyan);
+  border-radius: 50%;
+  font-size: 13px;
+}
+
+.privacy-point h3 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.privacy-point p {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* HOW IT WORKS */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 30px;
+}
+
+.step {
+  text-align: center;
+  padding: 15px;
+}
+
+.step-number {
+  margin: 0 auto 22px;
+  height: 58px;
+  width: 58px;
+  border-radius: 17px;
+  display: grid;
+  place-items: center;
+  font-family: 'Space Grotesk';
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg,#8463fa,#4934a4);
+}
+
+.step h3 {
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.step p {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* CTA */
+
+.cta {
+  padding: 85px 30px;
+  margin: 30px auto 100px;
+  text-align: center;
+  border: 1px solid rgba(135,101,255,.3);
+  border-radius: 22px;
+  background:
+    radial-gradient(ellipse at top,rgba(135,101,255,.2),transparent 65%),
+    #111829;
+}
+
+.cta h2 {
+  font-size: clamp(32px,5vw,48px);
+  margin-bottom: 18px;
+}
+
+.cta p {
+  max-width: 540px;
+  margin: 0 auto 30px;
+  color: var(--muted);
+}
+
+/* FOOTER */
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 0;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.footer-content p,
+.footer-links {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+}
+
+.footer-links a:hover { color: white; }
+
+/* MOBILE */
+
+@media(max-width:800px) {
+  .nav-links { gap: 15px; }
+  .nav-links a:not(.button) { display: none; }
+  .feature-grid { grid-template-columns: repeat(2,1fr); }
+  .privacy-layout { grid-template-columns: 1fr; gap: 35px; }
+  .steps { gap: 10px; }
+}
+
+@media(max-width:550px) {
+  .hero { padding: 80px 0; }
+  .hero h1 { letter-spacing: -2px; }
+  .hero-description { font-size: 16px; }
+  .feature-grid,.steps { grid-template-columns: 1fr; }
+  .trust-items { gap: 20px; }
+  .content-section { padding: 70px 0; }
+  .cta { padding: 60px 20px; margin-bottom: 65px; }
+  .footer-content { flex-direction: column; text-align: center; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+
+<header class="container">
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">◈</div>
+    Anonymous<span>Extension</span>
+  </a>
+
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#privacy">Privacy</a>
+    <a href="#how-it-works">How it works</a>
+    <a href="#install" class="button button-primary">Install Extension ↗</a>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+<div class="container hero-content">
+
+  <div class="eyebrow">
+    <span class="status-dot"></span>
+    Take control of your privacy
+  </div>
+
+  <h1>
+    Your online life.<br>
+    <span class="gradient-text">Your business.</span>
+  </h1>
+
+  <p class="hero-description">
+    The internet doesn't need to know everything about you.
+    AnonymousExtension helps put privacy back in your hands
+    with a simpler, more private browsing experience.
+  </p>
+
+  <div class="hero-actions">
+    <a href="YOUR_EXTENSION_STORE_URL" class="button button-primary">
+      Add to Browser ↗
+    </a>
+    <a href="#features" class="button button-outline">
+      Explore Features ↓
+    </a>
+  </div>
+
+  <p class="hero-note">
+    By kgsensei · Simple privacy. Smarter browsing.
+  </p>
+
+  <img
+    src="images/hero-preview.png"
+    alt="A sleek browser mockup displaying the AnonymousExtension privacy dashboard, a protective shield symbol, and glowing purple and cyan security elements."
+    class="hero-image"
+  >
+
+</div>
+</section>
+
+<!-- TRUST STRIP -->
+
+<div class="trust-strip">
+<div class="container trust-items">
+  <div class="trust-item"><strong>◈</strong> Privacy focused</div>
+  <div class="trust-item"><strong>✓</strong> Easy to use</div>
+  <div class="trust-item"><strong>⌘</strong> Browser integration</div>
+  <div class="trust-item"><strong>◎</strong> Built by kgsensei</div>
+</div>
+</div>
+
+<!-- FEATURES -->
+
+<section class="content-section" id="features">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="eyebrow">What makes it different</div>
+    <h2>Privacy shouldn't be complicated.</h2>
+    <p>
+      A better browsing experience starts with having more
+      control over your digital footprint.
+    </p>
+  </div>
+
+  <div class="feature-grid">
+
+    <article class="feature-card">
+      <div class="feature-icon">◈</div>
+      <h3>Privacy First</h3>
+      <p>Designed with privacy in mind, helping you take greater control over your online activity.</p>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-icon">⛨</div>
+      <h3>More Control</h3>
+      <p>Put your browsing experience in your hands instead of leaving every decision to websites.</p>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Simple Experience</h3>
+      <p>No complicated setup or unnecessary learning curve. Get started right from your browser.</p>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-icon">◎</div>
+      <h3>Mindful Browsing</h3>
+      <p>Browse with greater awareness of your digital privacy and the information you share.</p>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-icon">⌘</div>
+      <h3>Browser Integration</h3>
+      <p>Access your privacy tools directly from your browser through a convenient extension.</p>
+    </article>
+
+    <article class="feature-card">
+      <div class="feature-icon">✧</div>
+      <h3>Built with Purpose</h3>
+      <p>Created by kgsensei with a focus on making everyday online privacy more accessible.</p>
+    </article>
+
+  </div>
+</div>
+</section>
+
+<!-- PRIVACY -->
+
+<section class="content-section privacy-section" id="privacy">
+<div class="container privacy-layout">
+
+  <img
+    src="images/privacy-illustration.png"
+    alt="A glowing digital shield protecting a person's personal information from surrounding tracking signals, data collection symbols, and unwanted digital observation."
+    class="privacy-visual"
+  >
+
+  <div class="privacy-copy">
+    <div class="eyebrow">Your data matters</div>
+
+    <h2>Your privacy is not a luxury. It's a right.</h2>
+
+    <p>
+      Every day, websites and online services can collect
+      information about your activity. You deserve to have
+      more control over what happens to your digital presence.
+    </p>
+
+    <div class="privacy-point">
+      <div class="check">✓</div>
+      <div>
+        <h3>Be more intentional online</h3>
+        <p>Make informed choices about your browsing privacy.</p>
+      </div>
+    </div>
+
+    <div class="privacy-point">
+      <div class="check">✓</div>
+      <div>
+        <h3>Take back control</h3>
+        <p>Use tools designed to give you greater control over your experience.</p>
+      </div>
+    </div>
+
+    <div class="privacy-point">
+      <div class="check">✓</div>
+      <div>
+        <h3>Understand your privacy</h3>
+        <p>Make privacy a part of your everyday browsing habits.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- HOW IT WORKS -->
+
+<section class="content-section" id="how-it-works">
+<div class="container">
+
+  <div class="section-heading">
+    <div class="eyebrow">Getting started</div>
+    <h2>Three steps. A better browsing experience.</h2>
+    <p>Getting started with AnonymousExtension is designed to be straightforward.</p>
+  </div>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-number">01</div>
+      <h3>Install</h3>
+      <p>Visit the browser extension store and add AnonymousExtension to your browser.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">02</div>
+      <h3>Configure</h3>
+      <p>Open the extension and explore its available privacy settings and features.</p>
+    </div>
+
+    <div class="step">
+      <div class="step-number">03</div>
+      <h3>Browse</h3>
+      <p>Enjoy a more privacy-conscious browsing experience with tools at your fingertips.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- INSTALL CTA -->
+
+<section class="container" id="install">
+<div class="cta">
+
+  <div class="eyebrow">Your privacy journey starts here</div>
+
+  <h2>
+    Stop giving away more<br>
+    <span class="gradient-text">than you need to.</span>
+  </h2>
+
+  <p>
+    Make privacy a priority. Take a step toward a more
+    controlled online experience with AnonymousExtension.
+  </p>
+
+  <a href="YOUR_EXTENSION_STORE_URL" class="button button-primary">
+    Get AnonymousExtension ↗
+  </a>
+
+  <p class="hero-note">Proudly created by kgsensei.</p>
+
+</div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+
+<footer>
+<div class="container footer-content">
+
+  <a href="#" class="logo">
+    <div class="logo-icon">◈</div>
+    Anonymous<span>Extension</span>
+  </a>
+
+  <p>© <span id="year"></span> AnonymousExtension by kgsensei.</p>
+
+  <div class="footer-links">
+    <a href="YOUR_PRIVACY_POLICY_URL">Privacy Policy</a>
+    <a href="YOUR_GITHUB_URL">GitHub</a>
+    <a href="mailto:YOUR_CONTACT_EMAIL">Contact</a>
+  </div>
+
+</div>
+</footer>
+
+<script>
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
+
+</body>
+</html>
