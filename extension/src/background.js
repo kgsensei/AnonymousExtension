@@ -84,30 +84,12 @@ async function build_ruleset() {
 
 	const split_hosts = JSON.parse(stored_rules);
 
-	const default_resource_types = [
-		"font",
-		"ping",
-		"other",
-		"media",
-		"image",
-		"object",
-		"script",
-		"sub_frame",
-		"websocket",
-		"stylesheet",
-		"csp_report",
-		"xmlhttprequest"
-	];
-
-	// non-firefox browsers support these other request
-	// types that also should be blocked if possible
-	if (!is_firefox) {
-		default_resource_types.push(
-			"webbundle",
-			"webtransport"
-		);
-	}
-
+	// get all resource types allowed in declarativeNetRequest
+	// and use them as the default blocked resouces (excluding
+	// main_frame because it will be conditionally added later)
+	const default_resource_types = Object.values(
+		ext.declarativeNetRequest.ResourceType
+	).filter(type => type !== "main_frame");
 	let next_rule_id = 1;
 
 	// handle blacklist rules
