@@ -172,6 +172,7 @@
 			"pubmatic",
 			"adengine",
 
+			"/api/hit",
 			"/api/track",
 			"me/user-info",
 			"/web/metrics",
